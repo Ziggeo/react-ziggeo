@@ -1,0 +1,39 @@
+{
+  "name": "ZiggeoReactSDK",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"npm run dev\" \"npm run api\"",
+    "api": "node simple_api/server.js",
+    "dev": "webpack-dev-server --hot --inline",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ziggeo/ZiggeoReactSDK"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Ziggeo/ZiggeoReactSDK"
+  },
+  "homepage": "https://github.com/romabelka/js_ru_30_01_19_30",
+  "devdependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-react": "^6.11.1",
+    "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-0": "^6.5.0",
+    "concurrently": "^3.3.0",
+    "webpack": "^2.0.0",
+    "webpack-dev-server": "^2.0.0"
+  },
+  "dependencies": {
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "ziggeo": "^0.0.20",
+    "ziggeo-client-sdk": "^0.0.27"
+  }
+}
