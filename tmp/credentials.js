@@ -1,5 +1,0 @@
-export default {
-    APPLICATION_TOKEN:  'edc64489f33663d8310fb70e1f33cc51',
-    PRIVATE_KEY:        '33b2867f4983d0e44cfc941440033559',
-    ENCRYPTION_KEY:     'fb5fd530351e50cdfa5389448f8fe444'
-}

@@ -3,6 +3,7 @@
 /tmp
 .swp
 .DS_Store
+*.tgz
 
 # dependencies
 /node_modules
