@@ -1,4 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
+.idea
+/tmp
+.swp
+.DS_Store
 
 # dependencies
 /node_modules
@@ -9,7 +13,7 @@
 /src/constants.js
 
 # production
-/build
+/build/*.js
 
 # misc
 .DS_Store
