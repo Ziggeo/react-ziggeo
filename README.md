@@ -28,5 +28,7 @@ import {ZiggeoPlayer} from 'react-ziggeo'
 ...
 ```
 
-####You can add all available all Ziggeo related options from below link:
+#### Additional Parameters
+
+You can add all available all Ziggeo related options from below link:
 [Ziggeo Available Parameters](https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-stable&javascript-version=v2)
