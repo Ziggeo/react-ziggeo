@@ -15,7 +15,6 @@ demo/node_modules
 /src/constants.js
 
 # production
-/build/*.js
 
 # misc
 .DS_Store

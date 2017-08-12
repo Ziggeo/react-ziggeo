@@ -7,16 +7,14 @@
 
 # dependencies
 /node_modules
-demo/node_modules
 
+#demo
+demo
 
 # testing
 /coverage
 
 /src/constants.js
-
-# production
-/build/*.js
 
 # misc
 .DS_Store
