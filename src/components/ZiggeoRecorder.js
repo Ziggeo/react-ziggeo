@@ -5,6 +5,8 @@ import 'ziggeo-client-sdk/build/ziggeo.js';
 
 class ZiggeoRecorder extends Component {
 
+    static state = {application: null};
+
     static propTypes = {
         apiKey: PropTypes.string.isRequired,
         "ziggeo-theme": PropTypes.string,
@@ -21,8 +23,12 @@ class ZiggeoRecorder extends Component {
     };
 
     componentDidMount () {
-        const application = new ZiggeoApi.V2.Application({token: this.props.apiKey});
-    }
+        this.setState({
+            application: ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey)
+        });
+    };
+
+    componentWillUnmount () {}
 
     render() {
         return (
@@ -32,10 +38,12 @@ class ZiggeoRecorder extends Component {
 
     addZiggeoAttributes = (node) => {
         const {apiKey, ...rest} = this.props;
+
         const options = {...rest};
-        Object.keys(options).map((option) =>
-            node.setAttribute(option, this.props[option])
-        )
+        if(Object.keys(options).length > 1 && node)
+            Object.keys(options).map((option) =>
+                node.setAttribute(option, this.props[option])
+            )
     }
 }
 
