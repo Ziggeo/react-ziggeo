@@ -96,12 +96,18 @@ class EmbedRecorderPage extends Component {
         return (
             <section className="player-page">
                 <h1 className="page-header">Embed Player Page</h1>
-                <p>Video token: {VIDEO_TOKEN}</p>
+                <p className="alert alert-warning">
+                    <strong>Note: </strong>
+                    It's demonstrative view, recording and uploading set to not allowed, you can register <a href="https://ziggeo.com">Ziggeo</a>. After getting key, use all awesome features
+                </p>
                 <ZiggeoEmbedRecorder
                     apiKey={API_KEY}
                     video={VIDEO_TOKEN}
                     height={180}
                     width={320}
+                    allowupload={false}
+                    allowrecord={false}
+                    allowedextensions={['no.type']}
                     onPlayerPlaying={this.playing}
                     onPlayerPaused={this.paused}
                     onPlayerEnded={this.playerEnded}
@@ -125,6 +131,35 @@ class EmbedRecorderPage extends Component {
                     onRecorderNoCamera={this.recorderNoCamera}
                     onRecorderNoMicrophone={this.recorderNoMicrophone}
                 />
+
+                <div className="text-left">
+                    <h5 className="text-center"> ES6 Code Sample </h5>
+                    <h6>Open console to see events attached to this Component</h6>
+                    <pre>
+                        {"import React from 'react';"} <br/>
+                        {"import {ZiggeoEmbedRecorder} from 'react-ziggeo';"}<br/>
+                        {"import { API_KEY } from '../constants';"}
+                        <br/>
+                        <br/>
+                        ...
+                        <br/>
+                        <br/>
+                        {"recorderError = () => { console.log('Recorder error'); };"}
+                        <br/>
+                        {"recorderRecording = () => { console.log('Recorder onRecorderUploading'); };"}
+                        <br/>
+                        <br/>
+                        ...
+                        <br/>
+                        <br/>
+                        {'<ZiggeoEmbedRecorder \n\t apiKey="Ziggeo provided key" \n\t ziggeo-video="your video token"' +
+                        '\n\t allowupload={false} \n\t allowrecord={false}' +
+                        "\n\t onRecorderError={this.recorderError} \n\t onRecorderRecording={this.recorderRecording}" +
+                        '\n/>'}
+                        <br/>
+                        ...
+                    </pre>
+                </div>
             </section>
         );
     }

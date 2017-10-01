@@ -128,4 +128,5 @@ You can add all available all Ziggeo related options from below link:
 
 
 #### Working Demo:
-- [react-ziggeo demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo)
+- [react-live-demo](https://sambua.github.io/react-ziggeo-page)
+- [react-ziggeo demo for local install](https://github.com/Ziggeo/react-ziggeo/tree/master/demo)
