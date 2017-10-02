@@ -9,6 +9,9 @@
 # production
 /build
 
+# demo
+src/constants.js
+
 # misc
 .DS_Store
 .env.local

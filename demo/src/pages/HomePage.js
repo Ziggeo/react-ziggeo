@@ -10,6 +10,8 @@ const HomePage = () => {
             <ul className="list-unstyled">
                 <li>1) <Link to="/player">Player</Link></li>
                 <li>2) <Link to="/recorder">Recorder</Link></li>
+                <li>3) <Link to="/embed-player">Embed Player</Link></li>
+                <li>4) <Link to="/embed-recorder">Embed Recorder</Link></li>
             </ul>
         </section>
     );

@@ -8,11 +8,13 @@
 # dependencies
 /node_modules
 demo/node_modules
+/dev-demo
 
 # testing
 /coverage
 
 /src/constants.js
+demo/src/constants.js
 
 # production
 
