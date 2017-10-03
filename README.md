@@ -8,7 +8,8 @@ import React from 'react'
 import {ZiggeoRecorder} from 'react-ziggeo'
 
 ...
-    <ZiggeoRecorder apiKey={'your api key provided by ziggeo'}/>
+    <ZiggeoRecorder apiKey={'your api key provided by ziggeo'}
+    />
 ...
 ```
 
