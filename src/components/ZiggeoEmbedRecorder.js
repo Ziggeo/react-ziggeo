@@ -117,7 +117,7 @@ class ZiggeoEmbedRecorder extends Component {
     };
 
     render() {
-        return <div></div>;
+        return this.props.element || <div />;
     };
 }
 
@@ -160,6 +160,7 @@ ZiggeoEmbedRecorder.propTypes = {
     "allowrecord":      PropTypes.bool,
     "recordings":       PropTypes.number,
 
+    element:          PropTypes.node,
     onPlayerPlaying:    PropTypes.func,
     onPlayerPaused:     PropTypes.func,
     onPlayerAttached:   PropTypes.func,
