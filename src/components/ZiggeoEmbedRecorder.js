@@ -117,7 +117,9 @@ class ZiggeoEmbedRecorder extends Component {
     };
 
     render() {
-        return this.props.element || <div />;
+        // Gather the props that are not controlled by this component
+        const props = Object.keys(this.props).filter(k => !ZiggeoEmbedRecorder.propTypes[k]).reduce((p, k) => p[k] = this.props[k], {});
+        return <div {...props}/>;
     };
 }
 
@@ -160,7 +162,6 @@ ZiggeoEmbedRecorder.propTypes = {
     "allowrecord":      PropTypes.bool,
     "recordings":       PropTypes.number,
 
-    element:          PropTypes.node,
     onPlayerPlaying:    PropTypes.func,
     onPlayerPaused:     PropTypes.func,
     onPlayerAttached:   PropTypes.func,
