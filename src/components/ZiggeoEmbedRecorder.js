@@ -1,92 +1,137 @@
+/* globals ZiggeoApi */
+
 import React from 'react';
-import PropTypes from 'prop-types';
+import { string, number, bool, arrayOf, func, array, object } from 'prop-types';
 
 const ziggeoAttrPropTypes = {
-	"video":            PropTypes.string.isRequired,
-	"theme":            PropTypes.string,
-	"themecolor":       PropTypes.string,
-	"height":           PropTypes.number,
-	"width":            PropTypes.number,
-	"effect-profile":   PropTypes.array,
-	"skipinitial":      PropTypes.bool,
-	"stretch":          PropTypes.bool,
+	// Presentational parameters
+	'width': number,
+	'height': number,
+	'responsive': bool,
+	'skipinitial': bool,
+	'picksnapshots': bool,
+	'countdown': number,
+	'stream-width': number,
+	'stream-height': number,
+	'nofullscreen': bool,
+	'snapshotmax': number,
+	'gallerysnapshots': number,
+	'localplayback ': bool,
+	'stretch': bool,
+	'theme': string,
+	'themecolor': string,
+	'autorecord': bool,
+	'primaryrecord': bool,
+	'flip-camera': bool,
+	'early-rerecord': bool,
+	'sharevideo':	arrayOf(string),
 
-	"recordingwidth":   PropTypes.bool,
-	"picksnapshots":    PropTypes.bool,
-	"snapshotmax":      PropTypes.number,
-	"countdown":        PropTypes.number,
-	"gallerysnapshots": PropTypes.number,
-	"timelimit":        PropTypes.number,
-	"timeminlimit":     PropTypes.number,
-	"localplayback ":   PropTypes.bool,
-	"autorecord":       PropTypes.bool,
-	"primaryrecord":    PropTypes.bool,
-	"early-rerecord":   PropTypes.bool,
-	"auto-crop":        PropTypes.bool,
-	"auto-pad":         PropTypes.bool,
-	"key":              PropTypes.string,
-	"video-profile":    PropTypes.string,
-	"meta-profile":     PropTypes.string,
-	"enforce-duration": PropTypes.bool,
-	"noaudio":          PropTypes.bool,
-	"framerate":        PropTypes.number,
-	"videobitrate":     PropTypes.number,
-	"audiobitrate":     PropTypes.number,
-	"microphone-volume":PropTypes.number,
-	"manual_upload":    PropTypes.bool,
-	"rerecordable":     PropTypes.bool,
-	"allowupload":      PropTypes.bool,
-	"allowrecord":      PropTypes.bool,
-	"recordings":       PropTypes.number,
-}
+	// Security parameters
+	'server-auth': string,
+	'client-auth': string,
+	'expiration-days': number,
+
+	// Video management parameters
+	'recordingwidth': number,
+	'recordingheight': number,
+	'video': string,
+	'stream':	string,
+	'effect-profile': array,
+	'auto-crop': bool,
+	'auto-pad': bool,
+	'key': string,
+	'timelimit': number,
+	'timeminlimit': number,
+	'video-profile': string,
+	'meta-profile': string,
+	'enforce-duration': bool,
+	'noaudio': bool,
+	'source':	string,
+	'framerate': number,
+	'videobitrate': number,
+	'audiobitrate': number,
+	'microphone-volume': number,
+	'custom-covershots': bool,
+
+	// Data parameters
+	'tags': arrayOf(string),
+	'custom-data':	object,
+	'title':	string,
+	'description': string,
+
+	// Operational parameters
+	'manual_upload': bool,
+	'rerecordable':	bool,
+	'allowupload': bool,
+	'allowrecord':	bool,
+	'force-overwrite':	bool,
+	'autoplay': bool,
+	'recordings':	number,
+	'allowedextensions': arrayOf(string),
+	'application':	string,
+	'filesizelimit': number,
+	'flashincognitosupport': bool,
+	'simulate': bool,
+	'allowcustomupload': bool,
+	'recordermode': bool,
+	'forceflash': bool,
+	'noflash': bool,
+	'manualsubmit': bool,
+	'initialseek': number,
+	'playfullscreenonmobile': bool,
+
+	// Form and HTML parameters
+	'input-bind': string,
+	'form-accept': string
+};
 
 const ziggeoEventPropTypes = {
-	onPlayerPlaying:    PropTypes.func,
-	onPlayerPaused:     PropTypes.func,
-	onPlayerAttached:   PropTypes.func,
-	onPlayerLoaded:     PropTypes.func,
-	onPlayerEnded:      PropTypes.func,
-	onPlayerSeek:       PropTypes.func,
-	onRecorderError:    PropTypes.func,
-	onRecorderManuallySubmitted: PropTypes.func,
-	onRecorderUploaded: PropTypes.func,
-	onRecorderUploadSelected: PropTypes.func,
-	onRecorderRecording:PropTypes.func,
-	onRecorderUploading:PropTypes.func,
-	onRecorderRerecord: PropTypes.func,
-	onRecorderCountdown:PropTypes.func,
-	onRecorderRecordingProgress:PropTypes.func,
-	onRecorderUploadProgress:   PropTypes.func,
-	onRecorderAccessForbidden:  PropTypes.func,
-	onRecorderAccessGranted:    PropTypes.func,
-	onRecorderCameraUnresponsive:PropTypes.func,
-	onRecorderVerified: PropTypes.func,
-	onRecorderNoCamera: PropTypes.func,
-	onRecorderNoMicrophone: PropTypes.func
-}
+	onPlayerPlaying: func,
+	onPlayerPaused: func,
+	onPlayerAttached: func,
+	onPlayerLoaded: func,
+	onPlayerEnded: func,
+	onPlayerSeek: func,
+	onRecorderError: func,
+	onRecorderManuallySubmitted: func,
+	onRecorderUploaded: func,
+	onRecorderUploadSelected: func,
+	onRecorderRecording: func,
+	onRecorderUploading: func,
+	onRecorderRerecord: func,
+	onRecorderCountdown: func,
+	onRecorderRecordingProgress: func,
+	onRecorderUploadProgress: func,
+	onRecorderAccessForbidden: func,
+	onRecorderAccessGranted: func,
+	onRecorderCameraUnresponsive: func,
+	onRecorderVerified: func,
+	onRecorderNoCamera: func,
+	onRecorderNoMicrophone: func
+};
 
 export default class ZiggeoEmbedRecorder extends React.Component {
 	static propTypes = {
-			apiKey:	PropTypes.string.isRequired,
-			...ziggeoAttrPropTypes,
-			...ziggeoEventPropTypes
+		apiKey:	string.isRequired,
+		...ziggeoAttrPropTypes,
+		...ziggeoEventPropTypes
 	};
 
 	static defaultProps = {
-		"theme": 'default',
-		"themecolor": 'default',
-		"microphone-volume": 1,
-		"allowupload": true,
-		"allowrecord": true,
-		"recordingwidth": 640,
-		"recordingheight": 480,
-		"width": 320,
-		"height": 240,
+		'theme': 'default',
+		'themecolor': 'default',
+		'microphone-volume': 1,
+		'allowupload': true,
+		'allowrecord': true,
+		'recordingwidth': 640,
+		'recordingheight': 480,
+		'width': 320,
+		'height': 240,
 		// Default events to no-op
 		...Object.keys(ziggeoEventPropTypes).reduce((defaults, event) => {
 			defaults[event] = () => {};
 			return defaults;
-		})
+		}, {})
 	};
 
 	ziggeoEvents = {
@@ -111,33 +156,39 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 		camera_unresponsive: (...args) => this.props.onRecorderCameraUnresponsive(...args),
 		verified: (...args) => this.props.onRecorderVerified(...args),
 		no_camera: (...args) => this.props.onRecorderNoCamera(...args),
-		no_microphone: (...args) => this.props.onRecorderNoMicrophone(...args),
+		no_microphone: (...args) => this.props.onRecorderNoMicrophone(...args)
 	}
 
 	get ziggeoAttrs () {
-		Object.keys(this.props).filter(k => ziggeoAttrPropTypes[k]).reduce((p, k) => p[k] = this.props[k], {});
+		return Object.keys(this.props).filter(k => ziggeoAttrPropTypes[k]).reduce((p, k) => {
+			p[k] = this.props[k];
+		}, {});
 	}
 
 	get elementProps () {
-		Object.keys(this.props).filter(k => !ZiggeoEmbedRecorder.propTypes[k]).reduce((p, k) => p[k] = this.props[k], {});
+		return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((p, k) => {
+			p[k] = this.props[k];
+		}, {});
 	}
 
-	componentDidMount() {
-			const { apiKey } = this.props;
-			this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
-			this.recorder = new ZiggeoApi.V2.Recorder({
-				element: this.element,
-				attrs: this.ziggeoAttrs
-			});
-			this.recorder.activate();
-			Object.entries(this.ziggeoEvents).forEach((event, func) => this.recorder.on(event, func))
-		};
+	componentDidMount () {
+		const { apiKey } = this.props;
+		this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+		this.recorder = new ZiggeoApi.V2.Recorder({
+			element: this.element,
+			attrs: this.ziggeoAttrs
+		});
+		this.recorder.activate();
+		Object.entries(this.ziggeoEvents).forEach((event, func) => {
+			this.recorder.on(event, func);
+		});
+	};
 
-	componentWillUnmount() {
+	componentWillUnmount () {
 		this.recorder.destroy();
 	};
 
-	render() {
+	render () {
 		return <div ref={e => { this.element = e; }} {...this.elementProps}/>;
-	 };
+	}
 }
