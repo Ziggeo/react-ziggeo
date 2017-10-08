@@ -210,6 +210,25 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 		this.recorder.destroy();
 	};
 
+	// Delegate ziggeo methods to the recorder
+	play = (...args) => this.recorder.play(...args);
+	record = (...args) => this.recorder.record(...args);
+	upload = (...args) => this.recorder.upload(...args);
+	rerecord = (...args) => this.recorder.rerecord(...args);
+	stop = (...args) => this.recorder.stop(...args);
+	hidePopup = (...args) => this.recorder.hidePopup(...args);
+	reset = (...args) => this.recorder.reset(...args);
+	lightLevel = (...args) => this.recorder.lightLevel(...args);
+	soundLevel = (...args) => this.recorder.soundLevel(...args);
+	averageFrameRate = (...args) => this.recorder.averageFrameRate(...args);
+	isRecording = (...args) => this.recorder.isRecording(...args);
+	width = (...args) => this.recorder.width(...args);
+	height = (...args) => this.recorder.height(...args);
+	isFlash = (...args) => this.recorder.isFlash(...args);
+	height = (...args) => this.recorder.height(...args);
+	videoWidth = (...args) => this.recorder.videoWidth(...args);
+	videoHeight = (...args) => this.recorder.videoHeight(...args);
+
 	render () {
 		return <div {...this.elementProps}></div>;
 	}
