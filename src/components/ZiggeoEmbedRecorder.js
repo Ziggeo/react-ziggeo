@@ -167,7 +167,7 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	}
 
 	get elementProps () {
-		return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((p, k) => {
+		return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
 			props[k] = this.props[k];
 			return props;
 		}, {});
