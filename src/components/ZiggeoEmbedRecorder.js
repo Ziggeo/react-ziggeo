@@ -194,11 +194,11 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 		const { apiKey } = this.props;;
 		const element = ReactDOM.findDOMNode(this);
 		this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
-		this.player = new ZiggeoApi.V2.Recorder({
+		this.recorder = new ZiggeoApi.V2.Recorder({
 			element: element,
 			attrs: this.ziggeoAttrs
 		});
-		this.player.activate();
+		this.recorder.activate();
 		Object.entries(this.ziggeoEvents).forEach(([event, func]) => {
 			this.recorder.on(event, func);
 		});
@@ -209,6 +209,6 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	};
 
 	render () {
-		return <div></div>;
+		return <div {...this.elementProps}></div>;
 	}
 }
