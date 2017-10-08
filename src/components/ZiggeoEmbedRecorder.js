@@ -1,12 +1,12 @@
 /* globals ZiggeoApi */
-
 import React from 'react';
-import { string, number, bool, arrayOf, func, array, object } from 'prop-types';
+import ReactDOM from 'react-dom';
+import { string, number, bool, arrayOf, func, array, object, oneOfType } from 'prop-types';
 
 const ziggeoAttrPropTypes = {
 	// Presentational parameters
-	'width': number,
-	'height': number,
+	'width': oneOfType([number, string]),
+	'height': oneOfType([number, string]),
 	'responsive': bool,
 	'skipinitial': bool,
 	'picksnapshots': bool,
@@ -16,7 +16,7 @@ const ziggeoAttrPropTypes = {
 	'nofullscreen': bool,
 	'snapshotmax': number,
 	'gallerysnapshots': number,
-	'localplayback ': bool,
+	'localplayback': bool,
 	'stretch': bool,
 	'theme': string,
 	'themecolor': string,
@@ -48,8 +48,8 @@ const ziggeoAttrPropTypes = {
 	'noaudio': bool,
 	'source':	string,
 	'framerate': number,
-	'videobitrate': number,
-	'audiobitrate': number,
+	'videobitrate': oneOfType([number, string]),
+	'audiobitrate': oneOfType([number, string]),
 	'microphone-volume': number,
 	'custom-covershots': bool,
 
@@ -118,15 +118,32 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	};
 
 	static defaultProps = {
+		// Presentational parameters
+		'width': 640,
+		'height': 480,
+		'picksnapshots': true,
+		'countdown': 3,
+		'snapshotmax': 15,
+		'gallerysnapshots': 3,
 		'theme': 'default',
 		'themecolor': 'default',
-		'microphone-volume': 1,
-		'allowupload': true,
-		'allowrecord': true,
+		'primaryrecord': true,
+
+		// Video management parameters
 		'recordingwidth': 640,
 		'recordingheight': 480,
-		'width': 320,
-		'height': 240,
+		'framerate': 25,
+		'videobitrate': 'auto',
+		'audiobitrate': 'auto',
+		'microphone-volume': 1,
+
+		// Operational parameters
+		'allowupload': true,
+		'allowrecord':	true,
+		'force-overwrite':	true,
+		'allowcustomupload': true,
+		'recordermode': true,
+
 		// Default events to no-op
 		...Object.keys(ziggeoEventPropTypes).reduce((defaults, event) => {
 			defaults[event] = () => {};
@@ -174,23 +191,24 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	}
 
 	componentDidMount () {
-		const { apiKey } = this.props;
+		const { apiKey } = this.props;;
+		const element = ReactDOM.findDOMNode(this);
 		this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
-		this.recorder = new ZiggeoApi.V2.Recorder({
-			element: this.element,
+		this.player = new ZiggeoApi.V2.Recorder({
+			element: element,
 			attrs: this.ziggeoAttrs
 		});
-		this.recorder.activate();
-		Object.entries(this.ziggeoEvents).forEach((event, func) => {
+		this.player.activate();
+		Object.entries(this.ziggeoEvents).forEach(([event, func]) => {
 			this.recorder.on(event, func);
 		});
 	};
 
 	componentWillUnmount () {
-		this.recorder.destroy();
+		this.player.destroy();
 	};
 
 	render () {
-		return <div ref={e => { this.element = e; }} {...this.elementProps}/>;
+		return <div></div>;
 	}
 }
