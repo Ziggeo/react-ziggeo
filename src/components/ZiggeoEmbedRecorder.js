@@ -205,7 +205,7 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	};
 
 	componentWillUnmount () {
-		this.player.destroy();
+		this.recorder.destroy();
 	};
 
 	render () {
