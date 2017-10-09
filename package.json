@@ -28,8 +28,8 @@
   },
   "homepage": "https://ziggeo.com",
   "dependencies": {
-    "react": "^15.3.2",
     "prop-types": "^15.5.10",
+    "react": "^15.3.2",
     "ziggeo-client-sdk": "^0.0.28"
   },
   "devDependencies": {
