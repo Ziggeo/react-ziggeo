@@ -406,7 +406,7 @@ module.exports = warning;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -783,7 +783,7 @@ module.exports = ExecutionEnvironment;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -1168,7 +1168,7 @@ module.exports = ReactComponentTreeHook;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 function makeEmptyFunction(arg) {
@@ -1208,7 +1208,7 @@ module.exports = emptyFunction;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -1491,7 +1491,7 @@ module.exports = ReactUpdates;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -2011,7 +2011,7 @@ module.exports = DOMProperty;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -2763,7 +2763,7 @@ module.exports = ReactReconciler;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -3527,7 +3527,7 @@ if (process.env.NODE_ENV !== 'production') {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -4186,7 +4186,7 @@ module.exports = SyntheticMouseEvent;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -4644,7 +4644,7 @@ module.exports = setInnerHTML;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -4681,7 +4681,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_33__;
  * LICENSE file in the root directory of this source tree.
  *
  * @typechecks
- *
+ * 
  */
 
 /*eslint-disable no-self-compare */
@@ -5253,7 +5253,7 @@ module.exports = EventPluginUtils;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -5457,7 +5457,7 @@ module.exports = LinkedValueUtils;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -5505,7 +5505,7 @@ module.exports = ReactComponentEnvironment;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -7436,7 +7436,7 @@ module.exports = CSSProperty;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -8056,7 +8056,7 @@ module.exports = ReactEmptyComponent;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -8821,7 +8821,7 @@ module.exports = ReactMount;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -8865,7 +8865,7 @@ module.exports = ReactNodeTypes;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -8913,7 +8913,7 @@ module.exports = ViewportMetrics;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -8975,7 +8975,7 @@ module.exports = accumulateInto;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -9337,7 +9337,7 @@ module.exports = instantiateReactComponent;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -9773,7 +9773,7 @@ module.exports = {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -10154,7 +10154,7 @@ module.exports = ReactNoopUpdateQueue;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -10642,118 +10642,15 @@ ZiggeoEmbedRecorder.defaultProps = _extends({
 var _initialiseProps = function _initialiseProps() {
 	var _this6 = this;
 
-	this.ziggeoEvents = {
-		playing: function playing() {
+	this.ziggeoEvents = Object.keys(ziggeoEventPropTypes).reduce(function (memo, propName) {
+		var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3);
+		memo[eventName] = function () {
 			var _props;
 
-			return (_props = _this6.props).onPlaying.apply(_props, arguments);
-		},
-		paused: function paused() {
-			var _props2;
-
-			return (_props2 = _this6.props).onPaused.apply(_props2, arguments);
-		},
-		attached: function attached() {
-			var _props3;
-
-			return (_props3 = _this6.props).onAttached.apply(_props3, arguments);
-		},
-		loaded: function loaded() {
-			var _props4;
-
-			return (_props4 = _this6.props).onLoaded.apply(_props4, arguments);
-		},
-		ended: function ended() {
-			var _props5;
-
-			return (_props5 = _this6.props).onEnded.apply(_props5, arguments);
-		},
-		seek: function seek() {
-			var _props6;
-
-			return (_props6 = _this6.props).onSeek.apply(_props6, arguments);
-		},
-		error: function error() {
-			var _props7;
-
-			return (_props7 = _this6.props).onError.apply(_props7, arguments);
-		},
-		manually_submitted: function manually_submitted() {
-			var _props8;
-
-			return (_props8 = _this6.props).onManuallySubmitted.apply(_props8, arguments);
-		},
-		uploaded: function uploaded() {
-			var _props9;
-
-			return (_props9 = _this6.props).onUploaded.apply(_props9, arguments);
-		},
-		upload_selected: function upload_selected() {
-			var _props10;
-
-			return (_props10 = _this6.props).onUploadSelected.apply(_props10, arguments);
-		},
-		uploading: function uploading() {
-			var _props11;
-
-			return (_props11 = _this6.props).onUploading.apply(_props11, arguments);
-		},
-		recording: function recording() {
-			var _props12;
-
-			return (_props12 = _this6.props).onRecording.apply(_props12, arguments);
-		},
-		rerecord: function rerecord() {
-			var _props13;
-
-			return (_props13 = _this6.props).onRerecord.apply(_props13, arguments);
-		},
-		countdown: function countdown() {
-			var _props14;
-
-			return (_props14 = _this6.props).onCountdown.apply(_props14, arguments);
-		},
-		recording_progress: function recording_progress() {
-			var _props15;
-
-			return (_props15 = _this6.props).onRecordingProgress.apply(_props15, arguments);
-		},
-		upload_progress: function upload_progress() {
-			var _props16;
-
-			return (_props16 = _this6.props).onUploadProgress.apply(_props16, arguments);
-		},
-		access_forbidden: function access_forbidden() {
-			var _props17;
-
-			return (_props17 = _this6.props).onAccessForbidden.apply(_props17, arguments);
-		},
-		access_granted: function access_granted() {
-			var _props18;
-
-			return (_props18 = _this6.props).onAccessGranted.apply(_props18, arguments);
-		},
-		camera_unresponsive: function camera_unresponsive() {
-			var _props19;
-
-			return (_props19 = _this6.props).onCameraUnresponsive.apply(_props19, arguments);
-		},
-		verified: function verified() {
-			var _props20;
-
-			return (_props20 = _this6.props).onVerified.apply(_props20, arguments);
-		},
-		no_camera: function no_camera() {
-			var _props21;
-
-			return (_props21 = _this6.props).onNoCamera.apply(_props21, arguments);
-		},
-		no_microphone: function no_microphone() {
-			var _props22;
-
-			return (_props22 = _this6.props).onNoMicrophone.apply(_props22, arguments);
-		}
-	};
+			return (_props = _this6.props)[propName].apply(_props, arguments);
+		};
+		return memo;
+	}, {});
 
 	this.play = function () {
 		var _recorder;
@@ -12080,7 +11977,7 @@ module.exports = camelizeStyleName;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 var isTextNode = __webpack_require__(102);
@@ -12615,7 +12512,7 @@ module.exports = isTextNode;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  * @typechecks static-only
  */
 
@@ -18141,7 +18038,7 @@ module.exports = ReactDOMUnknownPropertyHook;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -18666,7 +18563,7 @@ module.exports = {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -18882,7 +18779,7 @@ module.exports = ReactEventListener;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -18956,7 +18853,7 @@ module.exports = ReactInjection;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -19500,7 +19397,7 @@ module.exports = ReactMultiChild;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -19597,7 +19494,7 @@ module.exports = ReactOwner;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -19808,7 +19705,7 @@ module.exports = ReactReconcileTransaction;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -19994,7 +19891,7 @@ module.exports = ReactServerRenderingTransaction;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -20650,7 +20547,7 @@ module.exports = SelectEventPlugin;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -21351,7 +21248,7 @@ module.exports = SyntheticWheelEvent;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -21636,7 +21533,7 @@ module.exports = findDOMNode;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -21831,7 +21728,7 @@ module.exports = getEventKey;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -22104,7 +22001,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -22166,7 +22063,7 @@ module.exports = KeyEscapeUtils;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -22649,7 +22546,7 @@ module.exports = ReactDOMFactories;
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -22700,7 +22597,7 @@ module.exports = factory(isValidElement);
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 
@@ -22854,7 +22751,7 @@ module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- *
+ * 
  */
 
 

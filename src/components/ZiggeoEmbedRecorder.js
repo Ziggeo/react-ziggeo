@@ -152,30 +152,11 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 		}, {})
 	};
 
-	ziggeoEvents = {
-		playing: (...args) => this.props.onPlaying(...args),
-		paused: (...args) => this.props.onPaused(...args),
-		attached: (...args) => this.props.onAttached(...args),
-		loaded: (...args) => this.props.onLoaded(...args),
-		ended: (...args) => this.props.onEnded(...args),
-		seek: (...args) => this.props.onSeek(...args),
-		error: (...args) => this.props.onError(...args),
-		manually_submitted: (...args) => this.props.onManuallySubmitted(...args),
-		uploaded: (...args) => this.props.onUploaded(...args),
-		upload_selected: (...args) => this.props.onUploadSelected(...args),
-		uploading: (...args) => this.props.onUploading(...args),
-		recording: (...args) => this.props.onRecording(...args),
-		rerecord: (...args) => this.props.onRerecord(...args),
-		countdown: (...args) => this.props.onCountdown(...args),
-		recording_progress: (...args) => this.props.onRecordingProgress(...args),
-		upload_progress: (...args) => this.props.onUploadProgress(...args),
-		access_forbidden: (...args) => this.props.onAccessForbidden(...args),
-		access_granted: (...args) => this.props.onAccessGranted(...args),
-		camera_unresponsive: (...args) => this.props.onCameraUnresponsive(...args),
-		verified: (...args) => this.props.onVerified(...args),
-		no_camera: (...args) => this.props.onNoCamera(...args),
-		no_microphone: (...args) => this.props.onNoMicrophone(...args)
-	}
+	ziggeoEvents = Object.keys(ziggeoEventPropTypes).reduce((memo, propName) => {
+		const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3);
+		memo[eventName] = (...args) => this.props[propName](...args);
+		return memo;
+	}, {})
 
 	get ziggeoAttrs () {
 		return Object.keys(this.props).filter(k => ziggeoAttrPropTypes[k]).reduce((props, k) => {
