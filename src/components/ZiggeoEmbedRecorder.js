@@ -1,6 +1,5 @@
 /* globals ZiggeoApi */
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { string, number, bool, arrayOf, func, array, object, oneOfType } from 'prop-types';
 
 const ziggeoAttrPropTypes = {
@@ -194,10 +193,9 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 
 	componentDidMount () {
 		const { apiKey } = this.props;;
-		const element = ReactDOM.findDOMNode(this);
 		this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
 		this.recorder = new ZiggeoApi.V2.Recorder({
-			element: element,
+			element: this.element,
 			attrs: this.ziggeoAttrs
 		});
 		this.recorder.activate();
@@ -230,6 +228,6 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	videoHeight = (...args) => this.recorder.videoHeight(...args);
 
 	render () {
-		return <div {...this.elementProps}></div>;
+		return <div ref={e => { this.element = e ; }} {...this.elementProps} />;
 	}
 }
