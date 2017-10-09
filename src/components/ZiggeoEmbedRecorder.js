@@ -203,6 +203,7 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	get videoHeight() { return this.recorder.videoHeight() };
 
 	// Delegate ziggeo methods to the recorder
+	get = (...args) => this.recorder.get(...args);
 	play = (...args) => this.recorder.play(...args);
 	record = (...args) => this.recorder.record(...args);
 	upload = (...args) => this.recorder.upload(...args);
