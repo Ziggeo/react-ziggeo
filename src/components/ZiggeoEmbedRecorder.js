@@ -191,6 +191,17 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 		this.recorder.destroy();
 	};
 
+	// Delegate ziggeo attrs to the recorder
+	get isRecording() { return this.recorder.isRecording() };
+	get averageFrameRate() { return this.recorder.averageFrameRate() };
+	get isFlash() { return this.recorder.isFlash() };
+	get lightLevel() { return this.recorder.lightLevel() };
+	get soundLevel() { return this.recorder.soundLevel() };
+	get width() { return this.recorder.width() };
+	get height() { return this.recorder.height() };
+	get videoWidth() { return this.recorder.videoWidth() };
+	get videoHeight() { return this.recorder.videoHeight() };
+
 	// Delegate ziggeo methods to the recorder
 	play = (...args) => this.recorder.play(...args);
 	record = (...args) => this.recorder.record(...args);
@@ -199,16 +210,7 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	stop = (...args) => this.recorder.stop(...args);
 	hidePopup = (...args) => this.recorder.hidePopup(...args);
 	reset = (...args) => this.recorder.reset(...args);
-	lightLevel = (...args) => this.recorder.lightLevel(...args);
-	soundLevel = (...args) => this.recorder.soundLevel(...args);
-	averageFrameRate = (...args) => this.recorder.averageFrameRate(...args);
-	isRecording = (...args) => this.recorder.isRecording(...args);
-	width = (...args) => this.recorder.width(...args);
-	height = (...args) => this.recorder.height(...args);
-	isFlash = (...args) => this.recorder.isFlash(...args);
-	height = (...args) => this.recorder.height(...args);
-	videoWidth = (...args) => this.recorder.videoWidth(...args);
-	videoHeight = (...args) => this.recorder.videoHeight(...args);
+	onStateChanged = (...args) => this.recorder.onStateChanged(...args);
 
 	render () {
 		return <div ref={e => { this.element = e ; }} {...this.elementProps} />;

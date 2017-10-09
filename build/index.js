@@ -10563,9 +10563,6 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 		value: function componentWillUnmount() {
 			this.recorder.destroy();
 		}
-
-		// Delegate ziggeo methods to the recorder
-
 	}, {
 		key: 'render',
 		value: function render() {
@@ -10599,6 +10596,57 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 				return props;
 			}, {});
 		}
+	}, {
+		key: 'isRecording',
+
+
+		// Delegate ziggeo attrs to the recorder
+		get: function get() {
+			return this.recorder.isRecording();
+		}
+	}, {
+		key: 'averageFrameRate',
+		get: function get() {
+			return this.recorder.averageFrameRate();
+		}
+	}, {
+		key: 'isFlash',
+		get: function get() {
+			return this.recorder.isFlash();
+		}
+	}, {
+		key: 'lightLevel',
+		get: function get() {
+			return this.recorder.lightLevel();
+		}
+	}, {
+		key: 'soundLevel',
+		get: function get() {
+			return this.recorder.soundLevel();
+		}
+	}, {
+		key: 'width',
+		get: function get() {
+			return this.recorder.width();
+		}
+	}, {
+		key: 'height',
+		get: function get() {
+			return this.recorder.height();
+		}
+	}, {
+		key: 'videoWidth',
+		get: function get() {
+			return this.recorder.videoWidth();
+		}
+	}, {
+		key: 'videoHeight',
+		get: function get() {
+			return this.recorder.videoHeight();
+		}
+
+		// Delegate ziggeo methods to the recorder
+
 	}]);
 
 	return ZiggeoEmbedRecorder;
@@ -10694,64 +10742,10 @@ var _initialiseProps = function _initialiseProps() {
 		return (_recorder7 = _this6.recorder).reset.apply(_recorder7, arguments);
 	};
 
-	this.lightLevel = function () {
+	this.onStateChanged = function () {
 		var _recorder8;
 
-		return (_recorder8 = _this6.recorder).lightLevel.apply(_recorder8, arguments);
-	};
-
-	this.soundLevel = function () {
-		var _recorder9;
-
-		return (_recorder9 = _this6.recorder).soundLevel.apply(_recorder9, arguments);
-	};
-
-	this.averageFrameRate = function () {
-		var _recorder10;
-
-		return (_recorder10 = _this6.recorder).averageFrameRate.apply(_recorder10, arguments);
-	};
-
-	this.isRecording = function () {
-		var _recorder11;
-
-		return (_recorder11 = _this6.recorder).isRecording.apply(_recorder11, arguments);
-	};
-
-	this.width = function () {
-		var _recorder12;
-
-		return (_recorder12 = _this6.recorder).width.apply(_recorder12, arguments);
-	};
-
-	this.height = function () {
-		var _recorder13;
-
-		return (_recorder13 = _this6.recorder).height.apply(_recorder13, arguments);
-	};
-
-	this.isFlash = function () {
-		var _recorder14;
-
-		return (_recorder14 = _this6.recorder).isFlash.apply(_recorder14, arguments);
-	};
-
-	this.height = function () {
-		var _recorder15;
-
-		return (_recorder15 = _this6.recorder).height.apply(_recorder15, arguments);
-	};
-
-	this.videoWidth = function () {
-		var _recorder16;
-
-		return (_recorder16 = _this6.recorder).videoWidth.apply(_recorder16, arguments);
-	};
-
-	this.videoHeight = function () {
-		var _recorder17;
-
-		return (_recorder17 = _this6.recorder).videoHeight.apply(_recorder17, arguments);
+		return (_recorder8 = _this6.recorder).onStateChanged.apply(_recorder8, arguments);
 	};
 };
 
