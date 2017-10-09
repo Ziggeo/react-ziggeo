@@ -10647,8 +10647,6 @@ var _initialiseProps = function _initialiseProps() {
 		memo[eventName] = function () {
 			var _props;
 
-			console.log('calling ' + eventName + ' from prop ' + propName);
-			console.log(_this6.props[propName].toString());
 			(_props = _this6.props)[propName].apply(_props, arguments);
 		};
 		return memo;
