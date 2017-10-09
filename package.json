@@ -30,7 +30,7 @@
   "dependencies": {
     "react": "^15.3.2",
     "prop-types": "^15.5.10",
-    "ziggeo-client-sdk": "^0.0.28"
+    "ziggeo-client-sdk": "^0.0.27"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
