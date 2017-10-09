@@ -154,7 +154,11 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 
 	ziggeoEvents = Object.keys(ziggeoEventPropTypes).reduce((memo, propName) => {
 		const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3);
-		memo[eventName] = (...args) => this.props[propName](...args);
+		memo[eventName] = (...args) => {
+			console.log(`calling ${eventName} from prop ${propName}`);
+			console.log(this.props[propName].toString());
+			this.props[propName](...args)
+		};
 		return memo;
 	}, {})
 
