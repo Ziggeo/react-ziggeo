@@ -10700,52 +10700,58 @@ var _initialiseProps = function _initialiseProps() {
 		return memo;
 	}, {});
 
-	this.play = function () {
+	this.get = function () {
 		var _recorder;
 
-		return (_recorder = _this6.recorder).play.apply(_recorder, arguments);
+		return (_recorder = _this6.recorder).get.apply(_recorder, arguments);
+	};
+
+	this.play = function () {
+		var _recorder2;
+
+		return (_recorder2 = _this6.recorder).play.apply(_recorder2, arguments);
 	};
 
 	this.record = function () {
-		var _recorder2;
+		var _recorder3;
 
-		return (_recorder2 = _this6.recorder).record.apply(_recorder2, arguments);
+		return (_recorder3 = _this6.recorder).record.apply(_recorder3, arguments);
 	};
 
 	this.upload = function () {
-		var _recorder3;
+		var _recorder4;
 
-		return (_recorder3 = _this6.recorder).upload.apply(_recorder3, arguments);
+		return (_recorder4 = _this6.recorder).upload.apply(_recorder4, arguments);
 	};
 
 	this.rerecord = function () {
-		var _recorder4;
+		var _recorder5;
 
-		return (_recorder4 = _this6.recorder).rerecord.apply(_recorder4, arguments);
+		return (_recorder5 = _this6.recorder).rerecord.apply(_recorder5, arguments);
 	};
 
 	this.stop = function () {
-		var _recorder5;
+		var _recorder6;
 
-		return (_recorder5 = _this6.recorder).stop.apply(_recorder5, arguments);
+		return (_recorder6 = _this6.recorder).stop.apply(_recorder6, arguments);
 	};
 
 	this.hidePopup = function () {
-		var _recorder6;
+		var _recorder7;
 
-		return (_recorder6 = _this6.recorder).hidePopup.apply(_recorder6, arguments);
+		return (_recorder7 = _this6.recorder).hidePopup.apply(_recorder7, arguments);
 	};
 
 	this.reset = function () {
-		var _recorder7;
+		var _recorder8;
 
-		return (_recorder7 = _this6.recorder).reset.apply(_recorder7, arguments);
+		return (_recorder8 = _this6.recorder).reset.apply(_recorder8, arguments);
 	};
 
 	this.onStateChanged = function () {
-		var _recorder8;
+		var _recorder9;
 
-		return (_recorder8 = _this6.recorder).onStateChanged.apply(_recorder8, arguments);
+		return (_recorder9 = _this6.recorder).onStateChanged.apply(_recorder9, arguments);
 	};
 };
 
