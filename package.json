@@ -2,11 +2,11 @@
   "name": "react-ziggeo",
   "version": "1.1.0",
   "description": "Ziggeo's react component for easy react application deployment",
-  "main": "build/index.min.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "concurrently \"npm run dev\"",
     "dev": "webpack-dev-server --hot --inline",
-    "build": "npm run build:production",
+    "build": "webpack",
     "build:production": "NODE_ENV=production webpack -p",
     "rebuild-pack": "rm -rf build/ && npm run build",
     "rebuild-dev-pack": "rm -rf build/ && rm react-ziggeo-1.1.0.tgz && npm run build && npm pack && rm -rf dev-demo/node_modules/react-ziggeo/",
@@ -28,9 +28,9 @@
   },
   "homepage": "https://ziggeo.com",
   "dependencies": {
-    "react": "^15.3.2",
     "prop-types": "^15.5.10",
-    "ziggeo-client-sdk": "^0.0.27"
+    "react": "^15.3.2",
+    "ziggeo-client-sdk": "0.0.27"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
