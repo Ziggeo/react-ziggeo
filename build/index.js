@@ -10568,6 +10568,7 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 		value: function render() {
 			var _this3 = this;
 
+			debugger;
 			return _react2.default.createElement('div', _extends({ ref: function ref(e) {
 					_this3.element = e;
 				} }, this.elementProps));
