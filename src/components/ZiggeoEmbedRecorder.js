@@ -214,7 +214,6 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	onStateChanged = (...args) => this.recorder.onStateChanged(...args);
 
 	render () {
-		debugger
 		return <div ref={e => { this.element = e ; }} {...this.elementProps} />;
 	}
 }
