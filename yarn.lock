@@ -4639,6 +4639,6 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-ziggeo-client-sdk@^0.0.28:
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/ziggeo-client-sdk/-/ziggeo-client-sdk-0.0.28.tgz#8d2a9b2da87113f26d15acc56a717680324b6251"
+ziggeo-client-sdk@0.0.27:
+  version "0.0.27"
+  resolved "https://registry.yarnpkg.com/ziggeo-client-sdk/-/ziggeo-client-sdk-0.0.27.tgz#79f090a6b18f36190d884baf23d494e156c8dffc"
