@@ -1,11 +1,41 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {ziggeoPlayerAttributesPropTypes} from "../constants";
 
 class ZiggeoPlayer extends Component {
 
-    componentDidMount () {
-        this.application  = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+    static propTypes = {
+        apiKey:             PropTypes.string.isRequired,
+        "ziggeo-video":     PropTypes.string.isRequired,
+        "ziggeo-theme":     PropTypes.string,
+        "ziggeo-themecolor":PropTypes.string,
+        "ziggeo-height":    PropTypes.number,
+        "ziggeo-width":     PropTypes.number
     };
+
+    static defaultProps = {
+        "ziggeo-theme": 'default',
+        "ziggeo-themecolor": 'default'
+    };
+
+    componentWillMount () {
+        this.application  = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+        this.options = this._ziggeoAttributes;
+    }
+
+    componentDidMount () {
+        // return undefined, find element based on DOM
+        //_self.embedding =  ZiggeoApi.V2.Player.findByElement( ReactDOM.findDOMNode(this) );
+
+        this.application.on("ready", function () {
+            this.application.embed_events.on("playing", function () {
+                //Your code goes here
+                console.log('playing single');
+            });
+        }, this);
+    };
+
+    componentWillUnmount () {}
 
     render () {
         return (
@@ -14,28 +44,20 @@ class ZiggeoPlayer extends Component {
     };
 
     addZiggeoAttributes = (node) => {
-        const {apiKey, ...rest} = this.props;
 
-        const options = {...rest};
-        if(Object.keys(options).length > 0 && node)
-            Object.keys(options).map((option) =>
-                node.setAttribute(option, this.props[option])
-            )
+        // Inject node with provided ziggeo options
+        if (node) {
+            const regexp = new RegExp(/(ziggeo-)/g);
+            Object.keys(this.props)
+                .filter(value => regexp.test(value)).reduce((props, value) => {
+                    let verifier = value.replace(regexp, '');
+                    if (!ziggeoPlayerAttributesPropTypes[verifier]) {
+                        console.warn('Please be sure there\'re no typo in ' + value + ' option');
+                    }
+                    node.setAttribute(value, this.props[value])
+            }, {});
+        }
     };
 }
-
-ZiggeoPlayer.propTypes = {
-    apiKey:             PropTypes.string.isRequired,
-    "ziggeo-video":     PropTypes.string.isRequired,
-    "ziggeo-theme":     PropTypes.string,
-    "ziggeo-themecolor":PropTypes.string,
-    "ziggeo-height":    PropTypes.number,
-    "ziggeo-width":     PropTypes.number
-};
-
-ZiggeoPlayer.defaultProps = {
-    "ziggeo-theme": 'default',
-    "ziggeo-themecolor": 'default'
-};
 
 export default ZiggeoPlayer;

@@ -1,14 +1,14 @@
 /* globals ZiggeoApi */
 import React from 'react';
-import { ziggeoRecorderAttrPropTypes, ziggeoEmbedRecorderEventPropTypes } from '../constants';
+import { ziggeoRecorderAttributesPropTypes, ziggeoRecorderEmbeddingEventsPropTypes } from '../constants';
 import { string, bool, arrayOf, func  } from 'prop-types';
 
 export default class ZiggeoEmbedRecorder extends React.Component {
 
 	static propTypes = {
 		apiKey:	string.isRequired,
-		...ziggeoRecorderAttrPropTypes,
-		...ziggeoEmbedRecorderEventPropTypes
+		...ziggeoRecorderAttributesPropTypes,
+		...ziggeoRecorderEmbeddingEventsPropTypes
 	};
 
 	static defaultProps = {
@@ -39,13 +39,13 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 		'recordermode': true,
 
 		// Default events to no-op
-		...Object.keys(ziggeoEmbedRecorderEventPropTypes).reduce((defaults, event) => {
+		...Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((defaults, event) => {
 			defaults[event] = () => {};
 			return defaults;
 		}, {})
 	};
 
-	ziggeoEvents = Object.keys(ziggeoEmbedRecorderEventPropTypes).reduce((memo, propName) => {
+	ziggeoEvents = Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((memo, propName) => {
 		const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
 									.replace(/(recorder_|player_)/g, '');
 		memo[eventName] = (...args) => {

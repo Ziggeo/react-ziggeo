@@ -552,7 +552,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 var _prodInvariant = __webpack_require__(3);
 
 var DOMProperty = __webpack_require__(13);
-var ReactDOMComponentFlags = __webpack_require__(60);
+var ReactDOMComponentFlags = __webpack_require__(62);
 
 var invariant = __webpack_require__(1);
 
@@ -1243,9 +1243,9 @@ module.exports = { debugTool: debugTool };
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var CallbackQueue = __webpack_require__(58);
+var CallbackQueue = __webpack_require__(60);
 var PooledClass = __webpack_require__(14);
-var ReactFeatureFlags = __webpack_require__(63);
+var ReactFeatureFlags = __webpack_require__(65);
 var ReactReconciler = __webpack_require__(17);
 var Transaction = __webpack_require__(29);
 
@@ -2139,7 +2139,7 @@ var warning = __webpack_require__(2);
 var canDefineProperty = __webpack_require__(32);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(80);
+var REACT_ELEMENT_TYPE = __webpack_require__(82);
 
 var RESERVED_PROPS = {
   key: true,
@@ -2476,11 +2476,11 @@ module.exports = ReactElement;
 
 
 
-var DOMNamespaces = __webpack_require__(37);
+var DOMNamespaces = __webpack_require__(38);
 var setInnerHTML = __webpack_require__(31);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(44);
-var setTextContent = __webpack_require__(77);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(45);
+var setTextContent = __webpack_require__(79);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -2820,11 +2820,11 @@ if (process.env.NODE_ENV !== 'production') {
   // By explicitly using `prop-types` you are opting into new development behavior.
   // http://fb.me/prop-types-in-prod
   var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(56)(isValidElement, throwOnDirectAccess);
+  module.exports = __webpack_require__(57)(isValidElement, throwOnDirectAccess);
 } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(108)();
+  module.exports = __webpack_require__(109)();
 }
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
@@ -2847,11 +2847,11 @@ if (process.env.NODE_ENV !== 'production') {
 var _prodInvariant = __webpack_require__(3);
 
 var EventPluginRegistry = __webpack_require__(26);
-var EventPluginUtils = __webpack_require__(38);
-var ReactErrorUtils = __webpack_require__(42);
+var EventPluginUtils = __webpack_require__(39);
+var ReactErrorUtils = __webpack_require__(43);
 
-var accumulateInto = __webpack_require__(70);
-var forEachAccumulated = __webpack_require__(71);
+var accumulateInto = __webpack_require__(72);
+var forEachAccumulated = __webpack_require__(73);
 var invariant = __webpack_require__(1);
 
 /**
@@ -3123,10 +3123,10 @@ module.exports = EventPluginHub;
 
 
 var EventPluginHub = __webpack_require__(20);
-var EventPluginUtils = __webpack_require__(38);
+var EventPluginUtils = __webpack_require__(39);
 
-var accumulateInto = __webpack_require__(70);
-var forEachAccumulated = __webpack_require__(71);
+var accumulateInto = __webpack_require__(72);
+var forEachAccumulated = __webpack_require__(73);
 var warning = __webpack_require__(2);
 
 var getListener = EventPluginHub.getListener;
@@ -3311,7 +3311,7 @@ module.exports = ReactInstanceMap;
 
 var SyntheticEvent = __webpack_require__(12);
 
-var getEventTarget = __webpack_require__(47);
+var getEventTarget = __webpack_require__(48);
 
 /**
  * @interface UIEvent
@@ -3373,7 +3373,7 @@ module.exports = SyntheticUIEvent;
 
 var _assign = __webpack_require__(4);
 
-var ReactBaseClasses = __webpack_require__(79);
+var ReactBaseClasses = __webpack_require__(81);
 var ReactChildren = __webpack_require__(182);
 var ReactDOMFactories = __webpack_require__(183);
 var ReactElement = __webpack_require__(15);
@@ -3388,9 +3388,9 @@ var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var lowPriorityWarning = __webpack_require__(51);
+  var lowPriorityWarning = __webpack_require__(52);
   var canDefineProperty = __webpack_require__(32);
-  var ReactElementValidator = __webpack_require__(81);
+  var ReactElementValidator = __webpack_require__(83);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
@@ -3792,10 +3792,10 @@ var _assign = __webpack_require__(4);
 
 var EventPluginRegistry = __webpack_require__(26);
 var ReactEventEmitterMixin = __webpack_require__(142);
-var ViewportMetrics = __webpack_require__(69);
+var ViewportMetrics = __webpack_require__(71);
 
 var getVendorPrefixedEventName = __webpack_require__(177);
-var isEventSupported = __webpack_require__(48);
+var isEventSupported = __webpack_require__(49);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -4116,9 +4116,9 @@ module.exports = ReactBrowserEventEmitter;
 
 
 var SyntheticUIEvent = __webpack_require__(23);
-var ViewportMetrics = __webpack_require__(69);
+var ViewportMetrics = __webpack_require__(71);
 
-var getEventModifierState = __webpack_require__(46);
+var getEventModifierState = __webpack_require__(47);
 
 /**
  * @interface MouseEvent
@@ -4548,12 +4548,12 @@ module.exports = escapeTextContentForBrowser;
 
 
 var ExecutionEnvironment = __webpack_require__(6);
-var DOMNamespaces = __webpack_require__(37);
+var DOMNamespaces = __webpack_require__(38);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(44);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(45);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -4674,6 +4674,255 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_33__;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+
+var _propTypes = __webpack_require__(19);
+
+// application.embed_event.on..
+var ziggeoApplicationEvents = exports.ziggeoApplicationEvents = {
+    onError: _propTypes.func,
+    onReady: _propTypes.func
+};
+
+// ###########################################################################
+// When using HTML embed methods, all parameters should be prefixed with ziggeo-
+// https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-r29&javascript-version=v2
+var ziggeoRecorderAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = {
+    // Presentational parameters
+    'width': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'height': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'responsive': _propTypes.bool,
+    'skipinitial': _propTypes.bool,
+    'picksnapshots': _propTypes.bool,
+    'countdown': _propTypes.number,
+    'stream-width': _propTypes.number,
+    'stream-height': _propTypes.number,
+    'nofullscreen': _propTypes.bool,
+    'snapshotmax': _propTypes.number,
+    'gallerysnapshots': _propTypes.number,
+    'localplayback': _propTypes.bool,
+    'stretch': _propTypes.bool,
+    'theme': _propTypes.string,
+    'themecolor': _propTypes.string,
+    'autorecord': _propTypes.bool,
+    'primaryrecord': _propTypes.bool,
+    'flip-camera': _propTypes.bool,
+    'early-rerecord': _propTypes.bool,
+    'sharevideo': (0, _propTypes.arrayOf)(_propTypes.string),
+
+    // Security parameters
+    'server-auth': _propTypes.string,
+    'client-auth': _propTypes.string,
+    'expiration-days': _propTypes.number,
+
+    // Video management parameters
+    'recordingwidth': _propTypes.number,
+    'recordingheight': _propTypes.number,
+    'video': _propTypes.string,
+    'effect-profile': _propTypes.array,
+    'auto-crop': _propTypes.bool,
+    'auto-pad': _propTypes.bool,
+    'key': _propTypes.string,
+    'timelimit': _propTypes.number,
+    'timeminlimit': _propTypes.number,
+    'video-profile': _propTypes.string,
+    'meta-profile': _propTypes.string,
+    'enforce-duration': _propTypes.bool,
+    'noaudio': _propTypes.bool,
+    'source': _propTypes.string,
+    'framerate': _propTypes.number,
+    'videobitrate': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'audiobitrate': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'microphone-volume': _propTypes.number,
+    'custom-covershots': _propTypes.bool,
+
+    // Data parameters
+    'tags': (0, _propTypes.arrayOf)(_propTypes.string),
+    'custom-data': _propTypes.object,
+    'title': _propTypes.string,
+    'description': _propTypes.string,
+
+    // Operational parameters
+    'manual_upload': _propTypes.bool,
+    'rerecordable': _propTypes.bool,
+    'allowupload': _propTypes.bool,
+    'allowrecord': _propTypes.bool,
+    'force-overwrite': _propTypes.bool,
+    'autoplay': _propTypes.bool,
+    'recordings': _propTypes.number,
+    'allowedextensions': (0, _propTypes.arrayOf)(_propTypes.string),
+    'application': _propTypes.string,
+    'filesizelimit': _propTypes.number,
+    'flashincognitosupport': _propTypes.bool,
+    'simulate': _propTypes.bool,
+    'allowcustomupload': _propTypes.bool,
+    'recordermode': _propTypes.bool,
+    'forceflash': _propTypes.bool,
+    'noflash': _propTypes.bool,
+    'manualsubmit': _propTypes.bool,
+    'initialseek': _propTypes.number,
+    'playfullscreenonmobile': _propTypes.bool,
+
+    // Form and HTML parameters
+    'input-bind': _propTypes.string,
+    'form-accept': _propTypes.string
+};
+
+var ziggeoPlayerAttributesPropTypes = exports.ziggeoPlayerAttributesPropTypes = {
+    // Presentational parameters
+    'width': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'height': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'responsive': _propTypes.bool,
+    'skipinitial': _propTypes.bool,
+    'picksnapshots': _propTypes.bool,
+    'countdown': _propTypes.number,
+    'stream-width': _propTypes.number,
+    'stream-height': _propTypes.number,
+    'nofullscreen': _propTypes.bool,
+    'localplayback': _propTypes.bool,
+    'theme': _propTypes.string,
+    'themecolor': _propTypes.string,
+    'sharevideo': (0, _propTypes.arrayOf)(_propTypes.string),
+
+    // Security parameters
+    'server-auth': _propTypes.string,
+    'client-auth': _propTypes.string,
+
+    // Video management parameters
+    'video': _propTypes.string.isRequired,
+    'stream': _propTypes.string,
+    'effect-profile': _propTypes.array,
+    'video-profile': _propTypes.string,
+    'noaudio': _propTypes.bool,
+    'source': _propTypes.string,
+    'framerate': _propTypes.number,
+    'videobitrate': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+    'audiobitrate': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
+
+    // Data parameters
+    'tags': (0, _propTypes.arrayOf)(_propTypes.string),
+    'custom-data': _propTypes.object,
+    'title': _propTypes.string,
+    'description': _propTypes.string,
+
+    // Operational parameters
+    'autoplay': _propTypes.bool,
+    'application': _propTypes.string,
+    'flashincognitosupport': _propTypes.bool,
+    'forceflash': _propTypes.bool,
+    'noflash': _propTypes.bool,
+    'initialseek': _propTypes.number,
+    'playfullscreenonmobile': _propTypes.bool,
+
+    // Form and HTML parameters
+    'input-bind': _propTypes.string,
+    'form-accept': _propTypes.string
+};
+
+// ###########################################################################
+// Javascript Embed Recorder Events
+// https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=v1-r29
+// application.embed_event.on..
+var ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = {
+    onPlayerAttached: _propTypes.func,
+    onPlayerLoaded: _propTypes.func,
+    onPlayerPlaying: _propTypes.func,
+    onPlayerPaused: _propTypes.func,
+    onPlayerEnded: _propTypes.func,
+    onRecorderError: _propTypes.func,
+    onRecorderManuallySubmitted: _propTypes.func,
+    onRecorderUploaded: _propTypes.func,
+    onRecorderUploadSelected: _propTypes.func,
+    onRecorderRecording: _propTypes.func,
+    onRecorderUploading: _propTypes.func,
+    onRecorderSeek: _propTypes.func,
+    onRecorderRerecord: _propTypes.func,
+    onRecorderCountdown: _propTypes.func,
+    onRecordingProgress: _propTypes.func,
+    onRecorderUploadProgress: _propTypes.func,
+    onRecorderProcessing: _propTypes.func,
+    onRecorderProcessed: _propTypes.func,
+    onRecorderAccessForbidden: _propTypes.func,
+    onRecorderAccessGranted: _propTypes.func,
+    onRecorderCameraUnresponsive: _propTypes.func,
+    onRecorderVerified: _propTypes.func,
+    onRecorderNoCamera: _propTypes.func,
+    onRecorderNoMicrophone: _propTypes.func
+};
+
+var ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoPlayerEmbeddingEventsPropTypes = {
+    onPlayerAttached: _propTypes.func,
+    onPlayerLoaded: _propTypes.func,
+    onPlayerPlaying: _propTypes.func,
+    onPlayerPaused: _propTypes.func,
+    onPlayerEnded: _propTypes.func,
+    onPlayerError: _propTypes.func
+};
+
+// ###########################################################################
+// Methods
+// https://ziggeo.com/docs/sdks/javascript/browser-interaction/methods#javascript-revision=v1-r29&javascript-version=v2
+var ziggeoMethods = exports.ziggeoMethods = {
+    callPlay: _propTypes.func,
+    callRecord: _propTypes.func,
+    callUpload: _propTypes.func,
+    callRerecord: _propTypes.func,
+    callStop: _propTypes.func,
+    callStopRecord: _propTypes.func,
+    callHidePopup: _propTypes.func,
+    callReset: _propTypes.func,
+    callToggleUploader: _propTypes.func,
+    callToggleRecorder: _propTypes.func,
+    callActivate: _propTypes.func,
+    callRightLevel: _propTypes.func,
+    callAverageFrameRate: _propTypes.func,
+    callIsRecording: _propTypes.func,
+    callHide: _propTypes.func,
+    callWidth: _propTypes.func,
+    callHeight: _propTypes.func,
+    callDestroy: _propTypes.func
+};
+
+// ###########################################################################
+// Common Events
+// https://ziggeo.com/docs/sdks/javascript/browser-interaction/events#javascript-revision=v1-r29&javascript-version=v2
+var ziggeoApiEventsPropTypes = exports.ziggeoApiEventsPropTypes = {
+    onPlay: _propTypes.func,
+    onPause: _propTypes.func,
+    onStop: _propTypes.func,
+    onErrorPlayer: _propTypes.func,
+    onSubmitted: _propTypes.func,
+    onPlayerSeek: _propTypes.func,
+    onManuallySubmitted: _propTypes.func,
+    onUploaded: _propTypes.func,
+    onUploadSelected: _propTypes.func,
+    onRecording: _propTypes.func,
+    onUploading: _propTypes.func,
+    onFinished: _propTypes.func,
+    onDiscarded: _propTypes.func,
+    onErrorRecorder: _propTypes.func,
+    onCountdown: _propTypes.func,
+    onElapsed: _propTypes.func,
+    onUploadProgress: _propTypes.func,
+    onProcessingProgress: _propTypes.func,
+    onReadyToRecord: _propTypes.func,
+    onReadyToPlay: _propTypes.func,
+    onAccessForbidden: _propTypes.func,
+    onAccessGranted: _propTypes.func,
+    onAccessRevoked: _propTypes.func,
+    onRecorderProcessed: _propTypes.func
+};
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -4741,7 +4990,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4760,7 +5009,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4779,9 +5028,9 @@ var Danger = __webpack_require__(115);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(9);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(44);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(45);
 var setInnerHTML = __webpack_require__(31);
-var setTextContent = __webpack_require__(77);
+var setTextContent = __webpack_require__(79);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -4990,7 +5239,7 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5013,7 +5262,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5029,7 +5278,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactErrorUtils = __webpack_require__(42);
+var ReactErrorUtils = __webpack_require__(43);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -5243,7 +5492,7 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5305,7 +5554,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5321,8 +5570,8 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactPropTypesSecret = __webpack_require__(68);
-var propTypesFactory = __webpack_require__(55);
+var ReactPropTypesSecret = __webpack_require__(70);
+var propTypesFactory = __webpack_require__(56);
 
 var React = __webpack_require__(24);
 var PropTypes = propTypesFactory(React.isValidElement);
@@ -5447,7 +5696,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5495,7 +5744,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5577,7 +5826,7 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5815,7 +6064,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5850,7 +6099,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5903,7 +6152,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5949,7 +6198,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5987,7 +6236,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6050,7 +6299,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6095,7 +6344,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6470,7 +6719,7 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6539,7 +6788,7 @@ module.exports = lowPriorityWarning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6620,7 +6869,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6650,7 +6899,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6692,7 +6941,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6709,7 +6958,7 @@ module.exports = getActiveElement;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(56);
+var factory = __webpack_require__(57);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -6718,7 +6967,7 @@ module.exports = function(isValidElement) {
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6736,8 +6985,8 @@ var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 var assign = __webpack_require__(4);
 
-var ReactPropTypesSecret = __webpack_require__(35);
-var checkPropTypes = __webpack_require__(107);
+var ReactPropTypesSecret = __webpack_require__(36);
+var checkPropTypes = __webpack_require__(108);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -7268,7 +7517,17 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 57 */
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(123);
+
+
+/***/ }),
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7426,7 +7685,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7549,7 +7808,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7788,7 +8047,7 @@ module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7809,7 +8068,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7825,7 +8084,7 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(4);
 
-var LinkedValueUtils = __webpack_require__(40);
+var LinkedValueUtils = __webpack_require__(41);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(10);
 
@@ -8013,7 +8272,7 @@ module.exports = ReactDOMSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8046,7 +8305,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8071,7 +8330,7 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8143,7 +8402,7 @@ module.exports = ReactHostComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 65 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8159,9 +8418,9 @@ module.exports = ReactHostComponent;
 
 var ReactDOMSelection = __webpack_require__(133);
 
-var containsNode = __webpack_require__(95);
-var focusNode = __webpack_require__(53);
-var getActiveElement = __webpack_require__(54);
+var containsNode = __webpack_require__(96);
+var focusNode = __webpack_require__(54);
+var getActiveElement = __webpack_require__(55);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -8269,7 +8528,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 66 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8293,19 +8552,19 @@ var ReactCurrentOwner = __webpack_require__(11);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(125);
 var ReactDOMFeatureFlags = __webpack_require__(127);
-var ReactFeatureFlags = __webpack_require__(63);
+var ReactFeatureFlags = __webpack_require__(65);
 var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactMarkupChecksum = __webpack_require__(147);
 var ReactReconciler = __webpack_require__(17);
-var ReactUpdateQueue = __webpack_require__(43);
+var ReactUpdateQueue = __webpack_require__(44);
 var ReactUpdates = __webpack_require__(10);
 
 var emptyObject = __webpack_require__(25);
-var instantiateReactComponent = __webpack_require__(75);
+var instantiateReactComponent = __webpack_require__(77);
 var invariant = __webpack_require__(1);
 var setInnerHTML = __webpack_require__(31);
-var shouldUpdateReactComponent = __webpack_require__(49);
+var shouldUpdateReactComponent = __webpack_require__(50);
 var warning = __webpack_require__(2);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -8811,7 +9070,7 @@ module.exports = ReactMount;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 67 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8855,7 +9114,7 @@ module.exports = ReactNodeTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 68 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8875,7 +9134,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 69 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8903,7 +9162,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 70 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8965,7 +9224,7 @@ module.exports = accumulateInto;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 71 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8999,7 +9258,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 72 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9013,7 +9272,7 @@ module.exports = forEachAccumulated;
 
 
 
-var ReactNodeTypes = __webpack_require__(67);
+var ReactNodeTypes = __webpack_require__(69);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -9032,7 +9291,7 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 73 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9068,7 +9327,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 74 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9194,7 +9453,7 @@ var inputValueTracking = {
 module.exports = inputValueTracking;
 
 /***/ }),
-/* 75 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9212,8 +9471,8 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var ReactCompositeComponent = __webpack_require__(122);
-var ReactEmptyComponent = __webpack_require__(62);
-var ReactHostComponent = __webpack_require__(64);
+var ReactEmptyComponent = __webpack_require__(64);
+var ReactHostComponent = __webpack_require__(66);
 
 var getNextDebugID = __webpack_require__(190);
 var invariant = __webpack_require__(1);
@@ -9327,7 +9586,7 @@ module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 76 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9381,7 +9640,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 77 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9436,7 +9695,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 78 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9457,7 +9716,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(141);
 
 var getIteratorFn = __webpack_require__(175);
 var invariant = __webpack_require__(1);
-var KeyEscapeUtils = __webpack_require__(39);
+var KeyEscapeUtils = __webpack_require__(40);
 var warning = __webpack_require__(2);
 
 var SEPARATOR = '.';
@@ -9616,7 +9875,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 79 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9633,12 +9892,12 @@ module.exports = traverseAllChildren;
 var _prodInvariant = __webpack_require__(18),
     _assign = __webpack_require__(4);
 
-var ReactNoopUpdateQueue = __webpack_require__(82);
+var ReactNoopUpdateQueue = __webpack_require__(84);
 
 var canDefineProperty = __webpack_require__(32);
 var emptyObject = __webpack_require__(25);
 var invariant = __webpack_require__(1);
-var lowPriorityWarning = __webpack_require__(51);
+var lowPriorityWarning = __webpack_require__(52);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -9763,7 +10022,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9786,7 +10045,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9814,9 +10073,9 @@ var ReactElement = __webpack_require__(15);
 var checkReactTypeSpec = __webpack_require__(188);
 
 var canDefineProperty = __webpack_require__(32);
-var getIteratorFn = __webpack_require__(83);
+var getIteratorFn = __webpack_require__(85);
 var warning = __webpack_require__(2);
-var lowPriorityWarning = __webpack_require__(51);
+var lowPriorityWarning = __webpack_require__(52);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -10045,7 +10304,7 @@ module.exports = ReactElementValidator;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10144,7 +10403,7 @@ module.exports = ReactNoopUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10188,7 +10447,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10203,19 +10462,19 @@ __webpack_require__(194);
 
 __webpack_require__(199);
 
-var _ZiggeoPlayer2 = __webpack_require__(87);
+var _ZiggeoPlayer2 = __webpack_require__(89);
 
 var _ZiggeoPlayer3 = _interopRequireDefault(_ZiggeoPlayer2);
 
-var _ZiggeoRecorder2 = __webpack_require__(88);
+var _ZiggeoRecorder2 = __webpack_require__(90);
 
 var _ZiggeoRecorder3 = _interopRequireDefault(_ZiggeoRecorder2);
 
-var _ZiggeoEmbedPlayer2 = __webpack_require__(85);
+var _ZiggeoEmbedPlayer2 = __webpack_require__(87);
 
 var _ZiggeoEmbedPlayer3 = _interopRequireDefault(_ZiggeoEmbedPlayer2);
 
-var _ZiggeoEmbedRecorder2 = __webpack_require__(86);
+var _ZiggeoEmbedRecorder2 = __webpack_require__(88);
 
 var _ZiggeoEmbedRecorder3 = _interopRequireDefault(_ZiggeoEmbedRecorder2);
 
@@ -10227,7 +10486,7 @@ exports.ZiggeoEmbedPlayer = _ZiggeoEmbedPlayer3.default;
 exports.ZiggeoEmbedRecorder = _ZiggeoEmbedRecorder3.default;
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10245,7 +10504,7 @@ var _react = __webpack_require__(33);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(109);
+var _reactDom = __webpack_require__(58);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -10380,7 +10639,7 @@ ZiggeoEmbedPlayer.defaultProps = {
 exports.default = ZiggeoEmbedPlayer;
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10400,7 +10659,7 @@ var _react = __webpack_require__(33);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _constants = __webpack_require__(89);
+var _constants = __webpack_require__(34);
 
 var _propTypes = __webpack_require__(19);
 
@@ -10471,7 +10730,7 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 			var _this4 = this;
 
 			return Object.keys(this.props).filter(function (k) {
-				return _constants.ziggeoRecorderAttrPropTypes[k];
+				return ziggeoRecorderAttrPropTypes[k];
 			}).reduce(function (props, k) {
 				props[k] = _this4.props[k];
 				return props;
@@ -10547,7 +10806,7 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 
 ZiggeoEmbedRecorder.propTypes = _extends({
 	apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoRecorderAttrPropTypes, _constants.ziggeoEmbedRecorderEventPropTypes);
+}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes);
 ZiggeoEmbedRecorder.defaultProps = _extends({
 	// Presentational parameters
 	'width': 640,
@@ -10575,7 +10834,7 @@ ZiggeoEmbedRecorder.defaultProps = _extends({
 	'allowcustomupload': true,
 	'recordermode': true
 
-}, Object.keys(_constants.ziggeoEmbedRecorderEventPropTypes).reduce(function (defaults, event) {
+}, Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (defaults, event) {
 	defaults[event] = function () {};
 	return defaults;
 }, {}));
@@ -10583,9 +10842,8 @@ ZiggeoEmbedRecorder.defaultProps = _extends({
 var _initialiseProps = function _initialiseProps() {
 	var _this6 = this;
 
-	this.ziggeoEvents = Object.keys(_constants.ziggeoEmbedRecorderEventPropTypes).reduce(function (memo, propName) {
+	this.ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
 		var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
-		console.log('::--', eventName);
 		memo[eventName] = function () {
 			var _props;
 
@@ -10652,7 +10910,7 @@ var _initialiseProps = function _initialiseProps() {
 exports.default = ZiggeoEmbedRecorder;
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10661,8 +10919,6 @@ exports.default = ZiggeoEmbedRecorder;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -10674,9 +10930,9 @@ var _propTypes = __webpack_require__(19);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _constants = __webpack_require__(34);
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10699,22 +10955,45 @@ var ZiggeoPlayer = function (_Component) {
         }
 
         return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ZiggeoPlayer.__proto__ || Object.getPrototypeOf(ZiggeoPlayer)).call.apply(_ref, [this].concat(args))), _this), _this.addZiggeoAttributes = function (node) {
-            var _this$props = _this.props,
-                apiKey = _this$props.apiKey,
-                rest = _objectWithoutProperties(_this$props, ['apiKey']);
 
-            var options = _extends({}, rest);
-            if (Object.keys(options).length > 0 && node) Object.keys(options).map(function (option) {
-                return node.setAttribute(option, _this.props[option]);
-            });
+            // Inject node with provided ziggeo options
+            if (node) {
+                var regexp = new RegExp(/(ziggeo-)/g);
+                Object.keys(_this.props).filter(function (value) {
+                    return regexp.test(value);
+                }).reduce(function (props, value) {
+                    var verifier = value.replace(regexp, '');
+                    if (!_constants.ziggeoPlayerAttributesPropTypes[verifier]) {
+                        console.warn('Please be sure there\'re no typo in ' + value + ' option');
+                    }
+                    node.setAttribute(value, _this.props[value]);
+                }, {});
+            }
         }, _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(ZiggeoPlayer, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+            this.options = this._ziggeoAttributes;
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+            // return undefined, find element based on DOM
+            //_self.embedding =  ZiggeoApi.V2.Player.findByElement( ReactDOM.findDOMNode(this) );
+
+            this.application.on("ready", function () {
+                this.application.embed_events.on("playing", function () {
+                    //Your code goes here
+                    console.log('playing single');
+                });
+            }, this);
         }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {}
     }, {
         key: 'render',
         value: function render() {
@@ -10733,16 +11012,14 @@ ZiggeoPlayer.propTypes = {
     "ziggeo-height": _propTypes2.default.number,
     "ziggeo-width": _propTypes2.default.number
 };
-
 ZiggeoPlayer.defaultProps = {
     "ziggeo-theme": 'default',
     "ziggeo-themecolor": 'default'
 };
-
 exports.default = ZiggeoPlayer;
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10754,19 +11031,25 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(33);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(58);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
 var _propTypes = __webpack_require__(19);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _constants = __webpack_require__(34);
 
-function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10777,219 +11060,152 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ZiggeoRecorder = function (_Component) {
     _inherits(ZiggeoRecorder, _Component);
 
-    function ZiggeoRecorder() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
+    function ZiggeoRecorder(props) {
         _classCallCheck(this, ZiggeoRecorder);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+        var _this = _possibleConstructorReturn(this, (ZiggeoRecorder.__proto__ || Object.getPrototypeOf(ZiggeoRecorder)).call(this, props));
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ZiggeoRecorder.__proto__ || Object.getPrototypeOf(ZiggeoRecorder)).call.apply(_ref, [this].concat(args))), _this), _this.addZiggeoAttributes = function (node) {
-            var _this$props = _this.props,
-                apiKey = _this$props.apiKey,
-                rest = _objectWithoutProperties(_this$props, ['apiKey']);
+        _this.ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
+            var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
+            memo[eventName] = function () {
+                var _this$props;
 
-            var options = _extends({}, rest);
+                (_this$props = _this.props)[propName].apply(_this$props, arguments);
+            };
+            return memo;
+        });
+
+        _this.addZiggeoAttributes = function (node) {
+            // const {apiKey, ...rest} = this.props;
+            // const options = {...rest};
+
+            var options = _this.elementProps;
+
             if (Object.keys(options).length > 1 && node) Object.keys(options).map(function (option) {
                 return node.setAttribute(option, _this.props[option]);
             });
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        };
+
+        _this.state = {
+            uploadedFile: null
+        };
+        return _this;
     }
 
+    // _handleUploadFileEvent = (file) => {
+    //     this.application.on("upload_selected", function (file) {
+    //         ReactDOM.findDOMNode("ziggeorecorder").addEventListener("upload_selected", file);
+    //     });
+    // };
+
+    // Ziggeo Predefined evens lit
+
+
     _createClass(ZiggeoRecorder, [{
+        key: 'componentWillMount',
+        value: function componentWillMount() {
+            this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+        }
+    }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+            this.application.on("ready", function () {
+                var _this2 = this;
+
+                Object.entries(this.ziggeoEvents).forEach(function (_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2),
+                        event = _ref2[0],
+                        func = _ref2[1];
+
+                    _this2.application.embed_events.on(event, func);
+                });
+            }, this);
         }
     }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement('ziggeorecorder', { ref: this.addZiggeoAttributes });
         }
+    }, {
+        key: 'ziggeoAttributes',
+
+
+        // Get user defined ziggeo attributes from props
+        get: function get() {
+            var _this3 = this;
+
+            return Object.keys(this.props).filter(function (k) {
+                return _constants.ziggeoRecorderAttributesPropTypes[k];
+            }).reduce(function (props, k) {
+                props[k] = _this3.props[k];
+                return props;
+            });
+        }
+
+        // Get user defined ziggeo events from props
+
+    }, {
+        key: 'elementProps',
+        get: function get() {
+            var _this4 = this;
+
+            var regexp = new RegExp(/(ziggeo-)/g);
+            Object.keys(this.props).filter(function (value) {
+                return regexp.test(value);
+            }).reduce(function (props, k) {
+                props[k] = _this4.props[k];
+                console.log('==', k, 'props:', props);
+                return props;
+            });
+
+            // return Object.keys(this.props).filter(value => regexp.test(value)).reduce((props, k) => {
+            //     props[k] = this.props[k];
+            //     return props;
+            // });
+        }
     }]);
 
     return ZiggeoRecorder;
 }(_react.Component);
 
-ZiggeoRecorder.propTypes = {
-    apiKey: _propTypes2.default.string.isRequired,
-    "ziggeo-theme": _propTypes2.default.string,
-    "ziggeo-themecolor": _propTypes2.default.string,
-    "ziggeo-height": _propTypes2.default.number,
-    "ziggeo-width": _propTypes2.default.number
-};
+ZiggeoRecorder.propTypes = _extends({
+    apiKey: _propTypes2.default.string.isRequired
+}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes);
+ZiggeoRecorder.defaultProps = _extends({
+    // Presentational parameters
+    'width': 640,
+    'height': 480,
+    'picksnapshots': true,
+    'countdown': 3,
+    'snapshotmax': 15,
+    'gallerysnapshots': 3,
+    'theme': 'default',
+    'themecolor': 'default',
+    'primaryrecord': true,
 
-ZiggeoRecorder.defaultProps = {
-    "ziggeo-theme": "default",
-    "ziggeo-themecolor": "default",
-    "ziggeo-height": 300,
-    "ziggeo-width": 420
-};
+    // Video management parameters
+    'recordingwidth': 640,
+    'recordingheight': 480,
+    'framerate': 25,
+    'videobitrate': 'auto',
+    'audiobitrate': 'auto',
+    'microphone-volume': 1,
 
+    // Operational parameters
+    'allowupload': true,
+    'allowrecord': true,
+    'force-overwrite': true,
+    'allowcustomupload': true,
+    'recordermode': true
+
+}, Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (defaults, event) {
+    defaults[event] = function () {};
+    return defaults;
+}, {}));
 exports.default = ZiggeoRecorder;
 
 /***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.ziggeoApplicationEvents = exports.ziggeoApplicationEmbeddingEvents = exports.ziggeoEmbedRecorderEventPropTypes = exports.ziggeoRecorderAttrPropTypes = undefined;
-
-var _propTypes = __webpack_require__(19);
-
-var ziggeoRecorderAttrPropTypes = exports.ziggeoRecorderAttrPropTypes = {
-    // Presentational parameters
-    'width': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
-    'height': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
-    'responsive': _propTypes.bool,
-    'skipinitial': _propTypes.bool,
-    'picksnapshots': _propTypes.bool,
-    'countdown': _propTypes.number,
-    'stream-width': _propTypes.number,
-    'stream-height': _propTypes.number,
-    'nofullscreen': _propTypes.bool,
-    'snapshotmax': _propTypes.number,
-    'gallerysnapshots': _propTypes.number,
-    'localplayback': _propTypes.bool,
-    'stretch': _propTypes.bool,
-    'theme': _propTypes.string,
-    'themecolor': _propTypes.string,
-    'autorecord': _propTypes.bool,
-    'primaryrecord': _propTypes.bool,
-    'flip-camera': _propTypes.bool,
-    'early-rerecord': _propTypes.bool,
-    'sharevideo': (0, _propTypes.arrayOf)(_propTypes.string),
-
-    // Security parameters
-    'server-auth': _propTypes.string,
-    'client-auth': _propTypes.string,
-    'expiration-days': _propTypes.number,
-
-    // Video management parameters
-    'recordingwidth': _propTypes.number,
-    'recordingheight': _propTypes.number,
-    'video': _propTypes.string,
-    'stream': _propTypes.string,
-    'effect-profile': _propTypes.array,
-    'auto-crop': _propTypes.bool,
-    'auto-pad': _propTypes.bool,
-    'key': _propTypes.string,
-    'timelimit': _propTypes.number,
-    'timeminlimit': _propTypes.number,
-    'video-profile': _propTypes.string,
-    'meta-profile': _propTypes.string,
-    'enforce-duration': _propTypes.bool,
-    'noaudio': _propTypes.bool,
-    'source': _propTypes.string,
-    'framerate': _propTypes.number,
-    'videobitrate': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
-    'audiobitrate': (0, _propTypes.oneOfType)([_propTypes.number, _propTypes.string]),
-    'microphone-volume': _propTypes.number,
-    'custom-covershots': _propTypes.bool,
-
-    // Data parameters
-    'tags': (0, _propTypes.arrayOf)(_propTypes.string),
-    'custom-data': _propTypes.object,
-    'title': _propTypes.string,
-    'description': _propTypes.string,
-
-    // Operational parameters
-    'manual_upload': _propTypes.bool,
-    'rerecordable': _propTypes.bool,
-    'allowupload': _propTypes.bool,
-    'allowrecord': _propTypes.bool,
-    'force-overwrite': _propTypes.bool,
-    'autoplay': _propTypes.bool,
-    'recordings': _propTypes.number,
-    'allowedextensions': (0, _propTypes.arrayOf)(_propTypes.string),
-    'application': _propTypes.string,
-    'filesizelimit': _propTypes.number,
-    'flashincognitosupport': _propTypes.bool,
-    'simulate': _propTypes.bool,
-    'allowcustomupload': _propTypes.bool,
-    'recordermode': _propTypes.bool,
-    'forceflash': _propTypes.bool,
-    'noflash': _propTypes.bool,
-    'manualsubmit': _propTypes.bool,
-    'initialseek': _propTypes.number,
-    'playfullscreenonmobile': _propTypes.bool,
-
-    // Form and HTML parameters
-    'input-bind': _propTypes.string,
-    'form-accept': _propTypes.string
-};
-
-var ziggeoEmbedRecorderEventPropTypes = exports.ziggeoEmbedRecorderEventPropTypes = {
-    onPlayerAttached: _propTypes.func,
-    onPlayerLoaded: _propTypes.func,
-    onPlayerPlaying: _propTypes.func,
-    onPlayerPaused: _propTypes.func,
-    onPlayerEnded: _propTypes.func,
-    onPlayerSeek: _propTypes.func,
-    onRecorderError: _propTypes.func,
-    onRecorderManuallySubmitted: _propTypes.func,
-    onRecorderUploaded: _propTypes.func,
-    onRecorderUploadSelected: _propTypes.func,
-    onRecorderRecording: _propTypes.func,
-    onRecorderUploading: _propTypes.func,
-    onRecorderRerecord: _propTypes.func,
-    onRecorderCountdown: _propTypes.func,
-    onRecorderRecordingProgress: _propTypes.func,
-    onRecorderUploadProgress: _propTypes.func,
-    onRecorderAccessForbidden: _propTypes.func,
-    onRecorderAccessGranted: _propTypes.func,
-    onRecorderCameraUnresponsive: _propTypes.func,
-    onRecorderVerified: _propTypes.func,
-    onRecorderNoCamera: _propTypes.func,
-    onRecorderNoMicrophone: _propTypes.func,
-    onProcessing: _propTypes.func,
-    onProcessed: _propTypes.func
-};
-
-// application.embed_event.on..
-var ziggeoApplicationEmbeddingEvents = exports.ziggeoApplicationEmbeddingEvents = {
-    onAttached: _propTypes.func,
-    onLoaded: _propTypes.func,
-    onPlaying: _propTypes.func,
-    onPaused: _propTypes.func,
-    onEnded: _propTypes.func,
-    onError: _propTypes.func,
-    onManuallySubmitted: _propTypes.func,
-    onUploaded: _propTypes.func,
-    onUploadSelected: _propTypes.func,
-    onRecording: _propTypes.func,
-    onUploading: _propTypes.func,
-    onSeek: _propTypes.func,
-    onRerecord: _propTypes.func,
-    onCountdown: _propTypes.func,
-    onRecordingProgress: _propTypes.func,
-    onUploadProgress: _propTypes.func,
-    onProcessing: _propTypes.func,
-    onProcessed: _propTypes.func,
-    onAccessForbidden: _propTypes.func,
-    onAccessGranted: _propTypes.func,
-    onCameraUnresponsive: _propTypes.func,
-    onVerified: _propTypes.func,
-    onNoCamera: _propTypes.func,
-    onNoMicrophone: _propTypes.func
-};
-
-var ziggeoApplicationEvents = exports.ziggeoApplicationEvents = {
-    onError: _propTypes.func,
-    onReady: _propTypes.func
-};
-
-/***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11867,10 +12083,10 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(92)();
+exports = module.exports = __webpack_require__(93)();
 // imports
 
 
@@ -11881,7 +12097,7 @@ exports.push([module.i, "/*!\nziggeo-js-sdk - v0.0.27 - 2017-07-25\nCopyright (c
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports) {
 
 /*
@@ -11937,7 +12153,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11972,7 +12188,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11987,7 +12203,7 @@ module.exports = camelize;
 
 
 
-var camelize = __webpack_require__(93);
+var camelize = __webpack_require__(94);
 
 var msPattern = /^-ms-/;
 
@@ -12015,7 +12231,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12030,7 +12246,7 @@ module.exports = camelizeStyleName;
  * 
  */
 
-var isTextNode = __webpack_require__(103);
+var isTextNode = __webpack_require__(104);
 
 /*eslint-disable no-bitwise */
 
@@ -12058,7 +12274,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12189,7 +12405,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12208,8 +12424,8 @@ module.exports = createArrayFromMixed;
 
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createArrayFromMixed = __webpack_require__(96);
-var getMarkupWrap = __webpack_require__(98);
+var createArrayFromMixed = __webpack_require__(97);
+var getMarkupWrap = __webpack_require__(99);
 var invariant = __webpack_require__(1);
 
 /**
@@ -12277,7 +12493,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12376,7 +12592,7 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12418,7 +12634,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12454,7 +12670,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12469,7 +12685,7 @@ module.exports = hyphenate;
 
 
 
-var hyphenate = __webpack_require__(100);
+var hyphenate = __webpack_require__(101);
 
 var msPattern = /^ms-/;
 
@@ -12496,7 +12712,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12524,7 +12740,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12539,7 +12755,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(102);
+var isNode = __webpack_require__(103);
 
 /**
  * @param {*} object The object to check.
@@ -12552,7 +12768,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12585,7 +12801,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12611,7 +12827,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12626,7 +12842,7 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(105);
+var performance = __webpack_require__(106);
 
 var performanceNow;
 
@@ -12648,7 +12864,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12664,7 +12880,7 @@ module.exports = performanceNow;
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(1);
   var warning = __webpack_require__(2);
-  var ReactPropTypesSecret = __webpack_require__(35);
+  var ReactPropTypesSecret = __webpack_require__(36);
   var loggedTypeFailures = {};
 }
 
@@ -12715,7 +12931,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12730,7 +12946,7 @@ module.exports = checkPropTypes;
 
 var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(1);
-var ReactPropTypesSecret = __webpack_require__(35);
+var ReactPropTypesSecret = __webpack_require__(36);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -12777,16 +12993,6 @@ module.exports = function() {
 
   return ReactPropTypes;
 };
-
-
-/***/ }),
-/* 109 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(123);
 
 
 /***/ }),
@@ -12883,7 +13089,7 @@ module.exports = ARIADOMPropertyConfig;
 
 var ReactDOMComponentTree = __webpack_require__(5);
 
-var focusNode = __webpack_require__(53);
+var focusNode = __webpack_require__(54);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -13295,14 +13501,14 @@ module.exports = BeforeInputEventPlugin;
 
 
 
-var CSSProperty = __webpack_require__(57);
+var CSSProperty = __webpack_require__(59);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactInstrumentation = __webpack_require__(9);
 
-var camelizeStyleName = __webpack_require__(94);
+var camelizeStyleName = __webpack_require__(95);
 var dangerousStyleValue = __webpack_require__(171);
-var hyphenateStyleName = __webpack_require__(101);
-var memoizeStringOnly = __webpack_require__(104);
+var hyphenateStyleName = __webpack_require__(102);
+var memoizeStringOnly = __webpack_require__(105);
 var warning = __webpack_require__(2);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -13521,10 +13727,10 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(10);
 var SyntheticEvent = __webpack_require__(12);
 
-var inputValueTracking = __webpack_require__(74);
-var getEventTarget = __webpack_require__(47);
-var isEventSupported = __webpack_require__(48);
-var isTextInputElement = __webpack_require__(76);
+var inputValueTracking = __webpack_require__(76);
+var getEventTarget = __webpack_require__(48);
+var isEventSupported = __webpack_require__(49);
+var isTextInputElement = __webpack_require__(78);
 
 var eventTypes = {
   change: {
@@ -13834,7 +14040,7 @@ var _prodInvariant = __webpack_require__(3);
 var DOMLazyTree = __webpack_require__(16);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var createNodesFromMarkup = __webpack_require__(97);
+var createNodesFromMarkup = __webpack_require__(98);
 var emptyFunction = __webpack_require__(8);
 var invariant = __webpack_require__(1);
 
@@ -14013,7 +14219,7 @@ var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(14);
 
-var getTextContentAccessor = __webpack_require__(73);
+var getTextContentAccessor = __webpack_require__(75);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -14349,10 +14555,10 @@ module.exports = HTMLDOMPropertyConfig;
 
 var ReactReconciler = __webpack_require__(17);
 
-var instantiateReactComponent = __webpack_require__(75);
-var KeyEscapeUtils = __webpack_require__(39);
-var shouldUpdateReactComponent = __webpack_require__(49);
-var traverseAllChildren = __webpack_require__(78);
+var instantiateReactComponent = __webpack_require__(77);
+var KeyEscapeUtils = __webpack_require__(40);
+var shouldUpdateReactComponent = __webpack_require__(50);
+var traverseAllChildren = __webpack_require__(80);
 var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
@@ -14504,7 +14710,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(36);
+var DOMChildrenOperations = __webpack_require__(37);
 var ReactDOMIDOperations = __webpack_require__(128);
 
 /**
@@ -14539,12 +14745,12 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var React = __webpack_require__(24);
-var ReactComponentEnvironment = __webpack_require__(41);
+var ReactComponentEnvironment = __webpack_require__(42);
 var ReactCurrentOwner = __webpack_require__(11);
-var ReactErrorUtils = __webpack_require__(42);
+var ReactErrorUtils = __webpack_require__(43);
 var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(9);
-var ReactNodeTypes = __webpack_require__(67);
+var ReactNodeTypes = __webpack_require__(69);
 var ReactReconciler = __webpack_require__(17);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -14553,8 +14759,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyObject = __webpack_require__(25);
 var invariant = __webpack_require__(1);
-var shallowEqual = __webpack_require__(34);
-var shouldUpdateReactComponent = __webpack_require__(49);
+var shallowEqual = __webpack_require__(35);
+var shouldUpdateReactComponent = __webpack_require__(50);
 var warning = __webpack_require__(2);
 
 var CompositeTypes = {
@@ -15443,13 +15649,13 @@ module.exports = ReactCompositeComponent;
 
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDefaultInjection = __webpack_require__(140);
-var ReactMount = __webpack_require__(66);
+var ReactMount = __webpack_require__(68);
 var ReactReconciler = __webpack_require__(17);
 var ReactUpdates = __webpack_require__(10);
 var ReactVersion = __webpack_require__(155);
 
 var findDOMNode = __webpack_require__(172);
-var getHostComponentFromComposite = __webpack_require__(72);
+var getHostComponentFromComposite = __webpack_require__(74);
 var renderSubtreeIntoContainer = __webpack_require__(179);
 var warning = __webpack_require__(2);
 
@@ -15562,17 +15768,17 @@ var _prodInvariant = __webpack_require__(3),
 var AutoFocusUtils = __webpack_require__(111);
 var CSSPropertyOperations = __webpack_require__(113);
 var DOMLazyTree = __webpack_require__(16);
-var DOMNamespaces = __webpack_require__(37);
+var DOMNamespaces = __webpack_require__(38);
 var DOMProperty = __webpack_require__(13);
-var DOMPropertyOperations = __webpack_require__(59);
+var DOMPropertyOperations = __webpack_require__(61);
 var EventPluginHub = __webpack_require__(20);
 var EventPluginRegistry = __webpack_require__(26);
 var ReactBrowserEventEmitter = __webpack_require__(27);
-var ReactDOMComponentFlags = __webpack_require__(60);
+var ReactDOMComponentFlags = __webpack_require__(62);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMInput = __webpack_require__(129);
 var ReactDOMOption = __webpack_require__(132);
-var ReactDOMSelect = __webpack_require__(61);
+var ReactDOMSelect = __webpack_require__(63);
 var ReactDOMTextarea = __webpack_require__(135);
 var ReactInstrumentation = __webpack_require__(9);
 var ReactMultiChild = __webpack_require__(148);
@@ -15581,10 +15787,10 @@ var ReactServerRenderingTransaction = __webpack_require__(153);
 var emptyFunction = __webpack_require__(8);
 var escapeTextContentForBrowser = __webpack_require__(30);
 var invariant = __webpack_require__(1);
-var isEventSupported = __webpack_require__(48);
-var shallowEqual = __webpack_require__(34);
-var inputValueTracking = __webpack_require__(74);
-var validateDOMNesting = __webpack_require__(50);
+var isEventSupported = __webpack_require__(49);
+var shallowEqual = __webpack_require__(35);
+var inputValueTracking = __webpack_require__(76);
+var validateDOMNesting = __webpack_require__(51);
 var warning = __webpack_require__(2);
 
 var Flags = ReactDOMComponentFlags;
@@ -16572,7 +16778,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(50);
+var validateDOMNesting = __webpack_require__(51);
 
 var DOC_NODE_TYPE = 9;
 
@@ -16694,7 +16900,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(36);
+var DOMChildrenOperations = __webpack_require__(37);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 /**
@@ -16733,8 +16939,8 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var DOMPropertyOperations = __webpack_require__(59);
-var LinkedValueUtils = __webpack_require__(40);
+var DOMPropertyOperations = __webpack_require__(61);
+var LinkedValueUtils = __webpack_require__(41);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(10);
 
@@ -17169,7 +17375,7 @@ var _assign = __webpack_require__(4);
 
 var React = __webpack_require__(24);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactDOMSelect = __webpack_require__(61);
+var ReactDOMSelect = __webpack_require__(63);
 
 var warning = __webpack_require__(2);
 var didWarnInvalidOptionChildren = false;
@@ -17294,7 +17500,7 @@ module.exports = ReactDOMOption;
 var ExecutionEnvironment = __webpack_require__(6);
 
 var getNodeForCharacterOffset = __webpack_require__(176);
-var getTextContentAccessor = __webpack_require__(73);
+var getTextContentAccessor = __webpack_require__(75);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -17509,13 +17715,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var DOMChildrenOperations = __webpack_require__(36);
+var DOMChildrenOperations = __webpack_require__(37);
 var DOMLazyTree = __webpack_require__(16);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var escapeTextContentForBrowser = __webpack_require__(30);
 var invariant = __webpack_require__(1);
-var validateDOMNesting = __webpack_require__(50);
+var validateDOMNesting = __webpack_require__(51);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -17675,7 +17881,7 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var LinkedValueUtils = __webpack_require__(40);
+var LinkedValueUtils = __webpack_require__(41);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(10);
 
@@ -18098,7 +18304,7 @@ var ReactHostOperationHistoryHook = __webpack_require__(144);
 var ReactComponentTreeHook = __webpack_require__(7);
 var ExecutionEnvironment = __webpack_require__(6);
 
-var performanceNow = __webpack_require__(106);
+var performanceNow = __webpack_require__(107);
 var warning = __webpack_require__(2);
 
 var hooks = [];
@@ -18677,14 +18883,14 @@ module.exports = ReactEventEmitterMixin;
 
 var _assign = __webpack_require__(4);
 
-var EventListener = __webpack_require__(52);
+var EventListener = __webpack_require__(53);
 var ExecutionEnvironment = __webpack_require__(6);
 var PooledClass = __webpack_require__(14);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactUpdates = __webpack_require__(10);
 
-var getEventTarget = __webpack_require__(47);
-var getUnboundedScrollPosition = __webpack_require__(99);
+var getEventTarget = __webpack_require__(48);
+var getUnboundedScrollPosition = __webpack_require__(100);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -18872,11 +19078,11 @@ module.exports = ReactHostOperationHistoryHook;
 
 var DOMProperty = __webpack_require__(13);
 var EventPluginHub = __webpack_require__(20);
-var EventPluginUtils = __webpack_require__(38);
-var ReactComponentEnvironment = __webpack_require__(41);
-var ReactEmptyComponent = __webpack_require__(62);
+var EventPluginUtils = __webpack_require__(39);
+var ReactComponentEnvironment = __webpack_require__(42);
+var ReactEmptyComponent = __webpack_require__(64);
 var ReactBrowserEventEmitter = __webpack_require__(27);
-var ReactHostComponent = __webpack_require__(64);
+var ReactHostComponent = __webpack_require__(66);
 var ReactUpdates = __webpack_require__(10);
 
 var ReactInjection = {
@@ -19003,7 +19209,7 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(3);
 
-var ReactComponentEnvironment = __webpack_require__(41);
+var ReactComponentEnvironment = __webpack_require__(42);
 var ReactInstanceMap = __webpack_require__(22);
 var ReactInstrumentation = __webpack_require__(9);
 
@@ -19579,13 +19785,13 @@ module.exports = ReactPropTypeLocationNames;
 
 var _assign = __webpack_require__(4);
 
-var CallbackQueue = __webpack_require__(58);
+var CallbackQueue = __webpack_require__(60);
 var PooledClass = __webpack_require__(14);
 var ReactBrowserEventEmitter = __webpack_require__(27);
-var ReactInputSelection = __webpack_require__(65);
+var ReactInputSelection = __webpack_require__(67);
 var ReactInstrumentation = __webpack_require__(9);
 var Transaction = __webpack_require__(29);
-var ReactUpdateQueue = __webpack_require__(43);
+var ReactUpdateQueue = __webpack_require__(44);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -19948,7 +20154,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(43);
+var ReactUpdateQueue = __webpack_require__(44);
 
 var warning = __webpack_require__(2);
 
@@ -20413,12 +20619,12 @@ module.exports = SVGDOMPropertyConfig;
 var EventPropagators = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 var ReactDOMComponentTree = __webpack_require__(5);
-var ReactInputSelection = __webpack_require__(65);
+var ReactInputSelection = __webpack_require__(67);
 var SyntheticEvent = __webpack_require__(12);
 
-var getActiveElement = __webpack_require__(54);
-var isTextInputElement = __webpack_require__(76);
-var shallowEqual = __webpack_require__(34);
+var getActiveElement = __webpack_require__(55);
+var isTextInputElement = __webpack_require__(78);
+var shallowEqual = __webpack_require__(35);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -20604,7 +20810,7 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(3);
 
-var EventListener = __webpack_require__(52);
+var EventListener = __webpack_require__(53);
 var EventPropagators = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 var SyntheticAnimationEvent = __webpack_require__(159);
@@ -20620,7 +20826,7 @@ var SyntheticUIEvent = __webpack_require__(23);
 var SyntheticWheelEvent = __webpack_require__(168);
 
 var emptyFunction = __webpack_require__(8);
-var getEventCharCode = __webpack_require__(45);
+var getEventCharCode = __webpack_require__(46);
 var invariant = __webpack_require__(1);
 
 /**
@@ -21073,9 +21279,9 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = __webpack_require__(23);
 
-var getEventCharCode = __webpack_require__(45);
+var getEventCharCode = __webpack_require__(46);
 var getEventKey = __webpack_require__(174);
-var getEventModifierState = __webpack_require__(46);
+var getEventModifierState = __webpack_require__(47);
 
 /**
  * @interface KeyboardEvent
@@ -21160,7 +21366,7 @@ module.exports = SyntheticKeyboardEvent;
 
 var SyntheticUIEvent = __webpack_require__(23);
 
-var getEventModifierState = __webpack_require__(46);
+var getEventModifierState = __webpack_require__(47);
 
 /**
  * @interface TouchEvent
@@ -21352,7 +21558,7 @@ module.exports = adler32;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactPropTypeLocationNames = __webpack_require__(150);
-var ReactPropTypesSecret = __webpack_require__(68);
+var ReactPropTypesSecret = __webpack_require__(70);
 
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
@@ -21440,7 +21646,7 @@ module.exports = checkReactTypeSpec;
 
 
 
-var CSSProperty = __webpack_require__(57);
+var CSSProperty = __webpack_require__(59);
 var warning = __webpack_require__(2);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -21529,7 +21735,7 @@ var ReactCurrentOwner = __webpack_require__(11);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstanceMap = __webpack_require__(22);
 
-var getHostComponentFromComposite = __webpack_require__(72);
+var getHostComponentFromComposite = __webpack_require__(74);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -21588,8 +21794,8 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(39);
-var traverseAllChildren = __webpack_require__(78);
+var KeyEscapeUtils = __webpack_require__(40);
+var traverseAllChildren = __webpack_require__(80);
 var warning = __webpack_require__(2);
 
 var ReactComponentTreeHook;
@@ -21667,7 +21873,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(45);
+var getEventCharCode = __webpack_require__(46);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -22036,7 +22242,7 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var ReactMount = __webpack_require__(66);
+var ReactMount = __webpack_require__(68);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
@@ -22436,7 +22642,7 @@ var ReactElement = __webpack_require__(15);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(81);
+  var ReactElementValidator = __webpack_require__(83);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -22632,7 +22838,7 @@ module.exports = ReactPropTypeLocationNames;
 var _require = __webpack_require__(15),
     isValidElement = _require.isValidElement;
 
-var factory = __webpack_require__(55);
+var factory = __webpack_require__(56);
 
 module.exports = factory(isValidElement);
 
@@ -22779,14 +22985,14 @@ module.exports = checkReactTypeSpec;
 
 
 
-var _require = __webpack_require__(79),
+var _require = __webpack_require__(81),
     Component = _require.Component;
 
 var _require2 = __webpack_require__(15),
     isValidElement = _require2.isValidElement;
 
-var ReactNoopUpdateQueue = __webpack_require__(82);
-var factory = __webpack_require__(90);
+var ReactNoopUpdateQueue = __webpack_require__(84);
+var factory = __webpack_require__(91);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
@@ -22874,9 +23080,9 @@ module.exports = onlyChild;
 var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(11);
-var REACT_ELEMENT_TYPE = __webpack_require__(80);
+var REACT_ELEMENT_TYPE = __webpack_require__(82);
 
-var getIteratorFn = __webpack_require__(83);
+var getIteratorFn = __webpack_require__(85);
 var invariant = __webpack_require__(1);
 var KeyEscapeUtils = __webpack_require__(180);
 var warning = __webpack_require__(2);
@@ -23295,7 +23501,7 @@ function updateLink(linkElement, obj) {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(91);
+var content = __webpack_require__(92);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
 var update = __webpack_require__(193)(content, {});
@@ -23423,7 +23629,7 @@ video:this.get("video"),"force-refresh":h.now()}),this._track("embedding_loaded"
 /* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(84);
+module.exports = __webpack_require__(86);
 
 
 /***/ })
