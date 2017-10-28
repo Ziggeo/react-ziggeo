@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-    ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes,
-    ziggeoPlayerConvertedAttributes
+    ziggeoPlayerEmbeddingEventsPropTypes, ziggeoPlayerConvertedAttributes
 } from "../constants";
 
 class ZiggeoPlayer extends Component {
@@ -14,6 +13,8 @@ class ZiggeoPlayer extends Component {
     };
 
     static defaultProps = {
+        'ziggeo-width': 640,
+        'ziggeo-height': 480,
         "ziggeo-theme": 'default',
         "ziggeo-themecolor": 'default',
         ...Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((defaults, event) => {
@@ -31,7 +32,6 @@ class ZiggeoPlayer extends Component {
             Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
                 this.application.embed_events.on(event, func);
             });
-
         }, this);
     };
 
@@ -43,6 +43,7 @@ class ZiggeoPlayer extends Component {
         );
     };
 
+    // Get all events as Object variable
     _ziggeoEvents = Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((memo, propName) => {
         const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
                                     .replace(/(recorder_|player_)/g, '');
@@ -52,6 +53,7 @@ class ZiggeoPlayer extends Component {
         return memo;
     }, {});
 
+    // Will attach to node with ref
     _addZiggeoAttributes = (node) => {
 
         // Inject node with provided ziggeo options
