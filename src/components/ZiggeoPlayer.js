@@ -27,9 +27,6 @@ class ZiggeoPlayer extends Component {
     }
 
     componentDidMount () {
-        // return undefined, find element based on DOM
-        //_self.embedding =  ZiggeoApi.V2.Player.findByElement( ReactDOM.findDOMNode(this) );
-
         this.application.on("ready", function () {
             Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
                 this.application.embed_events.on(event, func);
