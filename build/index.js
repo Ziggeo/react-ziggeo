@@ -4679,17 +4679,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_33__;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoConvertedAttributes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerConvertedAttributes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
 
 var _propTypes = __webpack_require__(19);
 
+// ####################### Application Events #############################
 // application.embed_event.on..
 var ziggeoApplicationEvents = exports.ziggeoApplicationEvents = {
     onError: _propTypes.func,
     onReady: _propTypes.func
 };
 
-// ###########################################################################
+// ####################### Player/Recorder Attributes #############################
 // When using HTML embed methods, all parameters should be prefixed with ziggeo-
 // https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-r29&javascript-version=v2
 var ziggeoRecorderAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = {
@@ -4825,14 +4826,16 @@ var ziggeoPlayerAttributesPropTypes = exports.ziggeoPlayerAttributesPropTypes = 
 };
 
 // converted based on above attributes
-var ziggeoConvertedAttributes = exports.ziggeoConvertedAttributes = Object.keys(ziggeoPlayerAttributesPropTypes).reduce(function (collector, attribute) {
+var ziggeoPlayerConvertedAttributes = exports.ziggeoPlayerConvertedAttributes = Object.keys(ziggeoPlayerAttributesPropTypes).reduce(function (collector, attribute) {
     var attributeName = "ziggeo-" + attribute;
-    console.log('--??--', attributeName, collector, attribute);
     collector[attributeName] = ziggeoPlayerAttributesPropTypes[attribute];
     return collector;
 }, {});
 
-// ###########################################################################
+// #######################  DEFAULTS  ##################################
+
+
+// #######################  EMBEDDING EVENTS #############################
 // Javascript Embed Recorder Events
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=v1-r29
 // application.embed_event.on..
@@ -4872,7 +4875,7 @@ var ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoPlayerEmbeddingEventsPr
     onPlayerError: _propTypes.func
 };
 
-// ###########################################################################
+// #######################  ZIGGEO METHODS  ##############################
 // Methods
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/methods#javascript-revision=v1-r29&javascript-version=v2
 var ziggeoMethods = exports.ziggeoMethods = {
@@ -4896,7 +4899,7 @@ var ziggeoMethods = exports.ziggeoMethods = {
     callDestroy: _propTypes.func
 };
 
-// ###########################################################################
+// #######################    ##############################
 // Common Events
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/events#javascript-revision=v1-r29&javascript-version=v2
 var ziggeoApiEventsPropTypes = exports.ziggeoApiEventsPropTypes = {
@@ -10930,6 +10933,8 @@ Object.defineProperty(exports, "__esModule", {
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(33);
@@ -10964,22 +10969,7 @@ var ZiggeoPlayer = function (_Component) {
             args[_key] = arguments[_key];
         }
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ZiggeoPlayer.__proto__ || Object.getPrototypeOf(ZiggeoPlayer)).call.apply(_ref, [this].concat(args))), _this), _this.addZiggeoAttributes = function (node) {
-
-            // Inject node with provided ziggeo options
-            if (node) {
-                var regexp = new RegExp(/(ziggeo-)/g);
-                Object.keys(_this.props).filter(function (value) {
-                    return regexp.test(value);
-                }).reduce(function (props, value) {
-                    var verifier = value.replace(regexp, '');
-                    if (!_constants.ziggeoPlayerAttributesPropTypes[verifier]) {
-                        console.warn('Please be sure there\'re no typo in ' + value + ' option');
-                    }
-                    node.setAttribute(value, _this.props[value]);
-                }, {});
-            }
-        }, _temp), _possibleConstructorReturn(_this, _ret);
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ZiggeoPlayer.__proto__ || Object.getPrototypeOf(ZiggeoPlayer)).call.apply(_ref, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
     }
 
     _createClass(ZiggeoPlayer, [{
@@ -10994,9 +10984,14 @@ var ZiggeoPlayer = function (_Component) {
             //_self.embedding =  ZiggeoApi.V2.Player.findByElement( ReactDOM.findDOMNode(this) );
 
             this.application.on("ready", function () {
-                this.application.embed_events.on("playing", function () {
-                    //Your code goes here
-                    console.log('playing single');
+                var _this2 = this;
+
+                Object.entries(this._ziggeoEvents).forEach(function (_ref2) {
+                    var _ref3 = _slicedToArray(_ref2, 2),
+                        event = _ref3[0],
+                        func = _ref3[1];
+
+                    _this2.application.embed_events.on(event, func);
                 });
             }, this);
         }
@@ -11008,7 +11003,7 @@ var ZiggeoPlayer = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('ziggeoplayer', { ref: this.addZiggeoAttributes });
+            return _react2.default.createElement('ziggeoplayer', { ref: this._addZiggeoAttributes });
         }
     }]);
 
@@ -11017,11 +11012,46 @@ var ZiggeoPlayer = function (_Component) {
 
 ZiggeoPlayer.propTypes = _extends({
     apiKey: _propTypes2.default.string.isRequired
-}, _constants.ziggeoConvertedAttributes, _constants.ziggeoPlayerEmbeddingEventsPropTypes);
-ZiggeoPlayer.defaultProps = {
+}, _constants.ziggeoPlayerConvertedAttributes, _constants.ziggeoPlayerEmbeddingEventsPropTypes);
+ZiggeoPlayer.defaultProps = _extends({
     "ziggeo-theme": 'default',
     "ziggeo-themecolor": 'default'
+}, Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (defaults, event) {
+    defaults[event] = function () {};
+    return defaults;
+}, {}));
+
+var _initialiseProps = function _initialiseProps() {
+    var _this3 = this;
+
+    this._ziggeoEvents = Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (memo, propName) {
+        var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
+        memo[eventName] = function () {
+            var _props;
+
+            (_props = _this3.props)[propName].apply(_props, arguments);
+        };
+        return memo;
+    }, {});
+
+    this._addZiggeoAttributes = function (node) {
+
+        // Inject node with provided ziggeo options
+        if (node) {
+            var regexp = new RegExp(/(ziggeo-)/g);
+            Object.keys(_this3.props).filter(function (value) {
+                return regexp.test(value);
+            }).reduce(function (props, value) {
+                // Check if prop type existing
+                if (!_constants.ziggeoPlayerConvertedAttributes[value]) {
+                    console.warn('Please be sure there\'re no typo in ' + value + ' option');
+                }
+                node.setAttribute(value, _this3.props[value]);
+            }, {});
+        }
+    };
 };
+
 exports.default = ZiggeoPlayer;
 
 /***/ }),
