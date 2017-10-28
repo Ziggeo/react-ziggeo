@@ -4679,7 +4679,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_33__;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoConvertedAttributes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
 
 var _propTypes = __webpack_require__(19);
 
@@ -4823,6 +4823,14 @@ var ziggeoPlayerAttributesPropTypes = exports.ziggeoPlayerAttributesPropTypes = 
     'input-bind': _propTypes.string,
     'form-accept': _propTypes.string
 };
+
+// converted based on above attributes
+var ziggeoConvertedAttributes = exports.ziggeoConvertedAttributes = Object.keys(ziggeoPlayerAttributesPropTypes).reduce(function (collector, attribute) {
+    var attributeName = "ziggeo-" + attribute;
+    console.log('--??--', attributeName, collector, attribute);
+    collector[attributeName] = ziggeoPlayerAttributesPropTypes[attribute];
+    return collector;
+}, {});
 
 // ###########################################################################
 // Javascript Embed Recorder Events
@@ -10920,6 +10928,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(33);
@@ -10976,7 +10986,6 @@ var ZiggeoPlayer = function (_Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
-            this.options = this._ziggeoAttributes;
         }
     }, {
         key: 'componentDidMount',
@@ -10993,7 +11002,9 @@ var ZiggeoPlayer = function (_Component) {
         }
     }, {
         key: 'componentWillUnmount',
-        value: function componentWillUnmount() {}
+        value: function componentWillUnmount() {
+            this.application.destroy();
+        }
     }, {
         key: 'render',
         value: function render() {
@@ -11004,14 +11015,9 @@ var ZiggeoPlayer = function (_Component) {
     return ZiggeoPlayer;
 }(_react.Component);
 
-ZiggeoPlayer.propTypes = {
-    apiKey: _propTypes2.default.string.isRequired,
-    "ziggeo-video": _propTypes2.default.string.isRequired,
-    "ziggeo-theme": _propTypes2.default.string,
-    "ziggeo-themecolor": _propTypes2.default.string,
-    "ziggeo-height": _propTypes2.default.number,
-    "ziggeo-width": _propTypes2.default.number
-};
+ZiggeoPlayer.propTypes = _extends({
+    apiKey: _propTypes2.default.string.isRequired
+}, _constants.ziggeoConvertedAttributes, _constants.ziggeoPlayerEmbeddingEventsPropTypes);
 ZiggeoPlayer.defaultProps = {
     "ziggeo-theme": 'default',
     "ziggeo-themecolor": 'default'

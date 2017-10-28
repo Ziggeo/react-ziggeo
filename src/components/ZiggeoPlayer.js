@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {ziggeoPlayerAttributesPropTypes} from "../constants";
+import {
+    ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes, ziggeoConvertedAttributes
+} from "../constants";
 
 class ZiggeoPlayer extends Component {
 
     static propTypes = {
-        apiKey:             PropTypes.string.isRequired,
-        "ziggeo-video":     PropTypes.string.isRequired,
-        "ziggeo-theme":     PropTypes.string,
-        "ziggeo-themecolor":PropTypes.string,
-        "ziggeo-height":    PropTypes.number,
-        "ziggeo-width":     PropTypes.number
+        apiKey: PropTypes.string.isRequired,
+        ...ziggeoConvertedAttributes,
+        ...ziggeoPlayerEmbeddingEventsPropTypes
     };
 
     static defaultProps = {
@@ -20,7 +19,6 @@ class ZiggeoPlayer extends Component {
 
     componentWillMount () {
         this.application  = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
-        this.options = this._ziggeoAttributes;
     }
 
     componentDidMount () {
@@ -35,7 +33,7 @@ class ZiggeoPlayer extends Component {
         }, this);
     };
 
-    componentWillUnmount () {}
+    componentWillUnmount () { this.application.destroy(); }
 
     render () {
         return (
