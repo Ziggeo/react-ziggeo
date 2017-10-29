@@ -9,11 +9,11 @@ class RecorderPage extends React.Component {
     };
 
     recorderRecording = () => {
-        console.log('Recording, your action when pause');
+        console.log('Recording, your action when recording');
     };
 
     recorderAccessGranted = () => {
-        console.log('Camera access granted, your action when pause');
+        console.log('Camera access granted, your action when camera access granted.');
     };
 
     render () {
@@ -26,7 +26,7 @@ class RecorderPage extends React.Component {
                 </p>
                 <ZiggeoRecorder
                     apiKey={API_KEY}
-                    ziggeo-wdth={640}
+                    ziggeo-width={640}
                     ziggeo-height={640}
                     // Events
                     onRecorderUploadSelected={this.recorderUploadSelected}

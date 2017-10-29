@@ -11008,7 +11008,6 @@ var ZiggeoPlayer = function (_Component) {
             // Inject node with provided ziggeo options
             if (node) {
                 var regexp = new RegExp(/(ziggeo-)/g);
-                _this.element = node;
                 Object.keys(_this.props).filter(function (value) {
                     return regexp.test(value);
                 }).reduce(function (props, value) {
@@ -11035,9 +11034,6 @@ var ZiggeoPlayer = function (_Component) {
     }, {
         key: 'componentDidMount',
         value: function componentDidMount() {
-            this.embedding = ZiggeoApi.V2.Player.findByElement(_reactDom2.default.findDOMNode(this));
-            console.log("embedding : ", this.embedding);
-
             this.application.on("ready", function () {
                 var _this2 = this;
 
