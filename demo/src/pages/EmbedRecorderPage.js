@@ -105,9 +105,6 @@ class EmbedRecorderPage extends Component {
                     video={VIDEO_TOKEN}
                     height={180}
                     width={320}
-                    allowupload={false}
-                    allowrecord={false}
-                    allowedextensions={['no.type']}
                     onPlayerPlaying={this.playing}
                     onPlayerPaused={this.paused}
                     onPlayerEnded={this.playerEnded}

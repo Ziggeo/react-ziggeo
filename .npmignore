@@ -27,3 +27,4 @@ demo
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/demo/src/constants.js
