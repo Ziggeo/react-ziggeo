@@ -5,6 +5,12 @@ import {
 } from "../constants";
 
 class ZiggeoPlayer extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            embedding: null
+        }
+    }
 
     static propTypes = {
         apiKey: PropTypes.string.isRequired,
@@ -39,7 +45,7 @@ class ZiggeoPlayer extends Component {
 
     render () {
         return (
-            <ziggeoplayer ref={this._addZiggeoAttributes} ></ziggeoplayer>
+            <ziggeoplayer ref={this._addZiggeoAttributes} {...this._elementProps} ></ziggeoplayer>
         );
     };
 
@@ -55,7 +61,6 @@ class ZiggeoPlayer extends Component {
 
     // Will attach to node with ref
     _addZiggeoAttributes = (node) => {
-
         // Inject node with provided ziggeo options
         if (node) {
             const regexp = new RegExp(/(ziggeo-)/g);
@@ -69,6 +74,14 @@ class ZiggeoPlayer extends Component {
             }, {});
         }
     };
+
+    // Props which are not related to Ziggeo
+    get _elementProps () {
+        return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
+            props[k] = this.props[k];
+            return props;
+        }, {});
+    }
 }
 
 export default ZiggeoPlayer;

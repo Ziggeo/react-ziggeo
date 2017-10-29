@@ -11,8 +11,8 @@
     "build:production": "NODE_ENV=production webpack -p",
     "rebuild-pack": "rm -rf build/ && npm run build",
     "rebuild-dev-pack": "rm -rf build/ && rm -rf dev-demo/node_modules/react-ziggeo/",
-    "rebuild-npm-dev-pack": "rm -rf build/ && rm react-ziggeo-1.1.0.tgz && npm run build && npm pack && rm -rf dev-demo/node_modules/react-ziggeo/",
-    "rebuild-demo-pack": "rm -rf build/ && rm react-ziggeo-1.1.0.tgz && npm run build && npm pack && rm -rf demo/node_modules/react-ziggeo/"
+    "rebuild-npm-dev-pack": "rm -rf build/ && rm react-ziggeo-1.2.0.tgz && npm run build && npm pack && rm -rf dev-demo/node_modules/react-ziggeo/",
+    "rebuild-demo-pack": "rm -rf build/ && rm react-ziggeo-1.2.0.tgz && npm run build && npm pack && rm -rf demo/node_modules/react-ziggeo/"
   },
   "repository": {
     "type": "git",

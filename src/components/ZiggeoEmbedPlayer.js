@@ -65,12 +65,21 @@ class ZiggeoEmbedPlayer extends Component {
         }, {});
     }
 
+    // Props which are not related to Ziggeo
     get _elementProps () {
         return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
             props[k] = this.props[k];
             return props;
         }, {});
     }
+
+    // Delegate ziggeo attrs to the recorder
+    get width() { return this.recorder.width() };
+    get height() { return this.recorder.height() };
+
+    // Delegate ziggeo methods to the recorder
+    play = (...args) => this.recorder.play(...args);
+    stop = (...args) => this.recorder.stop(...args);
 }
 
 export default ZiggeoEmbedPlayer;

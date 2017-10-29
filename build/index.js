@@ -906,13 +906,31 @@ var ZiggeoEmbedPlayer = function (_Component) {
         get: function get() {
             var _this5 = this;
 
+            console.log('--- :: ', this.constructor.propTypes);
             return Object.keys(this.props).filter(function (k) {
                 return !_this5.constructor.propTypes[k];
             }).reduce(function (props, k) {
+                console.log('kkk', k);
                 props[k] = _this5.props[k];
                 return props;
             }, {});
         }
+
+        // Delegate ziggeo attrs to the recorder
+
+    }, {
+        key: 'width',
+        get: function get() {
+            return this.recorder.width();
+        }
+    }, {
+        key: 'height',
+        get: function get() {
+            return this.recorder.height();
+        }
+
+        // Delegate ziggeo methods to the recorder
+
     }]);
 
     return ZiggeoEmbedPlayer;
@@ -946,6 +964,18 @@ var _initialiseProps = function _initialiseProps() {
         };
         return memo;
     }, {});
+
+    this.play = function () {
+        var _recorder;
+
+        return (_recorder = _this6.recorder).play.apply(_recorder, arguments);
+    };
+
+    this.stop = function () {
+        var _recorder2;
+
+        return (_recorder2 = _this6.recorder).stop.apply(_recorder2, arguments);
+    };
 };
 
 exports.default = ZiggeoEmbedPlayer;
@@ -1259,18 +1289,42 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ZiggeoPlayer = function (_Component) {
     _inherits(ZiggeoPlayer, _Component);
 
-    function ZiggeoPlayer() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
+    function ZiggeoPlayer(props) {
         _classCallCheck(this, ZiggeoPlayer);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+        var _this = _possibleConstructorReturn(this, (ZiggeoPlayer.__proto__ || Object.getPrototypeOf(ZiggeoPlayer)).call(this, props));
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ZiggeoPlayer.__proto__ || Object.getPrototypeOf(ZiggeoPlayer)).call.apply(_ref, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
+        _this._ziggeoEvents = Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (memo, propName) {
+            var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
+            memo[eventName] = function () {
+                var _this$props;
+
+                (_this$props = _this.props)[propName].apply(_this$props, arguments);
+            };
+            return memo;
+        }, {});
+
+        _this._addZiggeoAttributes = function (node) {
+
+            // Inject node with provided ziggeo options
+            if (node) {
+                var regexp = new RegExp(/(ziggeo-)/g);
+                Object.keys(_this.props).filter(function (value) {
+                    return regexp.test(value);
+                }).reduce(function (props, value) {
+                    // Check if prop type existing
+                    if (!_constants.ziggeoPlayerConvertedAttributes[value]) {
+                        console.warn('Please be sure there\'re no typo in ' + value + ' option');
+                    }
+                    node.setAttribute(value, _this.props[value]);
+                }, {});
+            }
+        };
+
+        _this.state = {
+            embedding: null
+        };
+        return _this;
     }
 
     _createClass(ZiggeoPlayer, [{
@@ -1284,10 +1338,10 @@ var ZiggeoPlayer = function (_Component) {
             this.application.on("ready", function () {
                 var _this2 = this;
 
-                Object.entries(this._ziggeoEvents).forEach(function (_ref2) {
-                    var _ref3 = _slicedToArray(_ref2, 2),
-                        event = _ref3[0],
-                        func = _ref3[1];
+                Object.entries(this._ziggeoEvents).forEach(function (_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2),
+                        event = _ref2[0],
+                        func = _ref2[1];
 
                     _this2.application.embed_events.on(event, func);
                 });
@@ -1326,38 +1380,6 @@ ZiggeoPlayer.defaultProps = _extends({
     defaults[event] = function () {};
     return defaults;
 }, {}));
-
-var _initialiseProps = function _initialiseProps() {
-    var _this3 = this;
-
-    this._ziggeoEvents = Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (memo, propName) {
-        var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
-        memo[eventName] = function () {
-            var _props;
-
-            (_props = _this3.props)[propName].apply(_props, arguments);
-        };
-        return memo;
-    }, {});
-
-    this._addZiggeoAttributes = function (node) {
-
-        // Inject node with provided ziggeo options
-        if (node) {
-            var regexp = new RegExp(/(ziggeo-)/g);
-            Object.keys(_this3.props).filter(function (value) {
-                return regexp.test(value);
-            }).reduce(function (props, value) {
-                // Check if prop type existing
-                if (!_constants.ziggeoPlayerConvertedAttributes[value]) {
-                    console.warn('Please be sure there\'re no typo in ' + value + ' option');
-                }
-                node.setAttribute(value, _this3.props[value]);
-            }, {});
-        }
-    };
-};
-
 exports.default = ZiggeoPlayer;
 
 /***/ }),

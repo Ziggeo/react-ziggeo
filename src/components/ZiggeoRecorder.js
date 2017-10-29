@@ -65,7 +65,7 @@ class ZiggeoRecorder extends Component {
 
     render() {
         return (
-            <ziggeorecorder ref={this._addZiggeoAttributes} ></ziggeorecorder>
+            <ziggeorecorder ref={this._addZiggeoAttributes} {...this._elementProps} ></ziggeorecorder>
         );
     };
 
@@ -93,6 +93,14 @@ class ZiggeoRecorder extends Component {
             }, {});
         }
     };
+
+    // Props which are not related to Ziggeo
+    get _elementProps () {
+        return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
+            props[k] = this.props[k];
+            return props;
+        }, {});
+    }
 }
 
 export default ZiggeoRecorder;

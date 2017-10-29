@@ -82,6 +82,7 @@ export default class ZiggeoEmbedRecorder extends React.Component {
         }, {});
     }
 
+    // Props which are not related to Ziggeo
     get _elementProps () {
         return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
             props[k] = this.props[k];
