@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 import {
     ziggeoPlayerEmbeddingEventsPropTypes, ziggeoPlayerConvertedAttributes
 } from "../constants";
