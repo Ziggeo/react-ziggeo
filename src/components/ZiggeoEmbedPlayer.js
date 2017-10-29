@@ -1,50 +1,44 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
+import {
+    ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes
+} from '../constants';
+import { string, bool, arrayOf, func  } from 'prop-types';
 
 class ZiggeoEmbedPlayer extends Component {
 
-    componentDidMount() {
-        const _self = this;
-        const { apiKey, onPlayerPlaying, onPlayerPaused, onPlayerAttached,
-            onPlayerLoaded, onPlayerEnded, onPlayerError, onPlayerSeek, ...rest} = this.props;
-        const options = {...rest};
+    static propTypes = {
+        apiKey:	string.isRequired,
+        ...ziggeoPlayerAttributesPropTypes,
+        ...ziggeoPlayerEmbeddingEventsPropTypes
+    };
 
+    static defaultProps = {
+        // Presentational parameters
+        'width': 640,
+        'height': 480,
+        'picksnapshots': true,
+        'theme': 'default',
+        'themecolor': 'default',
+
+        // Default events to no-op
+        ...Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((defaults, event) => {
+            defaults[event] = () => {};
+            return defaults;
+        }, {})
+    };
+
+    componentDidMount() {
+        const { apiKey } = this.props;
         this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
         this.player = new ZiggeoApi.V2.Player({
-            element: ReactDOM.findDOMNode(_self),
-            attrs: options
+            element: this.element,
+            attrs: this._ziggeoAttrs
         });
-
         this.player.activate();
 
-        this.player.on("playing", function () {
-            if (onPlayerPlaying) this.props.onPlayerPlaying();
-        }, this);
-
-        this.player.on("paused", function () {
-            if (onPlayerPaused) onPlayerPaused.call();
-        }, this);
-
-        this.player.on("attached", function () {
-            if (onPlayerAttached) onPlayerAttached.call();
-        }, this);
-
-        this.player.on("loaded", function () {
-            if (onPlayerLoaded) onPlayerLoaded.call();
-        }, this);
-
-        this.player.on("ended", function () {
-            if (onPlayerEnded) onPlayerEnded.call();
-        }, this);
-
-        this.player.on("error", function () {
-            if (onPlayerError) onPlayerError.call();
-        }, this);
-
-        this.player.on("seek", function () {
-            if (onPlayerSeek) onPlayerSeek.call();
-        }, this);
+        Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
+            this.player.on(event, func);
+        });
     };
 
     componentWillUnmount() {
@@ -52,44 +46,31 @@ class ZiggeoEmbedPlayer extends Component {
     };
 
     render() {
-        return <div></div>;
+        return <div ref={e => { this.element = e ; }} {...this._elementProps}></div>;
     };
+
+    _ziggeoEvents = Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((memo, propName) => {
+        const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
+            .replace(/(recorder_|player_)/g, '');
+        memo[eventName] = (...args) => {
+            this.props[propName](...args)
+        };
+        return memo;
+    }, {});
+
+    get _ziggeoAttrs () {
+        return Object.keys(this.props).filter(k => ziggeoPlayerAttributesPropTypes[k]).reduce((props, k) => {
+            props[k] = this.props[k];
+            return props;
+        }, {});
+    }
+
+    get _elementProps () {
+        return Object.keys(this.props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
+            props[k] = this.props[k];
+            return props;
+        }, {});
+    }
 }
-
-ZiggeoEmbedPlayer.propTypes = {
-    apiKey:             PropTypes.string.isRequired,
-    "video":            PropTypes.string.isRequired,
-    "stream":           PropTypes.string,
-    "theme":            PropTypes.string,
-    "themecolor":       PropTypes.string,
-    "height":           PropTypes.number,
-    "width":            PropTypes.number,
-    "stretch":          PropTypes.bool,
-    "skipinitial":      PropTypes.bool,
-    "effect-profile":   PropTypes.array,
-
-    "autoplay":         PropTypes.bool,
-    "responsive":       PropTypes.bool,
-    "stream-width":     PropTypes.number,
-    "stream-height":    PropTypes.number,
-    "nofullscreen":     PropTypes.bool,
-    "sharevideo":       PropTypes.bool,
-    "source":           PropTypes.string,
-
-    onPlayerPlaying:    PropTypes.func,
-    onPlayerPaused:     PropTypes.func,
-    onPlayerAttached:   PropTypes.func,
-    onPlayerLoaded:     PropTypes.func,
-    onPlayerEnded:      PropTypes.func,
-    onPlayerError:      PropTypes.func,
-    onPlayerSeek:       PropTypes.func
-};
-
-ZiggeoEmbedPlayer.defaultProps = {
-    "theme": 'default',
-    "themecolor": 'default',
-    "width": 320,
-    "height": 180
-};
 
 export default ZiggeoEmbedPlayer;

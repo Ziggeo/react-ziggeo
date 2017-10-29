@@ -59,6 +59,10 @@ class ZiggeoRecorder extends Component {
         }, this);
     };
 
+    componentWillUnmount () {
+        this.application.destroy();
+    }
+
     render() {
         return (
             <ziggeorecorder ref={this._addZiggeoAttributes} ></ziggeorecorder>
