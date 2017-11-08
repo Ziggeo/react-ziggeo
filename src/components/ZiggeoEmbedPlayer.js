@@ -27,9 +27,32 @@ class ZiggeoEmbedPlayer extends Component {
         }, {})
     };
 
+    // ZiggeoApi.V2.Player requires an existing DOM element to attach to
+    // So why we can't use it in componentWillMount
     componentDidMount() {
         const { apiKey } = this.props;
         this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+
+        this._buildPlayer();
+    };
+
+
+    componentWillUpdate (nextState) {
+        this.embedding = ZiggeoApi.V2.Player.findByElement(this.element);
+    }
+
+    componentDidUpdate (prevState) {
+        if (this.player) {
+            this.player.destroy();
+            this._buildPlayer();
+        }
+    }
+
+    render() {
+        return <div ref={e => { this.element = e ; }} {...this._elementProps}></div>;
+    };
+
+    _buildPlayer = () => {
         this.player = new ZiggeoApi.V2.Player({
             element: this.element,
             attrs: this._ziggeoAttrs
@@ -39,15 +62,7 @@ class ZiggeoEmbedPlayer extends Component {
         Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
             this.player.on(event, func);
         });
-    };
-
-    componentWillUnmount() {
-        this.player.destroy();
-    };
-
-    render() {
-        return <div ref={e => { this.element = e ; }} {...this._elementProps}></div>;
-    };
+    }
 
     _ziggeoEvents = Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((memo, propName) => {
         const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)

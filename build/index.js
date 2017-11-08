@@ -10506,9 +10506,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -10547,49 +10547,48 @@ var ZiggeoEmbedPlayer = function (_Component) {
 
     _createClass(ZiggeoEmbedPlayer, [{
         key: 'componentDidMount',
-        value: function componentDidMount() {
-            var _this2 = this;
 
+
+        // ZiggeoApi.V2.Player requires an existing DOM element to attach to
+        // So why we can't use it in componentWillMount
+        value: function componentDidMount() {
             var apiKey = this.props.apiKey;
 
             this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
-            this.player = new ZiggeoApi.V2.Player({
-                element: this.element,
-                attrs: this._ziggeoAttrs
-            });
-            this.player.activate();
 
-            Object.entries(this._ziggeoEvents).forEach(function (_ref2) {
-                var _ref3 = _slicedToArray(_ref2, 2),
-                    event = _ref3[0],
-                    func = _ref3[1];
-
-                _this2.player.on(event, func);
-            });
+            this._buildPlayer();
         }
     }, {
-        key: 'componentWillUnmount',
-        value: function componentWillUnmount() {
-            this.player.destroy();
+        key: 'componentWillUpdate',
+        value: function componentWillUpdate(nextState) {
+            this.embedding = ZiggeoApi.V2.Player.findByElement(this.element);
+        }
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevState) {
+            if (this.player) {
+                this.player.destroy();
+                this._buildPlayer();
+            }
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this2 = this;
 
             return _react2.default.createElement('div', _extends({ ref: function ref(e) {
-                    _this3.element = e;
+                    _this2.element = e;
                 } }, this._elementProps));
         }
     }, {
         key: '_ziggeoAttrs',
         get: function get() {
-            var _this4 = this;
+            var _this3 = this;
 
             return Object.keys(this.props).filter(function (k) {
                 return _constants.ziggeoPlayerAttributesPropTypes[k];
             }).reduce(function (props, k) {
-                props[k] = _this4.props[k];
+                props[k] = _this3.props[k];
                 return props;
             }, {});
         }
@@ -10599,12 +10598,12 @@ var ZiggeoEmbedPlayer = function (_Component) {
     }, {
         key: '_elementProps',
         get: function get() {
-            var _this5 = this;
+            var _this4 = this;
 
             return Object.keys(this.props).filter(function (k) {
-                return !_this5.constructor.propTypes[k];
+                return !_this4.constructor.propTypes[k];
             }).reduce(function (props, k) {
-                props[k] = _this5.props[k];
+                props[k] = _this4.props[k];
                 return props;
             }, {});
         }
@@ -10646,14 +10645,30 @@ ZiggeoEmbedPlayer.defaultProps = _extends({
 }, {}));
 
 var _initialiseProps = function _initialiseProps() {
-    var _this6 = this;
+    var _this5 = this;
+
+    this._buildPlayer = function () {
+        _this5.player = new ZiggeoApi.V2.Player({
+            element: _this5.element,
+            attrs: _this5._ziggeoAttrs
+        });
+        _this5.player.activate();
+
+        Object.entries(_this5._ziggeoEvents).forEach(function (_ref2) {
+            var _ref3 = _slicedToArray(_ref2, 2),
+                event = _ref3[0],
+                func = _ref3[1];
+
+            _this5.player.on(event, func);
+        });
+    };
 
     this._ziggeoEvents = Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (memo, propName) {
         var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
         memo[eventName] = function () {
             var _props;
 
-            (_props = _this6.props)[propName].apply(_props, arguments);
+            (_props = _this5.props)[propName].apply(_props, arguments);
         };
         return memo;
     }, {});
@@ -10661,13 +10676,13 @@ var _initialiseProps = function _initialiseProps() {
     this.play = function () {
         var _recorder;
 
-        return (_recorder = _this6.recorder).play.apply(_recorder, arguments);
+        return (_recorder = _this5.recorder).play.apply(_recorder, arguments);
     };
 
     this.stop = function () {
         var _recorder2;
 
-        return (_recorder2 = _this6.recorder).stop.apply(_recorder2, arguments);
+        return (_recorder2 = _this5.recorder).stop.apply(_recorder2, arguments);
     };
 };
 
