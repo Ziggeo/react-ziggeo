@@ -13,10 +13,9 @@ demo/node_modules
 # testing
 /coverage
 
-/src/constants.js
 demo/src/constants.js
 
-# production
+ production
 
 # misc
 .DS_Store
