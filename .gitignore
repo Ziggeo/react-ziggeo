@@ -13,7 +13,7 @@ demo/node_modules
 # testing
 /coverage
 
-demo/src/constants.js
+#demo/src/constants.js
 
  production
 

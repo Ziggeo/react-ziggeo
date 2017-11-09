@@ -36,7 +36,6 @@ class ZiggeoEmbedPlayer extends Component {
         this._buildPlayer();
     };
 
-
     componentWillUpdate (nextState) {
         this.embedding = ZiggeoApi.V2.Player.findByElement(this.element);
     }

@@ -10,7 +10,7 @@
 /build
 
 # demo
-src/constants.js
+#src/constants.js
 
 # misc
 .DS_Store
