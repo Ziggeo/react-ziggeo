@@ -10787,6 +10787,8 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 	}, {
 		key: 'componentWillUnmount',
 		value: function componentWillUnmount() {
+			// Never call this.application.destroy() !!!
+			// Will receive error 'Cannot read property 'urls' of undefined'
 			this.recorder.destroy();
 		}
 	}, {
@@ -11088,7 +11090,8 @@ var ZiggeoPlayer = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            this.application.destroy();
+            // Never call this.application.destroy() !!!
+            // Will receive error 'Cannot read property 'urls' of undefined'
         }
     }, {
         key: 'render',
@@ -11210,7 +11213,8 @@ var ZiggeoRecorder = function (_Component) {
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            this.application.destroy();
+            // Never call this.application.destroy() !!!
+            // Will receive error 'Cannot read property 'urls' of undefined'
         }
     }, {
         key: 'render',

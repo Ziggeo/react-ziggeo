@@ -59,6 +59,8 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	};
 
 	componentWillUnmount () {
+        // Never call this.application.destroy() !!!
+        // Will receive error 'Cannot read property 'urls' of undefined'
 		this.recorder.destroy();
 	};
 
