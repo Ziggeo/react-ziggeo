@@ -60,7 +60,8 @@ class ZiggeoRecorder extends Component {
     };
 
     componentWillUnmount () {
-        this.application.destroy();
+        // Never call this.application.destroy() !!!
+        // Will receive error 'Cannot read property 'urls' of undefined'
     }
 
     render() {

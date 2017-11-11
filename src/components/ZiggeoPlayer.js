@@ -42,7 +42,10 @@ class ZiggeoPlayer extends Component {
         }, this);
     };
 
-    componentWillUnmount () { this.application.destroy(); }
+    componentWillUnmount () {
+        // Never call this.application.destroy() !!!
+        // Will receive error 'Cannot read property 'urls' of undefined'
+    }
 
     render () {
         return (
