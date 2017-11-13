@@ -7,13 +7,6 @@ import {
 
 class ZiggeoRecorder extends Component {
 
-    constructor (props) {
-        super(props);
-        this.state = {
-            embedding: null
-        }
-    }
-
     static propTypes = {
         apiKey: PropTypes.string.isRequired,
         ...ziggeoRecorderConvertedAttributes,
@@ -56,7 +49,6 @@ class ZiggeoRecorder extends Component {
 
     // before render() will apply to DOM
     componentWillMount () {
-
         this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
 
         this.application.on("ready", function () {
@@ -68,33 +60,23 @@ class ZiggeoRecorder extends Component {
 
         this.application.on("error", function () {
             // in case if we have any application level error
-        })
+        });
+
     };
 
     // After render() will apply to DOM
     componentDidMount () {
         this.props.onRef(this);
-
-        if (this.embedding) {
-            console.log('cdm has emb', this.embedding);
-        } else {
-            console.log('cdm no emb', this.recorderElement);
-            this.embedding = ZiggeoApi.V2.Recorder.findByElement(this.recorderElement);
-        }
     };
 
     // run when state changes
-    // shouldComponentUpdate (nextProps, nextState) { return bool; }
+    // shouldComponentUpdate (nextProps, nextState) { return false; }
 
     // run shouldComponentUpdate will return true
-    componentWillUpdate (nextProps, nextState) {
-        console.log('will update');
-    }
+    componentWillUpdate (nextProps, nextState) {}
 
     // run after Component render()
-    componentDidUpdate (prevProps, prevState) {
-        console.log('did update');
-    }
+    componentDidUpdate (prevProps, prevState) {}
 
 
     // run before element will be removed from DOM
@@ -103,15 +85,8 @@ class ZiggeoRecorder extends Component {
         // Will receive error 'Cannot read property 'urls' of undefined'
         this.props.onRef(undefined);
 
-        if (this.embedding) {
-            console.log('emebd -- wum: ', this.recorderElement, this.embedding);
-            this.embedding.reset();
-            console.log('emebd after -- wum: ', this.recorderElement, this.embedding);
-        } else {
-            console.log('create -- wum: ', this.recorderElement);
-            this.embedding = ZiggeoApi.V2.Recorder.findByElement(this.recorderElement);
-            console.log('created -- wum: ', this.embedding);
-        }
+        // TODO: checkout why it runs only once, and embedding is empty
+        if (this.embedding) this.embedding.reset();
     }
 
     render() {
