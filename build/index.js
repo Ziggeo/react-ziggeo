@@ -3718,7 +3718,8 @@ var ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEven
     onRecorderCameraUnresponsive: _propTypes.func,
     onRecorderVerified: _propTypes.func,
     onRecorderNoCamera: _propTypes.func,
-    onRecorderNoMicrophone: _propTypes.func
+    onRecorderNoMicrophone: _propTypes.func,
+    onRef: _propTypes.func
 };
 
 var ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoPlayerEmbeddingEventsPropTypes = {
@@ -3728,7 +3729,8 @@ var ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoPlayerEmbeddingEventsPr
     onPlayerPaused: _propTypes.func,
     onPlayerEnded: _propTypes.func,
     onPlayerError: _propTypes.func,
-    onPlayerSeek: _propTypes.func
+    onPlayerSeek: _propTypes.func,
+    onRef: _propTypes.func
 };
 
 // #######################  ZIGGEO METHODS  ##############################
@@ -10576,6 +10578,8 @@ var ZiggeoEmbedPlayer = function (_Component) {
         // ZiggeoApi.V2.Player requires an existing DOM element to attach to
         // So why we can't use it in componentWillMount
         value: function componentDidMount() {
+            this.props.onRef(this);
+
             var apiKey = this.props.apiKey;
 
             this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
@@ -10590,10 +10594,14 @@ var ZiggeoEmbedPlayer = function (_Component) {
     }, {
         key: 'componentDidUpdate',
         value: function componentDidUpdate(prevState) {
-            if (this.player) {
-                this.player.destroy();
-                this._buildPlayer();
-            }
+            this._buildPlayer();
+        }
+    }, {
+        key: 'componentWillUnmount',
+        value: function componentWillUnmount() {
+            // Never add this.application.destroy() !!!
+            // Will receive error 'Cannot read property 'urls' of undefined'
+            this.props.onRef(undefined);
         }
     }, {
         key: 'render',
@@ -10621,6 +10629,14 @@ var ZiggeoEmbedPlayer = function (_Component) {
 
     }, {
         key: '_elementProps',
+
+
+        // Delegate ziggeo methods to the player
+        // play = () => this.player.play();
+        // pause = () => this.player.pause();
+        // stop = () => this.player.stop();
+        // seek = (...args) => this.player.seek(...args);
+        // set_volume = (...args) => this.player.set_volume(...args);
         get: function get() {
             var _this4 = this;
 
@@ -10632,20 +10648,7 @@ var ZiggeoEmbedPlayer = function (_Component) {
             }, {});
         }
 
-        // Delegate ziggeo attrs to the recorder
-
-    }, {
-        key: 'width',
-        get: function get() {
-            return this.recorder.width();
-        }
-    }, {
-        key: 'height',
-        get: function get() {
-            return this.recorder.height();
-        }
-
-        // Delegate ziggeo methods to the recorder
+        // Delegate ziggeo attrs to the player
 
     }]);
 
@@ -10697,16 +10700,8 @@ var _initialiseProps = function _initialiseProps() {
         return memo;
     }, {});
 
-    this.play = function () {
-        var _recorder;
-
-        return (_recorder = _this5.recorder).play.apply(_recorder, arguments);
-    };
-
-    this.stop = function () {
-        var _recorder2;
-
-        return (_recorder2 = _this5.recorder).stop.apply(_recorder2, arguments);
+    this.playerEmbedding = function () {
+        return _this5.player;
     };
 };
 
@@ -10770,6 +10765,7 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 
 			var apiKey = this.props.apiKey;
 
+			this.props.onRef(this);
 			this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
 			this.recorder = new ZiggeoApi.V2.Recorder({
 				element: this.element,
@@ -10789,6 +10785,7 @@ var ZiggeoEmbedRecorder = function (_React$Component) {
 		value: function componentWillUnmount() {
 			// Never call this.application.destroy() !!!
 			// Will receive error 'Cannot read property 'urls' of undefined'
+			this.props.onRef(undefined);
 			this.recorder.destroy();
 		}
 	}, {
@@ -11176,45 +11173,136 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ZiggeoRecorder = function (_Component) {
     _inherits(ZiggeoRecorder, _Component);
 
-    function ZiggeoRecorder() {
-        var _ref;
-
-        var _temp, _this, _ret;
-
+    function ZiggeoRecorder(props) {
         _classCallCheck(this, ZiggeoRecorder);
 
-        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-            args[_key] = arguments[_key];
-        }
+        var _this = _possibleConstructorReturn(this, (ZiggeoRecorder.__proto__ || Object.getPrototypeOf(ZiggeoRecorder)).call(this, props));
 
-        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ZiggeoRecorder.__proto__ || Object.getPrototypeOf(ZiggeoRecorder)).call.apply(_ref, [this].concat(args))), _this), _initialiseProps.call(_this), _temp), _possibleConstructorReturn(_this, _ret);
+        _this._ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
+            var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
+
+            memo[eventName] = function () {
+                var _this$props;
+
+                (_this$props = _this.props)[propName].apply(_this$props, arguments);
+            };
+            return memo;
+        }, {});
+
+        _this._addZiggeoAttributes = function (node) {
+
+            if (!_this.recorderElement && node) _this.recorderElement = node;
+
+            // Inject node with provided ziggeo options
+            if (node) {
+                var regexp = new RegExp(/(ziggeo-)/g);
+                Object.keys(_this.props).filter(function (value) {
+                    return regexp.test(value);
+                }).reduce(function (props, value) {
+                    // Check if prop type existing
+                    if (!_constants.ziggeoRecorderConvertedAttributes[value]) console.warn('Please be sure there\'re no typo in ' + value + ' option');
+
+                    node.setAttribute(value, _this.props[value]);
+                }, {});
+            }
+        };
+
+        _this._setEmbeddingState = function () {
+            _this.setState({
+                embedding: ZiggeoApi.V2.Recorder.findByElement(_this.recorderElement)
+            });
+        };
+
+        _this.recorderEmbedding = function () {
+            return _this.embedding;
+        };
+
+        _this.state = {
+            embedding: null
+        };
+        return _this;
     }
 
     _createClass(ZiggeoRecorder, [{
         key: 'componentWillMount',
+
+
+        // before render() will apply to DOM
         value: function componentWillMount() {
+
             this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
-        }
-    }, {
-        key: 'componentDidMount',
-        value: function componentDidMount() {
+
             this.application.on("ready", function () {
                 var _this2 = this;
 
-                Object.entries(this._ziggeoEvents).forEach(function (_ref2) {
-                    var _ref3 = _slicedToArray(_ref2, 2),
-                        event = _ref3[0],
-                        func = _ref3[1];
+                Object.entries(this._ziggeoEvents).forEach(function (_ref) {
+                    var _ref2 = _slicedToArray(_ref, 2),
+                        event = _ref2[0],
+                        func = _ref2[1];
 
                     _this2.application.embed_events.on(event, func);
                 });
             }, this);
+
+            this.application.on("error", function () {
+                // in case if we have any application level error
+            });
         }
+    }, {
+        key: 'componentDidMount',
+
+
+        // After render() will apply to DOM
+        value: function componentDidMount() {
+            this.props.onRef(this);
+
+            this._setEmbeddingState;
+
+            if (this.state.embedding) {
+                console.log('cdm has emb', this.state.embedding);
+            } else {
+                this._setEmbeddingState;
+                console.log('cdm no emb', this.state.embedding);
+            }
+        }
+    }, {
+        key: 'componentWillUpdate',
+
+
+        // run when state changes
+        // shouldComponentUpdate (nextProps, nextState) { return bool; }
+
+        // run shouldComponentUpdate will return true
+        value: function componentWillUpdate(nextProps, nextState) {
+            console.log('will update');
+        }
+
+        // run after Component render()
+
+    }, {
+        key: 'componentDidUpdate',
+        value: function componentDidUpdate(prevProps, prevState) {
+            console.log('did update');
+        }
+
+        // run before element will be removed from DOM
+
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             // Never call this.application.destroy() !!!
             // Will receive error 'Cannot read property 'urls' of undefined'
+            this.props.onRef(undefined);
+
+            if (this.state.embedding) {
+                console.log('emebd -- wum: ', this.recorderElement, this.state.embedding);
+                this.state.embedding.reset();
+                console.log('emebd after -- wum: ', this.recorderElement, this.state.embedding);
+            } else {
+                console.log('create -- wum: ', this.recorderElement);
+                this._setEmbeddingState;
+                console.log('created -- wum: ', this.embedding);
+            }
         }
     }, {
         key: 'render',
@@ -11242,6 +11330,9 @@ var ZiggeoRecorder = function (_Component) {
                 return props;
             }, {});
         }
+
+        // Get Recorder Instance
+
     }]);
 
     return ZiggeoRecorder;
@@ -11281,37 +11372,6 @@ ZiggeoRecorder.defaultProps = _extends({
     defaults[event] = function () {};
     return defaults;
 }, {}));
-
-var _initialiseProps = function _initialiseProps() {
-    var _this4 = this;
-
-    this._ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
-        var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
-
-        memo[eventName] = function () {
-            var _props;
-
-            (_props = _this4.props)[propName].apply(_props, arguments);
-        };
-        return memo;
-    }, {});
-
-    this._addZiggeoAttributes = function (node) {
-        // Inject node with provided ziggeo options
-        if (node) {
-            var regexp = new RegExp(/(ziggeo-)/g);
-            Object.keys(_this4.props).filter(function (value) {
-                return regexp.test(value);
-            }).reduce(function (props, value) {
-                // Check if prop type existing
-                if (!_constants.ziggeoRecorderConvertedAttributes[value]) console.warn('Please be sure there\'re no typo in ' + value + ' option');
-
-                node.setAttribute(value, _this4.props[value]);
-            }, {});
-        }
-    };
-};
-
 exports.default = ZiggeoRecorder;
 
 /***/ }),

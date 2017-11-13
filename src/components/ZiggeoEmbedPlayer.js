@@ -30,6 +30,8 @@ class ZiggeoEmbedPlayer extends Component {
     // ZiggeoApi.V2.Player requires an existing DOM element to attach to
     // So why we can't use it in componentWillMount
     componentDidMount() {
+        this.props.onRef(this);
+
         const { apiKey } = this.props;
         this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
 
@@ -41,10 +43,13 @@ class ZiggeoEmbedPlayer extends Component {
     }
 
     componentDidUpdate (prevState) {
-        if (this.player) {
-            this.player.destroy();
-            this._buildPlayer();
-        }
+        this._buildPlayer();
+    }
+
+    componentWillUnmount () {
+        // Never add this.application.destroy() !!!
+        // Will receive error 'Cannot read property 'urls' of undefined'
+        this.props.onRef(undefined);
     }
 
     render() {
@@ -87,13 +92,15 @@ class ZiggeoEmbedPlayer extends Component {
         }, {});
     }
 
-    // Delegate ziggeo attrs to the recorder
-    get width() { return this.recorder.width() };
-    get height() { return this.recorder.height() };
+    // Delegate ziggeo attrs to the player
+    playerEmbedding = () => this.player;
 
-    // Delegate ziggeo methods to the recorder
-    play = (...args) => this.recorder.play(...args);
-    stop = (...args) => this.recorder.stop(...args);
+    // Delegate ziggeo methods to the player
+    // play = () => this.player.play();
+    // pause = () => this.player.pause();
+    // stop = () => this.player.stop();
+    // seek = (...args) => this.player.seek(...args);
+    // set_volume = (...args) => this.player.set_volume(...args);
 }
 
 export default ZiggeoEmbedPlayer;

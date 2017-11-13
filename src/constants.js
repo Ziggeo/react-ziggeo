@@ -214,7 +214,8 @@ export const ziggeoRecorderEmbeddingEventsPropTypes = {
     onRecorderCameraUnresponsive: func,
     onRecorderVerified: func,
     onRecorderNoCamera: func,
-    onRecorderNoMicrophone: func
+    onRecorderNoMicrophone: func,
+    onRef: func
 };
 
 export const ziggeoPlayerEmbeddingEventsPropTypes = {
@@ -224,7 +225,8 @@ export const ziggeoPlayerEmbeddingEventsPropTypes = {
     onPlayerPaused: func,
     onPlayerEnded: func,
     onPlayerError: func,
-    onPlayerSeek: func
+    onPlayerSeek: func,
+    onRef: func
 };
 
 // #######################  ZIGGEO METHODS  ##############################
