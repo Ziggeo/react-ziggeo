@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactDOME from 'react-dom';
 import { string, bool, arrayOf, func } from 'prop-types';
 import {
     ziggeoRecorderEmbeddingEventsPropTypes, ziggeoRecorderConvertedAttributes
 } from "../constants";
 
 class ZiggeoRecorder extends Component {
+
+    static application = null;
+    static embedding = null;
+    static recorderElement = ReactDOME.findDOMNode(this);
 
     static propTypes = {
         apiKey: PropTypes.string.isRequired,
@@ -55,7 +60,6 @@ class ZiggeoRecorder extends Component {
             Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
                 this.application.embed_events.on(event, func);
             });
-            this.embedding = ZiggeoApi.V2.Recorder.findByElement(this.recorderElement);
         }, this);
 
         this.application.on("error", function () {
@@ -67,16 +71,23 @@ class ZiggeoRecorder extends Component {
     // After render() will apply to DOM
     componentDidMount () {
         this.props.onRef(this);
+
+        this.application.on("ready", function () {
+            console.log('-- did mount', this.recorderElement);
+            if ( this.recorderElement )
+                this.embedding = ZiggeoApi.V2.Recorder.findByElement(this.recorderElement);
+        }, this);
+
     };
 
     // run when state changes
     // shouldComponentUpdate (nextProps, nextState) { return false; }
 
     // run shouldComponentUpdate will return true
-    componentWillUpdate (nextProps, nextState) {}
+    // componentWillUpdate (nextProps, nextState) { console.log('will update'); }
 
     // run after Component render()
-    componentDidUpdate (prevProps, prevState) {}
+    // componentDidUpdate (prevProps, prevState) { console.log('did update'); }
 
 
     // run before element will be removed from DOM
@@ -85,8 +96,11 @@ class ZiggeoRecorder extends Component {
         // Will receive error 'Cannot read property 'urls' of undefined'
         this.props.onRef(undefined);
 
-        // TODO: checkout why it runs only once, and embedding is empty
-        if (this.embedding) this.embedding.reset();
+        if (this.embedding) {
+            this.embedding.destroy();
+        } else {
+            console.log('-- null embedding');
+        }
     }
 
     render() {
@@ -132,7 +146,7 @@ class ZiggeoRecorder extends Component {
     }
 
     // Get Recorder Instance
-    recorderEmbedding = () => this.embedding;
+    // recorderEmbedding = () => this.embedding;
 }
 
 export default ZiggeoRecorder;

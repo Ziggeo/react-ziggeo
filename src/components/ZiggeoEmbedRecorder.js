@@ -48,6 +48,7 @@ export default class ZiggeoEmbedRecorder extends React.Component {
 	componentDidMount () {
 		const { apiKey } = this.props;
         this.props.onRef(this);
+
 		this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
 		this.recorder = new ZiggeoApi.V2.Recorder({
 			element: this.element,
