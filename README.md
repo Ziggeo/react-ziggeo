@@ -1,11 +1,12 @@
-## Ziggeo's React component
+## Ziggeo's React component v2
+[Documentation related to v1](https://github.com/Ziggeo/react-ziggeo/tree/master/docs/v1)
 
-Usage with ES6: 
+Usage with ES6:
+You can also clone [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo)
 
-`Note: Parameters for HTML embedding and JS embedding player/recorder
-are different. HTML embedding starts with 'ziggeo-' prefix`
+## Recorder:
+Ziggeo recorder
 
-- Recorder based on Embedding with HTML:
 ```$xslt
 import React from 'react'
 import {ZiggeoRecorder} from 'react-ziggeo'
@@ -23,18 +24,50 @@ import {ZiggeoRecorder} from 'react-ziggeo'
  
     <ZiggeoRecorder
         apiKey={API_KEY}
-        ziggeo-video={VIDEO_TOKEN}
-        ziggeo-height={180}
-        ziggeo-width={320}
-        onRecorderRecording={this.recorderRecording}
-        onRecorderUploading={this.recorderUploading}
+        video={VIDEO_TOKEN}
+        height={180}
+        width={320}
+        onRecording={this.recorderRecording}
+        onUploading={this.recorderUploading}
     />
  
 ...
 ```
 [All Build-in Recorder Events](https://github.com/Ziggeo/react-ziggeo/#available-events-for-recorder)
 
-- Player based on Embedding with HTML:
+##### Available `event listeners` for recorder:
+
+```react2html
+   
+   - onPlaying
+   - onPaused
+   - onAttached
+   - onLoaded
+   - onEnded
+   - onSeek 
+   - onError
+   - onManuallySubmitted
+   - onUploaded
+   - onUploadSelected
+   - onRecording
+   - onUploading
+   - onRerecord,
+   - onCountdown,
+   - onRecordingProgress,
+   - onUploadProgress,
+   - onAccessForbidden,
+   - onAccessGranted,
+   - onCameraUnresponsive,
+   - onVerified,
+   - onNoCamera,
+   - onNoMicrophone
+```
+
+
+## Player:
+
+Ziggeo player:
+
 ```$xslt
 import React from 'react'
 import {ZiggeoPlayer} from 'react-ziggeo'
@@ -52,115 +85,86 @@ paused = () => {
 ...
     <ZiggeoPlayer
       apiKey={'your api key provided by ziggeo'}
-      ziggeo-video={'Video Token'}
-      ziggeo-theme={'modern'}
-      ziggeo-themecolor={'red'}
-      ziggeo-skipinitial={false}
-      onPlayerPlaying={this.playing}
-      onPlayerPaused={this.paused}
+      video={'Video Token'}
+      theme={'modern'}
+      themecolor={'red'}
+      skipinitial={false}
+      onPlaying={this.playing}
+      onPaused={this.paused}
       ...
     />
 ...
 ```
 [All Build-in Player Events](https://github.com/Ziggeo/react-ziggeo/#available-events-for-player)
 
-- Recorder based on JavaScript Embedding:
-
-```react2html
-import React from 'react'
-import {ZiggeoEmbedPlayer} from 'react-ziggeo'
-...
- 
-playing = () => {
-    console.log('it\'s playing, your action here');
-};
-
-paused = () => {
-    console.log('it\'s paused, your action when pause');
-};
- 
-...
- 
-<ZiggeoEmbedPlayer
-    apiKey={API_KEY}
-    video={VIDEO_TOKEN}
-    height={180}
-    width={320}
-    onPlayerPlaying={this.playing}
-    onPlayerPaused={this.paused}
-    ...
-/> 
-``` 
-
-- Player based on JS Embedding:
-```react2html   
-import React from 'react'
-import {ZiggeoEmbedPlayer} from 'react-ziggeo'
- 
-...
-  
-recorderRecording = () => {
-    console.log('Recorder onRecorderRecording');
-};
-
-recorderUploaded = () => {
-    console.log('Recorder onRecorderUploaded');
-};
- 
-...
- 
-<ZiggeoEmbedRecorder
-    apiKey={API_KEY}
-    video={VIDEO_TOKEN}
-    height={180}
-    width={320}
-    onRecorderRecording={this.recorderRecording}
-    onRecorderUploading={this.recorderUploading}
-    ...
-/>
-
-```
-
-
-##### Available `events` for player:
+##### Available `events listeners` for player:
 ```react2html
    
-   - onPlayerPlaying
-   - onPlayerPaused
-   - onPlayerAttached
-   - onPlayerLoaded
-   - onPlayerEnded
-   - onPlayerError
-   - onPlayerSeek 
+   - onPlaying
+   - onPaused
+   - onAttached
+   - onLoaded
+   - onEnded
+   - onError
+   - onSeek 
 ```
 
-##### Available `events` for recorder:
+#### Some available build-in methods and not only. You can extend it based on your requirements.
 
-```react2html
-   
-   - onPlayerPlaying
-   - onPlayerPaused
-   - onPlayerAttached
-   - onPlayerLoaded
-   - onPlayerEnded
-   - onPlayerSeek 
-   - onRecorderError
-   - onRecorderManuallySubmitted
-   - onRecorderUploaded
-   - onRecorderUploadSelected
-   - onRecorderRecording
-   - onRecorderUploading
-   - onRecorderRerecord,
-   - onRecorderCountdown,
-   - onRecorderRecordingProgress,
-   - onRecorderUploadProgress,
-   - onRecorderAccessForbidden,
-   - onRecorderAccessGranted,
-   - onRecorderCameraUnresponsive,
-   - onRecorderVerified,
-   - onRecorderNoCamera,
-   - onRecorderNoMicrophone
+##### Get Recorder Instance and related `methods`
+Add attribute `onRef={ref => (this.child = ref)}` to get access to player instance and related methods.
+
+```javascript
+    <ZiggeoRecorder
+        apiKey={apiToken}
+        onRef={ref => (this.child = ref)}
+    />
 ```
+Now you can get build-in methods:
+```javascript
+    this.child.get(args);
+    this.child.play();
+    this.child.record();
+    this.child.upload();
+    this.child.rerecord();
+    this.child.stop();
+    this.child.hidePopup();
+    this.child.reset();
+```
+Also you can get player instance:
+```
+    let recorderInstance = this.child.recorderInstance();
+    // you can call above functions also example: playerInstance.play();
+    let properties = this.playerInstance.get('propertyName');
+```
+Working example you can find in current repo [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) folder
+
+##### Get Player Instance and related `methods`
+Add attribute `onRef={ref => (this.child = ref)}` to get access to player instance and related methods.
+
+```javascript
+    <ZiggeoPlayer
+        apiKey={apiToken}
+        video={videoToken}
+        onRef={ref => (this.child = ref)}
+    />
+```
+Now you can get build-in methods:
+```javascript
+    this.child.play();
+    this.child.pause();
+    this.child.stop();
+    this.child.seek(seconds);
+    this.child.set_volume(volume_level_1_to_100);
+```
+Also you can get player instance:
+```
+    let playerInstance = this.child.playerInstance();
+    // you can call above functions also example: playerInstance.play();
+    let properties = this.playerInstance.get('propertyName');
+```
+Working example you can find in current repo [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) folder
+
 
 #### Additional Parameters
 
