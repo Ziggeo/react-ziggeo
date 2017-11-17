@@ -1,141 +1,99 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ReactDOME from 'react-dom';
-import { string, bool, arrayOf, func } from 'prop-types';
-import {
-    ziggeoRecorderEmbeddingEventsPropTypes, ziggeoRecorderConvertedAttributes
-} from "../constants";
+/* globals ZiggeoApi */
+import React from 'react';
+import { ziggeoRecorderAttributesPropTypes, ziggeoRecorderEmbeddingEventsPropTypes } from '../constants';
+import { string, bool, arrayOf, func  } from 'prop-types';
 
-class ZiggeoRecorder extends Component {
+export default class ZiggeoRecorder extends React.Component {
 
+    static recorder = null;
     static application = null;
-    static embedding = null;
-    static recorderElement = ReactDOME.findDOMNode(this);
 
-    static propTypes = {
-        apiKey: PropTypes.string.isRequired,
-        ...ziggeoRecorderConvertedAttributes,
-        ...ziggeoRecorderEmbeddingEventsPropTypes
-    };
+	static propTypes = {
+		apiKey:	string.isRequired,
+		...ziggeoRecorderAttributesPropTypes,
+		...ziggeoRecorderEmbeddingEventsPropTypes
+	};
 
-    static defaultProps = {
-        // Presentational parameters
-        'ziggeo-width': 640,
-        'ziggeo-height': 480,
-        'ziggeo-picksnapshots': true,
-        'ziggeo-countdown': 3,
-        'ziggeo-snapshotmax': 15,
-        'ziggeo-gallerysnapshots': 3,
-        'ziggeo-theme': 'default',
-        'ziggeo-themecolor': 'default',
-        'ziggeo-primaryrecord': true,
+	static defaultProps = {
+		// Presentational parameters
+		'width': 640,
+		'height': 480,
+		'picksnapshots': true,
+		'countdown': 3,
+		'snapshotmax': 15,
+		'gallerysnapshots': 3,
+		'theme': 'default',
+		'themecolor': 'default',
+		'primaryrecord': true,
 
-        // Video management parameters
-        'ziggeo-recordingwidth': 640,
-        'ziggeo-recordingheight': 480,
-        'ziggeo-framerate': 25,
-        'ziggeo-videobitrate': 'auto',
-        'ziggeo-audiobitrate': 'auto',
-        'ziggeo-microphone-volume': 1,
+		// Video management parameters
+		'recordingwidth': 640,
+		'recordingheight': 480,
+		'framerate': 25,
+		'videobitrate': 'auto',
+		'audiobitrate': 'auto',
+		'microphone-volume': 1,
 
-        // Operational parameters
-        'ziggeo-allowupload': true,
-        'ziggeo-allowrecord':	true,
-        'ziggeo-force-overwrite':	true,
-        'ziggeo-allowcustomupload': true,
-        'ziggeo-recordermode': true,
+		// Operational parameters
+		'allowupload': true,
+		'allowrecord':	true,
+		'force-overwrite':	true,
+		'allowcustomupload': true,
+		'recordermode': true,
 
-        // Events
-        ...Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((defaults, event) => {
-            defaults[event] = () => {};
-            return defaults;
-        }, {})
-    };
+		// Default events to no-op
+		...Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((defaults, event) => {
+			defaults[event] = () => {};
+			return defaults;
+		}, {})
+	};
 
-    // before render() will apply to DOM
-    componentWillMount () {
-        this.application = ZiggeoApi.V2.Application.instanceByToken(this.props.apiKey);
+	componentDidMount () {
+        const { apiKey } = this.props;
+        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
 
-        this.application.on("ready", function () {
-            Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
-                this.application.embed_events.on(event, func);
-            });
-        }, this);
-
-        this.application.on("error", function () {
-            // in case if we have any application level error
-        });
-
-    };
-
-    // After render() will apply to DOM
-    componentDidMount () {
         this.props.onRef(this);
 
-        this.application.on("ready", function () {
-            console.log('-- did mount', this.recorderElement);
-            if ( this.recorderElement )
-                this.embedding = ZiggeoApi.V2.Recorder.findByElement(this.recorderElement);
-        }, this);
+        this._buildRecorder();
+	};
 
-    };
+    componentWillUpdate (nextState) {
+        this.recorder.destroy();
+        const { apiKey } = this.props;
+        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+    }
 
-    // run when state changes
-    // shouldComponentUpdate (nextProps, nextState) { return false; }
+    componentDidUpdate (prevState) {
+        this._buildRecorder();
+    }
 
-    // run shouldComponentUpdate will return true
-    // componentWillUpdate (nextProps, nextState) { console.log('will update'); }
-
-    // run after Component render()
-    // componentDidUpdate (prevProps, prevState) { console.log('did update'); }
-
-
-    // run before element will be removed from DOM
-    componentWillUnmount () {
+	componentWillUnmount () {
         // Never call this.application.destroy() !!!
         // Will receive error 'Cannot read property 'urls' of undefined'
         this.props.onRef(undefined);
 
-        if (this.embedding) {
-            this.embedding.destroy();
-        } else {
-            console.log('-- null embedding');
-        }
-    }
+		this.recorder.destroy();
+	};
 
-    render() {
-        return (
-            <ziggeorecorder ref={this._addZiggeoAttributes} {...this._elementProps} ></ziggeorecorder>
-        );
-    };
+	render () {
+		return <div ref={e => { this.element = e ; }} {...this._elementProps} />;
+	}
 
-    // Ziggeo Predefined evens lit
-    _ziggeoEvents = Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((memo, propName) => {
-        const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
-
+	_ziggeoEvents = Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((memo, propName) => {
+        const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
+            .replace(/(recorder_|player_)/g, '');
         memo[eventName] = (...args) => {
             this.props[propName](...args)
         };
         return memo;
     }, {});
 
-    // Will attach to node with ref
-    _addZiggeoAttributes = (node) => {
-
-        if (!this.recorderElement && node) this.recorderElement = node;
-
-        // Inject node with provided ziggeo options
-        if (node) {
-            const regexp = new RegExp(/(ziggeo-)/g);
-            Object.keys(this.props).filter(value => regexp.test(value)).reduce((props, value) => {
-                // Check if prop type existing
-                if (!ziggeoRecorderConvertedAttributes[value])
-                    console.warn('Please be sure there\'re no typo in ' + value + ' option');
-
-                node.setAttribute(value, this.props[value])
-            }, {});
-        }
-    };
+    get ziggeoAttributes () {
+        return Object.keys(this.props).filter(k => ziggeoRecorderAttributesPropTypes[k]).reduce((props, k) => {
+            props[k] = this.props[k];
+            return props;
+        }, {});
+    }
 
     // Props which are not related to Ziggeo
     get _elementProps () {
@@ -145,8 +103,40 @@ class ZiggeoRecorder extends Component {
         }, {});
     }
 
-    // Get Recorder Instance
-    // recorderEmbedding = () => this.embedding;
-}
+    _buildRecorder = () => {
 
-export default ZiggeoRecorder;
+        this.recorder = new ZiggeoApi.V2.Recorder({
+            element: this.element,
+            attrs: this.ziggeoAttributes
+        });
+        this.recorder.activate();
+
+        Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
+            this.recorder.on(event, func);
+        });
+    }
+
+    recorderInstance = () => this.recorder;
+
+    // Delegate ziggeo attributes to the recorder
+    get isRecording() { return this.recorder.isRecording() };
+    get averageFrameRate() { return this.recorder.averageFrameRate() };
+    get isFlash() { return this.recorder.isFlash() };
+    get lightLevel() { return this.recorder.lightLevel() };
+    get soundLevel() { return this.recorder.soundLevel() };
+    get width() { return this.recorder.width() };
+    get height() { return this.recorder.height() };
+    get videoWidth() { return this.recorder.videoWidth() };
+    get videoHeight() { return this.recorder.videoHeight() };
+
+    // Delegate ziggeo methods to the recorder
+    get = (...args) => this.recorder.get(...args);
+    play = (...args) => this.recorder.play(...args);
+    record = (...args) => this.recorder.record(...args);
+    upload = (...args) => this.recorder.upload(...args);
+    rerecord = (...args) => this.recorder.rerecord(...args);
+    stop = (...args) => this.recorder.stop(...args);
+    hidePopup = (...args) => this.recorder.hidePopup(...args);
+    reset = (...args) => this.recorder.reset(...args);
+    onStateChanged = (...args) => this.recorder.onStateChanged(...args);
+}

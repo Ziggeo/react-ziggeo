@@ -1,6 +1,6 @@
 {
   "name": "react-ziggeo",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
@@ -31,26 +31,24 @@
   },
   "homepage": "https://ziggeo.com",
   "peerDependencies": {
-    "react": ">=15.3.2"
+    "react": ">=15.3.2",
+    "react-dom": ">=15.3.2"
   },
   "dependencies": {
-    "prop-types": "^15.5.10",
+    "prop-types": "^15.6.0",
     "ziggeo-client-sdk": "0.0.29"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
     "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.13.2",
+    "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
-    "concurrently": "^3.5.0",
     "css-loader": "^0.26.1",
     "file-loader": "^0.11.2",
     "postcss-cli": "^4.1.0",
-    "react-dom": "^15.3.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
-    "webpack": "^2.0.0",
-    "webpack-dev-server": "^2.0.0"
+    "webpack": "^2.0.0"
   }
 }
