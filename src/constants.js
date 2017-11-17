@@ -167,20 +167,6 @@ export const ziggeoPlayerAttributesPropTypes = {
     'form-accept': string
 };
 
-// converted based on above attributes
-export const ziggeoPlayerConvertedAttributes = Object.keys(ziggeoPlayerAttributesPropTypes).reduce((collector, attribute) => {
-    const attributeName = "ziggeo-" + attribute;
-    collector[attributeName] = ziggeoPlayerAttributesPropTypes[attribute];
-    return collector;
-}, {});
-
-export const ziggeoRecorderConvertedAttributes = Object.keys(ziggeoRecorderAttributesPropTypes).reduce((collector, attribute) => {
-    const attributeName = "ziggeo-" + attribute;
-    collector[attributeName] = ziggeoRecorderAttributesPropTypes[attribute];
-    return collector;
-}, {});
-
-
 // #######################  DEFAULTS  ##################################
 
 
@@ -189,66 +175,67 @@ export const ziggeoRecorderConvertedAttributes = Object.keys(ziggeoRecorderAttri
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=v1-r29
 // application.embed_event.on..
 export const ziggeoRecorderEmbeddingEventsPropTypes = {
-    onPlayerAttached: func,
-    onPlayerLoaded: func,
-    onPlayerPlaying: func,
-    onPlayerPaused: func,
-    onPlayerEnded: func,
-    onPlayerSeek: func,
-    onRecorderError: func,
-    onRecorderManuallySubmitted: func,
-    onRecorderRecordingProgress: func,
-    onRecorderUploaded: func,
-    onRecorderUploadSelected: func,
-    onRecorderRecording: func,
-    onRecorderUploading: func,
-    onRecorderSeek: func,
-    onRecorderRerecord: func,
-    onRecorderCountdown: func,
+    onAttached: func,
+    onLoaded: func,
+    onPlaying: func,
+    onPaused: func,
+    onEnded: func,
+    onSeek: func,
+    onError: func,
+    onManuallySubmitted: func,
     onRecordingProgress: func,
-    onRecorderUploadProgress: func,
-    onRecorderProcessing: func,
-    onRecorderProcessed: func,
-    onRecorderAccessForbidden: func,
-    onRecorderAccessGranted: func,
-    onRecorderCameraUnresponsive: func,
-    onRecorderVerified: func,
-    onRecorderNoCamera: func,
-    onRecorderNoMicrophone: func
+    onUploaded: func,
+    onUploadSelected: func,
+    onRecording: func,
+    onUploading: func,
+    onRerecord: func,
+    onCountdown: func,
+    onProgress: func,
+    onUploadProgress: func,
+    onProcessing: func,
+    onProcessed: func,
+    onAccessForbidden: func,
+    onAccessGranted: func,
+    onCameraUnresponsive: func,
+    onVerified: func,
+    onNoCamera: func,
+    onNoMicrophone: func,
+    onRef: func
 };
 
 export const ziggeoPlayerEmbeddingEventsPropTypes = {
-    onPlayerAttached: func,
-    onPlayerLoaded: func,
-    onPlayerPlaying: func,
-    onPlayerPaused: func,
-    onPlayerEnded: func,
-    onPlayerError: func,
-    onPlayerSeek: func
+    onAttached: func,
+    onLoaded: func,
+    onPlaying: func,
+    onPaused: func,
+    onEnded: func,
+    onError: func,
+    onSeek: func,
+    onRef: func
 };
 
 // #######################  ZIGGEO METHODS  ##############################
 // Methods
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/methods#javascript-revision=v1-r29&javascript-version=v2
 export const ziggeoMethods = {
-    callPlay: func,
-    callRecord: func,
-    callUpload: func,
-    callRerecord: func,
-    callStop: func,
-    callStopRecord: func,
-    callHidePopup: func,
-    callReset: func,
-    callToggleUploader: func,
-    callToggleRecorder: func,
-    callActivate: func,
-    callRightLevel: func,
-    callAverageFrameRate: func,
-    callIsRecording: func,
-    callHide: func,
-    callWidth: func,
-    callHeight: func,
-    callDestroy: func
+    play: func,
+    record: func,
+    upload: func,
+    rerecord: func,
+    stop: func,
+    stopRecord: func,
+    hidePopup: func,
+    reset: func,
+    lightLevel: func,
+    soundLevel: func,
+    averageFrameRate: func,
+    isRecording: func,
+    width: func,
+    height: func,
+    isFlash: func,
+    videoWidth: func,
+    videoHeight: func,
+    destroy: func
 };
 
 
@@ -256,28 +243,28 @@ export const ziggeoMethods = {
 // Common Events
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/events#javascript-revision=v1-r29&javascript-version=v2
 export const ziggeoApiEventsPropTypes = {
-    onPlay: func,
-    onPause: func,
-    onStop: func,
-    onErrorPlayer: func,
-    onSubmitted: func,
-    onPlayerSeek: func,
-    onManuallySubmitted: func,
-    onUploaded: func,
-    onUploadSelected: func,
-    onRecording: func,
-    onUploading: func,
-    onFinished: func,
-    onDiscarded: func,
-    onErrorRecorder: func,
-    onCountdown: func,
-    onElapsed: func,
-    onUploadProgress: func,
-    onProcessingProgress: func,
-    onReadyToRecord: func,
-    onReadyToPlay: func,
-    onAccessForbidden: func,
-    onAccessGranted: func,
-    onAccessRevoked: func,
-    onRecorderProcessed: func
+    onEventPlay: func,
+    onEventPause: func,
+    onEventStop: func,
+    onEventErrorPlayer: func,
+    onEventSubmitted: func,
+    onEventPlayerSeek: func,
+    onEventManuallySubmitted: func,
+    onEventUploaded: func,
+    onEventUploadSelected: func,
+    onEventRecording: func,
+    onEventUploading: func,
+    onEventFinished: func,
+    onEventDiscarded: func,
+    onEventErrorRecorder: func,
+    onEventCountdown: func,
+    onEventElapsed: func,
+    onEventUploadProgress: func,
+    onEventProcessingProgress: func,
+    onEventReadyToRecord: func,
+    onEventReadyToPlay: func,
+    onEventAccessForbidden: func,
+    onEventAccessGranted: func,
+    onEventAccessRevoked: func,
+    onEventRecorderProcessed: func
 };

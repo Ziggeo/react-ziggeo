@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { ZiggeoEmbedPlayer } from 'react-ziggeo';
-import WarningMessage from '../components/WarningMessage';
-import { API_KEY, VIDEO_TOKEN } from '../constants';
+import { ZiggeoPlayer } from 'react-ziggeo';
+import WarningMessage from '../../components/WarningMessage';
+import { API_KEY_2, VIDEO_TOKEN_2 } from '../../constants';
 
-class EmbedPlayerPage extends Component {
+export default class PlayerPage extends Component {
 
     playing = () => {
         console.log('it\'s playing, your action here');
@@ -36,28 +36,30 @@ class EmbedPlayerPage extends Component {
     render() {
         return (
             <section className="player-page">
-                <h1 className="page-header">Embed Player Page</h1>
-                {!API_KEY && <WarningMessage message={"API Key required"} />}
-                {!VIDEO_TOKEN && <WarningMessage message={"Video Token required"} />}
-                <ZiggeoEmbedPlayer
-                    apiKey={API_KEY}
-                    video={VIDEO_TOKEN}
-                    height={180}
-                    width={320}
-                    onPlayerPlaying={this.playing}
-                    onPlayerPaused={this.paused}
-                    onPlayerEnded={this.playerEnded}
-                    onPlayerAttached={this.playerAttached}
-                    onPlayerLoaded={this.playerLoaded}
-                    onPlayerError={this.playerError}
-                    onPlayerSeek={this.playerSeek}
+                <h1 className="page-header">Player Page</h1>
+                {!API_KEY_2 && <WarningMessage message={"API Key required"} />}
+                {!VIDEO_TOKEN_2 && <WarningMessage message={"Video Token required"} />}
+
+                <ZiggeoPlayer
+                    apiKey={API_KEY_2}
+                    video={VIDEO_TOKEN_2}
+                    height={240}
+                    width={380}
+                    onPlaying={this.playing}
+                    onPaused={this.paused}
+                    onEnded={this.playerEnded}
+                    onAttached={this.playerAttached}
+                    onLoaded={this.playerLoaded}
+                    onError={this.playerError}
+                    onSeek={this.playerSeek}
+
                 />
                 <div className="text-left">
                     <h5 className="text-center"> ES6 Code Sample </h5>
                     <h6>Open console to see events attached to this Component</h6>
                     <pre>
                         {"import React from 'react';"} <br/>
-                        {"import {ZiggeoEmbedPlayer} from 'react-ziggeo';"}<br/>
+                        {"import {ZiggeoPlayer} from 'react-ziggeo';"}<br/>
                         {"import { API_KEY, VIDEO_TOKEN } from '../constants';"}
                         <br/>
                         <br/>
@@ -73,7 +75,7 @@ class EmbedPlayerPage extends Component {
                         <br/>
                         <br/>
                         {"<ZiggeoPlayer \n\t apiKey=\"Ziggeo provided key\" \n\t ziggeo-video=\"your video token\"" +
-                        "\n\t onPlayerLoaded={this.playerLoaded} \n\t onPlayerPlaying={this.playing}" +
+                        "\n\t onLoaded={this.playerLoaded} \n\t onPlaying={this.playing}" +
                         "\n/>"}
                         <br/>
                         ...
@@ -83,5 +85,3 @@ class EmbedPlayerPage extends Component {
         );
     }
 }
-
-export default EmbedPlayerPage;
