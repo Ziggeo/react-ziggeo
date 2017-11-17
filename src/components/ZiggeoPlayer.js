@@ -38,7 +38,7 @@ export default class ZiggeoPlayer extends Component {
     }
 
     // ZiggeoApi.V2.Player requires an existing DOM element to attach to
-    // So why we can't use it in componentWillMount
+    // So why we can't use _buildPlayer in componentWillMount
     componentDidMount() {
         this._buildPlayer();
     };
@@ -53,7 +53,6 @@ export default class ZiggeoPlayer extends Component {
         // application should be undefined as it's destroyed, inside WillUpdate
         if ( apiKey !== oldApiKey)
             this.player.application.data.set('token', apiKey);
-
     }
 
     componentDidUpdate (prevProps, prevState) {
@@ -65,7 +64,9 @@ export default class ZiggeoPlayer extends Component {
     componentWillUnmount () {
         // Never add this.application.destroy() !!!
         // Will receive error 'Cannot read property 'urls' of undefined'
-        // if (this.player) this.player.destroy();
+        if (this.player)
+            if (this.player.application) this.player.destroy();
+
         this.props.onRef(undefined);
     }
 
@@ -74,7 +75,7 @@ export default class ZiggeoPlayer extends Component {
     };
 
     _buildPlayer = () => {
-        if(this.player) this.player.destroy();
+        if (this.player) this.player.destroy();
 
         this.player = new ZiggeoApi.V2.Player({
             element: this.element,

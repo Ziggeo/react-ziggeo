@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { ZiggeoEmbedRecorder } from 'react-ziggeo';
-import { API_KEY, VIDEO_TOKEN } from '../constants';
+import { ZiggeoRecorder } from 'react-ziggeo';
+import { API_KEY, VIDEO_TOKEN } from '../../constants';
 
-class EmbedRecorderPage extends Component {
+export default class RecorderPage extends Component {
 
     playing = () => {
         console.log('it\'s playing, your action here');
@@ -94,39 +94,39 @@ class EmbedRecorderPage extends Component {
 
     render() {
         return (
-            <section className="player-page">
-                <h1 className="page-header">Embed Player Page</h1>
+            <section className="recorder-page">
+                <h1 className="page-header">Recorder Page</h1>
                 <p className="alert alert-warning">
                     <strong>Note: </strong>
                     It's demonstrative view, recording and uploading set to not allowed, you can register <a href="https://ziggeo.com">Ziggeo</a>. After getting key, use all awesome features
                 </p>
-                <ZiggeoEmbedRecorder
+                <ZiggeoRecorder
                     apiKey={API_KEY}
                     video={VIDEO_TOKEN}
                     height={180}
                     width={320}
-                    onPlayerPlaying={this.playing}
-                    onPlayerPaused={this.paused}
-                    onPlayerEnded={this.playerEnded}
-                    onPlayerAttached={this.playerAttached}
-                    onPlayerLoaded={this.playerLoaded}
-                    onPlayerSeek={this.playerSeek}
-                    onRecorderError={this.recorderError}
-                    onRecorderManuallySubmitted={this.recorderManuallySubmitted}
-                    onRecorderUploaded={this.recorderUploaded}
-                    onRecorderUploadSelected={this.recorderUploadSelected}
-                    onRecorderRecording={this.recorderRecording}
-                    onRecorderUploading={this.recorderUploading}
-                    onRecorderRerecord={this.recorderRerecord}
-                    onRecorderCountdown={this.recorderCountdown}
-                    onRecorderRecordingProgress={this.recorderRecordingProgress}
-                    onRecorderUploadProgress={this.recorderUploadProgress}
-                    onRecorderAccessForbidden={this.recorderAccessForbidden}
-                    onRecorderAccessGranted={this.recorderAccessGranted}
-                    onRecorderCameraUnresponsive={this.recorderCameraUnresponsive}
-                    onRecorderVerified={this.recorderVerified}
-                    onRecorderNoCamera={this.recorderNoCamera}
-                    onRecorderNoMicrophone={this.recorderNoMicrophone}
+                    onPlaying={this.playing}
+                    onPaused={this.paused}
+                    onEnded={this.playerEnded}
+                    onAttached={this.playerAttached}
+                    onLoaded={this.playerLoaded}
+                    onSeek={this.playerSeek}
+                    onError={this.recorderError}
+                    onManuallySubmitted={this.recorderManuallySubmitted}
+                    onUploaded={this.recorderUploaded}
+                    onUploadSelected={this.recorderUploadSelected}
+                    onRecording={this.recorderRecording}
+                    onUploading={this.recorderUploading}
+                    onRerecord={this.recorderRerecord}
+                    onCountdown={this.recorderCountdown}
+                    onRecordingProgress={this.recorderRecordingProgress}
+                    onUploadProgress={this.recorderUploadProgress}
+                    onAccessForbidden={this.recorderAccessForbidden}
+                    onAccessGranted={this.recorderAccessGranted}
+                    onCameraUnresponsive={this.recorderCameraUnresponsive}
+                    onVerified={this.recorderVerified}
+                    onNoCamera={this.recorderNoCamera}
+                    onNoMicrophone={this.recorderNoMicrophone}
                 />
 
                 <div className="text-left">
@@ -134,14 +134,14 @@ class EmbedRecorderPage extends Component {
                     <h6>Open console to see events attached to this Component</h6>
                     <pre>
                         {"import React from 'react';"} <br/>
-                        {"import {ZiggeoEmbedRecorder} from 'react-ziggeo';"}<br/>
+                        {"import {ZiggeoRecorder} from 'react-ziggeo';"}<br/>
                         {"import { API_KEY } from '../constants';"}
                         <br/>
                         <br/>
                         ...
                         <br/>
                         <br/>
-                        {"recorderError = () => { console.log('Recorder error'); };"}
+                        {"reError = () => { console.log('Recorder error'); };"}
                         <br/>
                         {"recorderRecording = () => { console.log('Recorder onRecorderUploading'); };"}
                         <br/>
@@ -149,7 +149,7 @@ class EmbedRecorderPage extends Component {
                         ...
                         <br/>
                         <br/>
-                        {'<ZiggeoEmbedRecorder \n\t apiKey="Ziggeo provided key" \n\t ziggeo-video="your video token"' +
+                        {'<ZiggeoRecorder \n\t apiKey="Ziggeo provided key" \n\t ziggeo-video="your video token"' +
                         '\n\t allowupload={false} \n\t allowrecord={false}' +
                         "\n\t onRecorderError={this.recorderError} \n\t onRecorderRecording={this.recorderRecording}" +
                         '\n/>'}
@@ -161,5 +161,3 @@ class EmbedRecorderPage extends Component {
         );
     }
 }
-
-export default EmbedRecorderPage;

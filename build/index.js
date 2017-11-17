@@ -866,7 +866,7 @@ var ZiggeoPlayer = function (_Component) {
         }
 
         // ZiggeoApi.V2.Player requires an existing DOM element to attach to
-        // So why we can't use it in componentWillMount
+        // So why we can't use _buildPlayer in componentWillMount
 
     }, {
         key: 'componentDidMount',
@@ -898,7 +898,8 @@ var ZiggeoPlayer = function (_Component) {
         value: function componentWillUnmount() {
             // Never add this.application.destroy() !!!
             // Will receive error 'Cannot read property 'urls' of undefined'
-            // if (this.player) this.player.destroy();
+            if (this.player) if (this.player.application) this.player.destroy();
+
             this.props.onRef(undefined);
         }
     }, {
@@ -1106,6 +1107,7 @@ var ZiggeoRecorder = function (_React$Component) {
     }, {
         key: 'componentWillUpdate',
         value: function componentWillUpdate(nextState) {
+            this.props.onRef(undefined);
             this.recorder.destroy();
             var apiKey = this.props.apiKey;
 

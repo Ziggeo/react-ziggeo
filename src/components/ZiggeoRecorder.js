@@ -58,6 +58,7 @@ export default class ZiggeoRecorder extends React.Component {
 	};
 
     componentWillUpdate (nextState) {
+        this.props.onRef(undefined);
         this.recorder.destroy();
         const { apiKey } = this.props;
         this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
