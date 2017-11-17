@@ -9,6 +9,7 @@ export default class ZiggeoPlayer extends Component {
 
     static player;
     static application;
+    static previousVideo;
 
     static propTypes = {
         apiKey:	string.isRequired,
@@ -42,22 +43,29 @@ export default class ZiggeoPlayer extends Component {
         this._buildPlayer();
     };
 
-    componentWillUpdate (nextState) {
-        if(this.player) this.player.destroy();
+    componentWillUpdate (nextProps, nextState) {
+        // set undefined paren onRef call
         this.props.onRef(undefined);
 
-        const { apiKey } = this.props;
-        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+        const oldApiKey = this.props.apiKey;
+        const { apiKey } = nextProps;
+
+        // application should be undefined as it's destroyed, inside WillUpdate
+        if ( apiKey !== oldApiKey)
+            this.player.application.data.set('token', apiKey);
+
     }
 
-    componentDidUpdate (prevState) {
+    componentDidUpdate (prevProps, prevState) {
+        this.previousVideo = prevProps.video;
+
         this._buildPlayer();
     }
 
     componentWillUnmount () {
         // Never add this.application.destroy() !!!
         // Will receive error 'Cannot read property 'urls' of undefined'
-        if(this.player) this.player.destroy();
+        // if (this.player) this.player.destroy();
         this.props.onRef(undefined);
     }
 
@@ -66,6 +74,8 @@ export default class ZiggeoPlayer extends Component {
     };
 
     _buildPlayer = () => {
+        if(this.player) this.player.destroy();
+
         this.player = new ZiggeoApi.V2.Player({
             element: this.element,
             attrs: this._ziggeoAttributes

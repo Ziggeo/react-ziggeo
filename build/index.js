@@ -875,17 +875,22 @@ var ZiggeoPlayer = function (_Component) {
         }
     }, {
         key: 'componentWillUpdate',
-        value: function componentWillUpdate(nextState) {
-            if (this.player) this.player.destroy();
+        value: function componentWillUpdate(nextProps, nextState) {
+            // set undefined paren onRef call
             this.props.onRef(undefined);
 
-            var apiKey = this.props.apiKey;
+            var oldApiKey = this.props.apiKey;
+            var apiKey = nextProps.apiKey;
 
-            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+            // application should be undefined as it's destroyed, inside WillUpdate
+
+            if (apiKey !== oldApiKey) this.player.application.data.set('token', apiKey);
         }
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate(prevState) {
+        value: function componentDidUpdate(prevProps, prevState) {
+            this.previousVideo = prevProps.video;
+
             this._buildPlayer();
         }
     }, {
@@ -893,7 +898,7 @@ var ZiggeoPlayer = function (_Component) {
         value: function componentWillUnmount() {
             // Never add this.application.destroy() !!!
             // Will receive error 'Cannot read property 'urls' of undefined'
-            if (this.player) this.player.destroy();
+            // if (this.player) this.player.destroy();
             this.props.onRef(undefined);
         }
     }, {
@@ -976,6 +981,8 @@ var _initialiseProps = function _initialiseProps() {
     var _this5 = this;
 
     this._buildPlayer = function () {
+        if (_this5.player) _this5.player.destroy();
+
         _this5.player = new ZiggeoApi.V2.Player({
             element: _this5.element,
             attrs: _this5._ziggeoAttributes
