@@ -13,11 +13,11 @@ import {ZiggeoRecorder} from 'react-ziggeo'
 ...
  
     recorderRecording = () => {
-        console.log('Recorder onRecorderRecording');
+        console.log('Recorder onRecording');
     };
 
     recorderUploaded = () => {
-        console.log('Recorder onRecorderUploaded');
+        console.log('Recorder onUploaded');
     };
  
 ...

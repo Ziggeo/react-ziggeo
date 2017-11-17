@@ -11,7 +11,7 @@
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
     "history": "^4.1.2",
-    "react-ziggeo": "^1.3.0",
+    "react-ziggeo": "^2.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
     "css-loader": "^0.26.1",

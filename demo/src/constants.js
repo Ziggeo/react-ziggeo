@@ -1,5 +1,5 @@
 // TEST APPLICATION - 2  Test Application
-export const API_KEY = 'b2009d5f9513cc8f237fe4bd9d6f2ba8';
+export const API_KEY = 'b2009d5f9513cc8f237fe4bd9d6f2ba';
 export const VIDEO_TOKEN = '507dcc5fe040cef6b2018e9ba45c5beb';
 
 // APP 2 - Default
