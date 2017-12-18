@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes,
-    ziggeoApiEventsPropTypes
+    ziggeoApiEventsPropTypes, reactCustomOptions
 } from '../constants';
 import { string, bool, arrayOf, func } from 'prop-types';
 
@@ -14,7 +14,8 @@ export default class ZiggeoPlayer extends Component {
     static propTypes = {
         apiKey:	string.isRequired,
         ...ziggeoPlayerAttributesPropTypes,
-        ...ziggeoPlayerEmbeddingEventsPropTypes
+        ...ziggeoPlayerEmbeddingEventsPropTypes,
+        ...reactCustomOptions
     };
 
     static defaultProps = {
@@ -24,6 +25,9 @@ export default class ZiggeoPlayer extends Component {
         'picksnapshots': true,
         'theme': 'default',
         'themecolor': 'default',
+
+        // only react related options
+        'preventReRenderOnUpdate': true,
 
         // Default events to no-op
         ...Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((defaults, event) => {
@@ -35,6 +39,12 @@ export default class ZiggeoPlayer extends Component {
     componentWillMount() {
         const { apiKey } = this.props;
         this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+    }
+
+    // Trigger when state is changes
+    shouldComponentUpdate (nextProps, nextState) {
+        const { preventReRenderOnUpdate } = nextProps || true;
+        return !preventReRenderOnUpdate;
     }
 
     // ZiggeoApi.V2.Player requires an existing DOM element to attach to

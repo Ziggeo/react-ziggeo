@@ -165,6 +165,20 @@ Also you can get player instance:
 ```
 Working example you can find in current repo [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) folder
 
+## Component Options:
+```javascript
+    preventReRenderOnUpdate={boolean} // default is true
+```
+
+## Notes:
+By default Components prevent re-render UI with option `preventReRenderOnUpdate`, in case if you want to re-render it, you have set it to true.
+```javascript
+    <ZiggeoRecorder
+        preventReRenderOnUpdate={false}
+    />
+```
+Note that it can cause issue during calling `setState` in `componentDidMount` method when call right after initialization.
+
 
 #### Additional Parameters
 
