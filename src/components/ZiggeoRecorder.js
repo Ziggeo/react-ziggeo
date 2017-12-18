@@ -136,15 +136,15 @@ export default class ZiggeoRecorder extends React.Component {
     recorderInstance = () => this.recorder;
 
     // Delegate ziggeo attributes to the recorder
-    // get isRecording() { return this.recorder.view.isRecording() };
-    // get averageFrameRate() { return this.recorder.averageFrameRate() };
-    // get isFlash() { return this.recorder.isFlash() };
-    // get lightLevel() { return this.recorder.lightLevel() };
-    // get soundLevel() { return this.recorder.soundLevel() };
-    // get width() { return this.recorder.width() };
-    // get height() { return this.recorder.height() };
-    // get videoWidth() { return this.recorder.videoWidth() };
-    // get videoHeight() { return this.recorder.videoHeight() };
+    get isRecording() { return this.recorder.view.isRecording() };
+    get averageFrameRate() { return this.recorder.averageFrameRate() };
+    get isFlash() { return this.recorder.isFlash() };
+    get lightLevel() { return this.recorder.lightLevel() };
+    get soundLevel() { return this.recorder.soundLevel() };
+    get width() { return this.recorder.width() };
+    get height() { return this.recorder.height() };
+    get videoWidth() { return this.recorder.videoWidth() };
+    get videoHeight() { return this.recorder.videoHeight() };
 
     // Delegate ziggeo methods to the recorder
     get = (...args) => this.recorder.get(...args);
