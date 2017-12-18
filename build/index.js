@@ -432,7 +432,7 @@ module.exports = ReactPropTypesSecret;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
 
 var _propTypes = __webpack_require__(3);
 
@@ -703,6 +703,11 @@ var ziggeoApiEventsPropTypes = exports.ziggeoApiEventsPropTypes = {
     onEventRecorderProcessed: _propTypes.func
 };
 
+// #######################  React Common Options  ##############################
+var reactCustomOptions = exports.reactCustomOptions = {
+    preventReRenderOnUpdate: _propTypes.bool
+};
+
 /***/ }),
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -865,6 +870,17 @@ var ZiggeoPlayer = function (_Component) {
             this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
         }
 
+        // Trigger when state is changes
+
+    }, {
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps, nextState) {
+            var _ref2 = nextProps || true,
+                preventReRenderOnUpdate = _ref2.preventReRenderOnUpdate;
+
+            return !preventReRenderOnUpdate;
+        }
+
         // ZiggeoApi.V2.Player requires an existing DOM element to attach to
         // So why we can't use _buildPlayer in componentWillMount
 
@@ -964,14 +980,17 @@ var ZiggeoPlayer = function (_Component) {
 
 ZiggeoPlayer.propTypes = _extends({
     apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoPlayerAttributesPropTypes, _constants.ziggeoPlayerEmbeddingEventsPropTypes);
+}, _constants.ziggeoPlayerAttributesPropTypes, _constants.ziggeoPlayerEmbeddingEventsPropTypes, _constants.reactCustomOptions);
 ZiggeoPlayer.defaultProps = _extends({
     // Presentational parameters
     'width': 640,
     'height': 480,
     'picksnapshots': true,
     'theme': 'default',
-    'themecolor': 'default'
+    'themecolor': 'default',
+
+    // only react related options
+    'preventReRenderOnUpdate': true
 
 }, Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (defaults, event) {
     defaults[event] = function () {};
@@ -990,10 +1009,10 @@ var _initialiseProps = function _initialiseProps() {
         });
         _this5.player.activate();
 
-        Object.entries(_this5._ziggeoEvents).forEach(function (_ref2) {
-            var _ref3 = _slicedToArray(_ref2, 2),
-                event = _ref3[0],
-                func = _ref3[1];
+        Object.entries(_this5._ziggeoEvents).forEach(function (_ref3) {
+            var _ref4 = _slicedToArray(_ref3, 2),
+                event = _ref4[0],
+                func = _ref4[1];
 
             _this5.player.on(event, func);
         });
@@ -1094,15 +1113,28 @@ var ZiggeoRecorder = function (_React$Component) {
     }
 
     _createClass(ZiggeoRecorder, [{
-        key: 'componentDidMount',
-        value: function componentDidMount() {
+        key: 'componentWillMount',
+        value: function componentWillMount() {
             var apiKey = this.props.apiKey;
 
             this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
-
-            this.props.onRef(this);
-
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            // Don't include Application initialization, will get this context issue
             this._buildRecorder();
+        }
+    }, {
+        key: 'shouldComponentUpdate',
+
+
+        // Trigger when state is changes
+        value: function shouldComponentUpdate(nextProps, nextState) {
+            var _ref2 = nextProps || true,
+                preventReRenderOnUpdate = _ref2.preventReRenderOnUpdate;
+
+            return !preventReRenderOnUpdate;
         }
     }, {
         key: 'componentWillUpdate',
@@ -1163,54 +1195,17 @@ var ZiggeoRecorder = function (_React$Component) {
                 return props;
             }, {});
         }
-    }, {
-        key: 'isRecording',
-
 
         // Delegate ziggeo attributes to the recorder
-        get: function get() {
-            return this.recorder.isRecording();
-        }
-    }, {
-        key: 'averageFrameRate',
-        get: function get() {
-            return this.recorder.averageFrameRate();
-        }
-    }, {
-        key: 'isFlash',
-        get: function get() {
-            return this.recorder.isFlash();
-        }
-    }, {
-        key: 'lightLevel',
-        get: function get() {
-            return this.recorder.lightLevel();
-        }
-    }, {
-        key: 'soundLevel',
-        get: function get() {
-            return this.recorder.soundLevel();
-        }
-    }, {
-        key: 'width',
-        get: function get() {
-            return this.recorder.width();
-        }
-    }, {
-        key: 'height',
-        get: function get() {
-            return this.recorder.height();
-        }
-    }, {
-        key: 'videoWidth',
-        get: function get() {
-            return this.recorder.videoWidth();
-        }
-    }, {
-        key: 'videoHeight',
-        get: function get() {
-            return this.recorder.videoHeight();
-        }
+        // get isRecording() { return this.recorder.view.isRecording() };
+        // get averageFrameRate() { return this.recorder.averageFrameRate() };
+        // get isFlash() { return this.recorder.isFlash() };
+        // get lightLevel() { return this.recorder.lightLevel() };
+        // get soundLevel() { return this.recorder.soundLevel() };
+        // get width() { return this.recorder.width() };
+        // get height() { return this.recorder.height() };
+        // get videoWidth() { return this.recorder.videoWidth() };
+        // get videoHeight() { return this.recorder.videoHeight() };
 
         // Delegate ziggeo methods to the recorder
 
@@ -1223,7 +1218,7 @@ ZiggeoRecorder.recorder = null;
 ZiggeoRecorder.application = null;
 ZiggeoRecorder.propTypes = _extends({
     apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes);
+}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.reactCustomOptions);
 ZiggeoRecorder.defaultProps = _extends({
     // Presentational parameters
     'width': 640,
@@ -1249,7 +1244,10 @@ ZiggeoRecorder.defaultProps = _extends({
     'allowrecord': true,
     'force-overwrite': true,
     'allowcustomupload': true,
-    'recordermode': true
+    'recordermode': true,
+
+    // only react related options
+    'preventReRenderOnUpdate': true
 
 }, Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (defaults, event) {
     defaults[event] = function () {};
@@ -1277,13 +1275,15 @@ var _initialiseProps = function _initialiseProps() {
         });
         _this5.recorder.activate();
 
-        Object.entries(_this5._ziggeoEvents).forEach(function (_ref2) {
-            var _ref3 = _slicedToArray(_ref2, 2),
-                event = _ref3[0],
-                func = _ref3[1];
+        Object.entries(_this5._ziggeoEvents).forEach(function (_ref3) {
+            var _ref4 = _slicedToArray(_ref3, 2),
+                event = _ref4[0],
+                func = _ref4[1];
 
             _this5.recorder.on(event, func);
         });
+
+        _this5.props.onRef(_this5);
     };
 
     this.recorderInstance = function () {

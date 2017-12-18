@@ -268,3 +268,8 @@ export const ziggeoApiEventsPropTypes = {
     onEventAccessRevoked: func,
     onEventRecorderProcessed: func
 };
+
+// #######################  React Common Options  ##############################
+export const reactCustomOptions = {
+    preventReRenderOnUpdate: bool
+};

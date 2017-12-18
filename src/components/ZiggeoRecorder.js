@@ -1,6 +1,9 @@
 /* globals ZiggeoApi */
 import React from 'react';
-import { ziggeoRecorderAttributesPropTypes, ziggeoRecorderEmbeddingEventsPropTypes } from '../constants';
+import {
+    reactCustomOptions, ziggeoRecorderAttributesPropTypes,
+    ziggeoRecorderEmbeddingEventsPropTypes
+} from '../constants';
 import { string, bool, arrayOf, func  } from 'prop-types';
 
 export default class ZiggeoRecorder extends React.Component {
@@ -11,7 +14,8 @@ export default class ZiggeoRecorder extends React.Component {
 	static propTypes = {
 		apiKey:	string.isRequired,
 		...ziggeoRecorderAttributesPropTypes,
-		...ziggeoRecorderEmbeddingEventsPropTypes
+		...ziggeoRecorderEmbeddingEventsPropTypes,
+        ...reactCustomOptions
 	};
 
 	static defaultProps = {
@@ -41,6 +45,9 @@ export default class ZiggeoRecorder extends React.Component {
 		'allowcustomupload': true,
 		'recordermode': true,
 
+        // only react related options
+        'preventReRenderOnUpdate': true,
+
 		// Default events to no-op
 		...Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((defaults, event) => {
 			defaults[event] = () => {};
@@ -48,14 +55,21 @@ export default class ZiggeoRecorder extends React.Component {
 		}, {})
 	};
 
-	componentDidMount () {
+	componentWillMount () {
         const { apiKey } = this.props;
         this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+    }
 
-        this.props.onRef(this);
-
+	componentDidMount () {
+	    // Don't include Application initialization, will get this context issue
         this._buildRecorder();
 	};
+
+	// Trigger when state is changes
+	shouldComponentUpdate (nextProps, nextState) {
+        const { preventReRenderOnUpdate } = nextProps || true;
+        return !preventReRenderOnUpdate;
+    }
 
     componentWillUpdate (nextState) {
         this.props.onRef(undefined);
@@ -115,20 +129,22 @@ export default class ZiggeoRecorder extends React.Component {
         Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
             this.recorder.on(event, func);
         });
-    }
+
+        this.props.onRef(this);
+    };
 
     recorderInstance = () => this.recorder;
 
     // Delegate ziggeo attributes to the recorder
-    get isRecording() { return this.recorder.isRecording() };
-    get averageFrameRate() { return this.recorder.averageFrameRate() };
-    get isFlash() { return this.recorder.isFlash() };
-    get lightLevel() { return this.recorder.lightLevel() };
-    get soundLevel() { return this.recorder.soundLevel() };
-    get width() { return this.recorder.width() };
-    get height() { return this.recorder.height() };
-    get videoWidth() { return this.recorder.videoWidth() };
-    get videoHeight() { return this.recorder.videoHeight() };
+    // get isRecording() { return this.recorder.view.isRecording() };
+    // get averageFrameRate() { return this.recorder.averageFrameRate() };
+    // get isFlash() { return this.recorder.isFlash() };
+    // get lightLevel() { return this.recorder.lightLevel() };
+    // get soundLevel() { return this.recorder.soundLevel() };
+    // get width() { return this.recorder.width() };
+    // get height() { return this.recorder.height() };
+    // get videoWidth() { return this.recorder.videoWidth() };
+    // get videoHeight() { return this.recorder.videoHeight() };
 
     // Delegate ziggeo methods to the recorder
     get = (...args) => this.recorder.get(...args);
