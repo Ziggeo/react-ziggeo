@@ -134,7 +134,7 @@ Also you can also obtain an instance:
     let properties = this.playerInstance.get('propertyName');
 ```
 
-##### Get Recorder Instance and invoke `methods`
+##### Get Player Instance and invoke `methods`
 Add attribute `onRef={ref => (this.child = ref)}` to obtain access to player instances and their methods.
 
 ```javascript
