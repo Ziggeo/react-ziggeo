@@ -1,11 +1,9 @@
 ## Ziggeo's React component v2
-[Documentation related to v1](https://github.com/Ziggeo/react-ziggeo/tree/master/docs/v1)
+(For documentation on v1, see [here](https://github.com/Ziggeo/react-ziggeo/tree/master/docs/v1))
 
-Usage with ES6:
-You can also clone [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo)
+We have a demo project [here](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) for you to clone.
 
-## Recorder:
-Ziggeo recorder
+## Video Recorder
 
 ```$xslt
 import React from 'react'
@@ -33,9 +31,9 @@ import {ZiggeoRecorder} from 'react-ziggeo'
  
 ...
 ```
-[All Build-in Recorder Events](https://github.com/Ziggeo/react-ziggeo/#available-events-for-recorder)
+[All Built-in Recorder Events](https://github.com/Ziggeo/react-ziggeo/#available-events-for-recorder)
 
-##### Available `event listeners` for recorder:
+##### Available `event listeners` for Recorder
 
 ```react2html
    
@@ -64,9 +62,7 @@ import {ZiggeoRecorder} from 'react-ziggeo'
 ```
 
 
-## Player:
-
-Ziggeo player:
+## Video Player
 
 ```$xslt
 import React from 'react'
@@ -95,9 +91,9 @@ paused = () => {
     />
 ...
 ```
-[All Build-in Player Events](https://github.com/Ziggeo/react-ziggeo/#available-events-for-player)
+[All Built-in Player Events](https://github.com/Ziggeo/react-ziggeo/#available-events-for-player)
 
-##### Available `events listeners` for player:
+##### Available `events listeners` for Player
 ```react2html
    
    - onPlaying
@@ -109,10 +105,10 @@ paused = () => {
    - onSeek 
 ```
 
-#### Some available build-in methods and not only. You can extend it based on your requirements.
+#### Extensions
 
-##### Get Recorder Instance and related `methods`
-Add attribute `onRef={ref => (this.child = ref)}` to get access to player instance and related methods.
+##### Get Recorder Instance and invoke `methods`
+Add attribute `onRef={ref => (this.child = ref)}` to obtain access to recorder instances and their methods.
 
 ```javascript
     <ZiggeoRecorder
@@ -120,7 +116,7 @@ Add attribute `onRef={ref => (this.child = ref)}` to get access to player instan
         onRef={ref => (this.child = ref)}
     />
 ```
-Now you can get build-in methods:
+Now you can call built-in methods:
 ```javascript
     this.child.get(args);
     this.child.play();
@@ -131,16 +127,15 @@ Now you can get build-in methods:
     this.child.hidePopup();
     this.child.reset();
 ```
-Also you can get player instance:
+Also you can also obtain an instance:
 ```
     let recorderInstance = this.child.recorderInstance();
-    // you can call above functions also example: playerInstance.play();
+    // e.g. call: playerInstance.play();
     let properties = this.playerInstance.get('propertyName');
 ```
-Working example you can find in current repo [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) folder
 
-##### Get Player Instance and related `methods`
-Add attribute `onRef={ref => (this.child = ref)}` to get access to player instance and related methods.
+##### Get Recorder Instance and invoke `methods`
+Add attribute `onRef={ref => (this.child = ref)}` to obtain access to player instances and their methods.
 
 ```javascript
     <ZiggeoPlayer
@@ -149,7 +144,7 @@ Add attribute `onRef={ref => (this.child = ref)}` to get access to player instan
         onRef={ref => (this.child = ref)}
     />
 ```
-Now you can get build-in methods:
+Now you can call built-in methods:
 ```javascript
     this.child.play();
     this.child.pause();
@@ -157,36 +152,30 @@ Now you can get build-in methods:
     this.child.seek(seconds);
     this.child.set_volume(volume_level_1_to_100);
 ```
-Also you can get player instance:
+Also you can also obtain an instance:
 ```
     let playerInstance = this.child.playerInstance();
-    // you can call above functions also example: playerInstance.play();
+    // e.g. call: playerInstance.play();
     let properties = this.playerInstance.get('propertyName');
 ```
-Working example you can find in current repo [Demo](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) folder
 
-## Component Options:
+## Component Options
 ```javascript
     preventReRenderOnUpdate={boolean} // default is true
 ```
 
-## Notes:
-By default Components prevent re-render UI with option `preventReRenderOnUpdate`, in case if you want to re-render it, you have set it to true.
+## Notes
+By default, components prevent re-rendering the UI with the option `preventReRenderOnUpdate`, to overwrite this.
 ```javascript
     <ZiggeoRecorder
         preventReRenderOnUpdate={false}
     />
 ```
-Note that it can cause issue during calling `setState` in `componentDidMount` method when call right after initialization.
+There are some issues with when being called right after initialization.
 
 
 #### Additional Parameters
 
-You can add all available all Ziggeo related options from below link:
-- [Ziggeo Available Parameters](https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-stable&javascript-version=v2)
+React SDK supports all of the following events and parameters:
+- [Ziggeo Available Parameters](https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters)
 - [Ziggeo Available Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/events)
-
-
-#### Working Demo:
-- [react-live-demo](https://sambua.github.io/react-ziggeo-page)
-- [react-ziggeo demo for local install](https://github.com/Ziggeo/react-ziggeo/tree/master/demo)
