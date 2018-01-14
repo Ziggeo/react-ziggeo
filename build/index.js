@@ -4452,8 +4452,6 @@ var _ZiggeoRecorder3 = _interopRequireDefault(_ZiggeoRecorder2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log('polyfil added');
-
 exports.ZiggeoPlayer = _ZiggeoPlayer3.default;
 exports.ZiggeoRecorder = _ZiggeoRecorder3.default;
 
