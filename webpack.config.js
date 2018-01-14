@@ -6,6 +6,7 @@ var ignore = new webpack.IgnorePlugin(new RegExp("/(ziggeo-client-sdk)/"));
 module.exports = {
     devtool: 'source-map',
     entry: [
+        "babel-polyfill",
         './src/index.js'
     ],
     output: {
