@@ -791,7 +791,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE_7__;
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.ZiggeoRecorder = exports.ZiggeoPlayer = undefined;
 
@@ -808,6 +808,15 @@ var _ZiggeoRecorder2 = __webpack_require__(10);
 var _ZiggeoRecorder3 = _interopRequireDefault(_ZiggeoRecorder2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+if (!Object.entries) Object.entries = function (obj) {
+    var ownProps = Object.keys(obj),
+        i = ownProps.length,
+        resArray = new Array(i); // preallocate the Array
+    while (i--) {
+        resArray[i] = [ownProps[i], obj[ownProps[i]]];
+    }return resArray;
+};
 
 exports.ZiggeoPlayer = _ZiggeoPlayer3.default;
 exports.ZiggeoRecorder = _ZiggeoRecorder3.default;
@@ -1195,17 +1204,54 @@ var ZiggeoRecorder = function (_React$Component) {
                 return props;
             }, {});
         }
+    }, {
+        key: 'isRecording',
+
 
         // Delegate ziggeo attributes to the recorder
-        // get isRecording() { return this.recorder.view.isRecording() };
-        // get averageFrameRate() { return this.recorder.averageFrameRate() };
-        // get isFlash() { return this.recorder.isFlash() };
-        // get lightLevel() { return this.recorder.lightLevel() };
-        // get soundLevel() { return this.recorder.soundLevel() };
-        // get width() { return this.recorder.width() };
-        // get height() { return this.recorder.height() };
-        // get videoWidth() { return this.recorder.videoWidth() };
-        // get videoHeight() { return this.recorder.videoHeight() };
+        get: function get() {
+            return this.recorder.view.isRecording();
+        }
+    }, {
+        key: 'averageFrameRate',
+        get: function get() {
+            return this.recorder.averageFrameRate();
+        }
+    }, {
+        key: 'isFlash',
+        get: function get() {
+            return this.recorder.isFlash();
+        }
+    }, {
+        key: 'lightLevel',
+        get: function get() {
+            return this.recorder.lightLevel();
+        }
+    }, {
+        key: 'soundLevel',
+        get: function get() {
+            return this.recorder.soundLevel();
+        }
+    }, {
+        key: 'width',
+        get: function get() {
+            return this.recorder.width();
+        }
+    }, {
+        key: 'height',
+        get: function get() {
+            return this.recorder.height();
+        }
+    }, {
+        key: 'videoWidth',
+        get: function get() {
+            return this.recorder.videoWidth();
+        }
+    }, {
+        key: 'videoHeight',
+        get: function get() {
+            return this.recorder.videoHeight();
+        }
 
         // Delegate ziggeo methods to the recorder
 

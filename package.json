@@ -1,6 +1,6 @@
 {
   "name": "react-ziggeo",
-  "version": "2.1.1",
+  "version": "2.2.1",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
@@ -8,6 +8,7 @@
     "dev": "webpack-dev-server --hot --inline",
     "build": "npm run build:development && npm run build:production",
     "build:development": "webpack",
+    "postbuild:development": "cp node_modules/ziggeo-client-sdk/build/*.swf build && cp node_modules/ziggeo-client-sdk/build/*.png build",
     "build:production": "NODE_ENV=production webpack -p",
     "build:pack": "npm pack",
     "rebuild-pack": "rm -rf build/ && npm run build",
@@ -23,6 +24,9 @@
     "react-component",
     "react",
     "ziggeo"
+  ],
+  "files": [
+    "build"
   ],
   "author": "Ziggeo Inc",
   "license": "Apache-2.0",
@@ -44,6 +48,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-0": "^6.5.0",
+    "babel-polyfill": "^6.26.0",
     "css-loader": "^0.26.1",
     "file-loader": "^0.11.2",
     "postcss-cli": "^4.1.0",
