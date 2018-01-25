@@ -45,14 +45,14 @@ export const ziggeoRecorderAttributesPropTypes = {
     'recordingwidth': number,
     'recordingheight': number,
     'video': string,
-    'effect-profile': array,
+    'effect-profile': oneOfType([string, arrayOf(string)]),
     'auto-crop': bool,
     'auto-pad': bool,
     'key': string,
     'timelimit': number,
     'timeminlimit': number,
-    'video-profile': string,
-    'meta-profile': string,
+    'effect-profile': oneOfType([string, arrayOf(string)]),
+    'meta-profile': oneOfType([string, arrayOf(string)]),
     'enforce-duration': bool,
     'noaudio': bool,
     'source':	string,
@@ -127,10 +127,9 @@ export const ziggeoPlayerAttributesPropTypes = {
     'client-auth': string,
 
     // Video management parameters
-    'video': string.isRequired,
-    'stream':	string,
-    'effect-profile': array,
-    'video-profile': string,
+    'video': string,
+    'effect-profile': oneOfType([string, arrayOf(string)]),
+    'video-profile': oneOfType([string, arrayOf(string)]),
     'noaudio': bool,
     'source':	string,
     'framerate': number,
@@ -165,6 +164,18 @@ export const ziggeoPlayerAttributesPropTypes = {
     // Form and HTML parameters
     'input-bind': string,
     'form-accept': string
+
+    // // handle special cases
+    // handleVideo: function(props, propName, componentName) {
+    //     if( (props['video'] === undefined || props['video'].length < 1) &&
+    //         (props['video-profile'] === undefined || props['video-profile'].length < 1)
+    //     ) {
+    //         return new Error(
+    //             'Please provide with video or video-profile token to component' +
+    //             ' `' + componentName + '`. Validation failed'
+    //         )
+    //     }
+    // },
 };
 
 // #######################  DEFAULTS  ##################################
