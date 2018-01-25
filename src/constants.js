@@ -129,6 +129,7 @@ export const ziggeoPlayerAttributesPropTypes = {
 
     // Video management parameters
     'video': string,
+    'stream': string,
     'effect-profile': oneOfType([string, arrayOf(string)]),
     'video-profile': oneOfType([string, arrayOf(string)]),
     'noaudio': bool,

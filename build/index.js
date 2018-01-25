@@ -3272,6 +3272,7 @@ var ziggeoPlayerAttributesPropTypes = exports.ziggeoPlayerAttributesPropTypes = 
 
     // Video management parameters
     'video': _propTypes.string,
+    'stream': _propTypes.string,
     'effect-profile': (0, _propTypes.oneOfType)([_propTypes.string, (0, _propTypes.arrayOf)(_propTypes.string)]),
     'video-profile': (0, _propTypes.oneOfType)([_propTypes.string, (0, _propTypes.arrayOf)(_propTypes.string)]),
     'noaudio': _propTypes.bool,
