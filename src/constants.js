@@ -128,7 +128,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     'client-auth': string,
 
     // Video management parameters
-    'video': string,
+    'video': string.isRequired,
     'stream': string,
     'effect-profile': oneOfType([string, arrayOf(string)]),
     'video-profile': oneOfType([string, arrayOf(string)]),
