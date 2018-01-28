@@ -60,7 +60,26 @@ import {ZiggeoRecorder} from 'react-ziggeo'
    - onNoCamera,
    - onNoMicrophone
 ```
+### Recorder option Screen Recorder
+Screen Capture is currently supported by Firefox, Chrome and Opera.
+- Firefox: Direct support -- no extensions or plugins required
+- Chrome + Opera: use extension builder located in your application manager
 
+Note: By default Ziggeo Chrome/Opera extension will be set.
+[For more info](https://ziggeo.com/features/screen-recording), in this url you also can find how to set your own extensions
+
+```
+    <ZiggeoRecorder
+        apiKey={API_KEY}
+        allowscreen={true}
+        allowrecord={false} // Optional you can even set it to true
+        allowupload={false} // Optional you can even set it to true
+        chrome_extension_id={YOUR_CHROME_EXTENSION_ID}
+        chrome_extension_install_link={YOUR_CHROME_EXTENSION_INSTALLATION_LINK}
+        opera_extension_id={YOUR_OPERA_EXTENSION_ID}
+        opera_extension_install_link={YOUR_OPERA_EXTENSION_INSTALLATION_LINK}
+        ...
+    />
 
 ## Video Player
 

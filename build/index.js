@@ -3140,7 +3140,7 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+exports.screenRecorderOptions = exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
 
 var _propTypes = __webpack_require__(93);
 
@@ -3427,6 +3427,13 @@ var ziggeoApiEventsPropTypes = exports.ziggeoApiEventsPropTypes = {
 // #######################  React Common Options  ##############################
 var reactCustomOptions = exports.reactCustomOptions = {
     preventReRenderOnUpdate: _propTypes.bool
+};
+
+var screenRecorderOptions = exports.screenRecorderOptions = {
+    chrome_extension_id: _propTypes.string,
+    chrome_extension_install_link: _propTypes.string,
+    opera_extension_id: _propTypes.string,
+    opera_extension_install_link: _propTypes.string
 };
 
 /***/ }),
@@ -4806,9 +4813,17 @@ var ZiggeoRecorder = function (_React$Component) {
     _createClass(ZiggeoRecorder, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            var apiKey = this.props.apiKey;
+            var _props = this.props,
+                apiKey = _props.apiKey,
+                allowscreen = _props.allowscreen;
 
-            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+
+            if (allowscreen) {
+                this.options = this._applicationOptions;
+                console.log('allow screen', this.options);
+            }
+
+            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
         }
     }, {
         key: 'componentDidMount',
@@ -4832,9 +4847,16 @@ var ZiggeoRecorder = function (_React$Component) {
         value: function componentWillUpdate(nextState) {
             this.props.onRef(undefined);
             this.recorder.destroy();
-            var apiKey = this.props.apiKey;
+            var _props2 = this.props,
+                apiKey = _props2.apiKey,
+                allowscreen = _props2.allowscreen;
 
-            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+
+            if (allowscreen) {
+                this.options = this._applicationOptions;
+            }
+
+            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
         }
     }, {
         key: 'componentDidUpdate',
@@ -4883,6 +4905,18 @@ var ZiggeoRecorder = function (_React$Component) {
                 return !_this4.constructor.propTypes[k];
             }).reduce(function (props, k) {
                 props[k] = _this4.props[k];
+                return props;
+            }, {});
+        }
+    }, {
+        key: '_applicationOptions',
+        get: function get() {
+            var _this5 = this;
+
+            return Object.keys(this.props).filter(function (k) {
+                return _constants.screenRecorderOptions[k];
+            }).reduce(function (props, k) {
+                props[k] = _this5.props[k];
                 return props;
             }, {});
         }
@@ -4944,9 +4978,10 @@ var ZiggeoRecorder = function (_React$Component) {
 
 ZiggeoRecorder.recorder = null;
 ZiggeoRecorder.application = null;
+ZiggeoRecorder.applicationOptions = {};
 ZiggeoRecorder.propTypes = _extends({
     apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.reactCustomOptions);
+}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.screenRecorderOptions, _constants.reactCustomOptions);
 ZiggeoRecorder.defaultProps = _extends({
     // Presentational parameters
     'width': 640,
@@ -4975,7 +5010,14 @@ ZiggeoRecorder.defaultProps = _extends({
     'recordermode': true,
 
     // only react related options
-    'preventReRenderOnUpdate': true
+    'preventReRenderOnUpdate': true,
+
+    // screen configuration for Ziggeo extension
+    "allowscreen": false,
+    chrome_extension_id: "meoefjkcilgjlkibnjjlfdgphacbeglk",
+    chrome_extension_install_link: "https://chrome.google.com/webstore/detail/meoefjkcilgjlkibnjjlfdgphacbeglk",
+    opera_extension_id: "dnnolmnenehhgplebjhbcmfdbaabkepm",
+    opera_extension_install_link: "https://addons.opera.com/en/extensions/details/3d46d4c36fefe97e76622c54b2eb6ea1d5406767"
 
 }, Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (defaults, event) {
     defaults[event] = function () {};
@@ -4983,93 +5025,93 @@ ZiggeoRecorder.defaultProps = _extends({
 }, {}));
 
 var _initialiseProps = function _initialiseProps() {
-    var _this5 = this;
+    var _this6 = this;
 
     this._ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
         var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
         memo[eventName] = function () {
-            var _props;
+            var _props3;
 
-            (_props = _this5.props)[propName].apply(_props, arguments);
+            (_props3 = _this6.props)[propName].apply(_props3, arguments);
         };
         return memo;
     }, {});
 
     this._buildRecorder = function () {
 
-        _this5.recorder = new ZiggeoApi.V2.Recorder({
-            element: _this5.element,
-            attrs: _this5.ziggeoAttributes
+        _this6.recorder = new ZiggeoApi.V2.Recorder({
+            element: _this6.element,
+            attrs: _this6.ziggeoAttributes
         });
-        _this5.recorder.activate();
+        _this6.recorder.activate();
 
-        Object.entries(_this5._ziggeoEvents).forEach(function (_ref3) {
+        Object.entries(_this6._ziggeoEvents).forEach(function (_ref3) {
             var _ref4 = _slicedToArray(_ref3, 2),
                 event = _ref4[0],
                 func = _ref4[1];
 
-            _this5.recorder.on(event, func);
+            _this6.recorder.on(event, func);
         });
 
-        _this5.props.onRef(_this5);
+        _this6.props.onRef(_this6);
     };
 
     this.recorderInstance = function () {
-        return _this5.recorder;
+        return _this6.recorder;
     };
 
     this.get = function () {
         var _recorder;
 
-        return (_recorder = _this5.recorder).get.apply(_recorder, arguments);
+        return (_recorder = _this6.recorder).get.apply(_recorder, arguments);
     };
 
     this.play = function () {
         var _recorder2;
 
-        return (_recorder2 = _this5.recorder).play.apply(_recorder2, arguments);
+        return (_recorder2 = _this6.recorder).play.apply(_recorder2, arguments);
     };
 
     this.record = function () {
         var _recorder3;
 
-        return (_recorder3 = _this5.recorder).record.apply(_recorder3, arguments);
+        return (_recorder3 = _this6.recorder).record.apply(_recorder3, arguments);
     };
 
     this.upload = function () {
         var _recorder4;
 
-        return (_recorder4 = _this5.recorder).upload.apply(_recorder4, arguments);
+        return (_recorder4 = _this6.recorder).upload.apply(_recorder4, arguments);
     };
 
     this.rerecord = function () {
         var _recorder5;
 
-        return (_recorder5 = _this5.recorder).rerecord.apply(_recorder5, arguments);
+        return (_recorder5 = _this6.recorder).rerecord.apply(_recorder5, arguments);
     };
 
     this.stop = function () {
         var _recorder6;
 
-        return (_recorder6 = _this5.recorder).stop.apply(_recorder6, arguments);
+        return (_recorder6 = _this6.recorder).stop.apply(_recorder6, arguments);
     };
 
     this.hidePopup = function () {
         var _recorder7;
 
-        return (_recorder7 = _this5.recorder).hidePopup.apply(_recorder7, arguments);
+        return (_recorder7 = _this6.recorder).hidePopup.apply(_recorder7, arguments);
     };
 
     this.reset = function () {
         var _recorder8;
 
-        return (_recorder8 = _this5.recorder).reset.apply(_recorder8, arguments);
+        return (_recorder8 = _this6.recorder).reset.apply(_recorder8, arguments);
     };
 
     this.onStateChanged = function () {
         var _recorder9;
 
-        return (_recorder9 = _this5.recorder).onStateChanged.apply(_recorder9, arguments);
+        return (_recorder9 = _this6.recorder).onStateChanged.apply(_recorder9, arguments);
     };
 };
 
