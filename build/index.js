@@ -4820,7 +4820,6 @@ var ZiggeoRecorder = function (_React$Component) {
 
             if (allowscreen) {
                 this.options = this._applicationOptions;
-                console.log('allow screen', this.options);
             }
 
             this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
