@@ -286,3 +286,10 @@ export const ziggeoApiEventsPropTypes = {
 export const reactCustomOptions = {
     preventReRenderOnUpdate: bool
 };
+
+export const screenRecorderOptions = {
+    chrome_extension_id: string,
+    chrome_extension_install_link: string,
+    opera_extension_id: string,
+    opera_extension_install_link: string
+};

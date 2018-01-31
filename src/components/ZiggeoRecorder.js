@@ -2,7 +2,7 @@
 import React from 'react';
 import {
     reactCustomOptions, ziggeoRecorderAttributesPropTypes,
-    ziggeoRecorderEmbeddingEventsPropTypes
+    ziggeoRecorderEmbeddingEventsPropTypes, screenRecorderOptions
 } from '../constants';
 import { string, bool, arrayOf, func  } from 'prop-types';
 
@@ -10,11 +10,13 @@ export default class ZiggeoRecorder extends React.Component {
 
     static recorder = null;
     static application = null;
+    static applicationOptions = {};
 
 	static propTypes = {
 		apiKey:	string.isRequired,
 		...ziggeoRecorderAttributesPropTypes,
 		...ziggeoRecorderEmbeddingEventsPropTypes,
+        ...screenRecorderOptions,
         ...reactCustomOptions
 	};
 
@@ -48,6 +50,13 @@ export default class ZiggeoRecorder extends React.Component {
         // only react related options
         'preventReRenderOnUpdate': true,
 
+        // screen configuration for Ziggeo extension
+        "allowscreen": false,
+        chrome_extension_id: "meoefjkcilgjlkibnjjlfdgphacbeglk",
+        chrome_extension_install_link: "https://chrome.google.com/webstore/detail/meoefjkcilgjlkibnjjlfdgphacbeglk",
+        opera_extension_id: "dnnolmnenehhgplebjhbcmfdbaabkepm",
+        opera_extension_install_link: "https://addons.opera.com/en/extensions/details/3d46d4c36fefe97e76622c54b2eb6ea1d5406767",
+
 		// Default events to no-op
 		...Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((defaults, event) => {
 			defaults[event] = () => {};
@@ -56,8 +65,13 @@ export default class ZiggeoRecorder extends React.Component {
 	};
 
 	componentWillMount () {
-        const { apiKey } = this.props;
-        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+        const { apiKey, allowscreen } = this.props;
+
+        if(allowscreen) {
+            this.options = this._applicationOptions;
+        }
+
+        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
     }
 
 	componentDidMount () {
@@ -74,8 +88,13 @@ export default class ZiggeoRecorder extends React.Component {
     componentWillUpdate (nextState) {
         this.props.onRef(undefined);
         this.recorder.destroy();
-        const { apiKey } = this.props;
-        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+        const { apiKey, allowscreen } = this.props;
+
+        if(allowscreen) {
+            this.options = this._applicationOptions;
+        }
+
+        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
     }
 
     componentDidUpdate (prevState) {
@@ -116,6 +135,14 @@ export default class ZiggeoRecorder extends React.Component {
             props[k] = this.props[k];
             return props;
         }, {});
+    }
+
+    get _applicationOptions () {
+        return Object.keys(this.props)
+            .filter(k => screenRecorderOptions[k]).reduce((props, k) => {
+                props[k] = this.props[k];
+                return props;
+            }, {});
     }
 
     _buildRecorder = () => {
