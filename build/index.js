@@ -1,3 +1,10 @@
+/**
+ * react-ziggeo - Ziggeo's react component for easy react application deployment
+ * @version v2.3.1
+ * @author undefined
+ * @link https://ziggeo.com
+ * @license Apache-2.0
+ */
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("react"));

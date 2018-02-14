@@ -2,6 +2,9 @@ var path = require('path');
 var isProduction = process.env.NODE_ENV === 'production';
 var webpack = require('webpack');
 var ignore = new webpack.IgnorePlugin(new RegExp("/(ziggeo-client-sdk)/"));
+var fs = require('fs');
+
+const pkg = JSON.parse(fs.readFileSync('./package.json').toString());
 
 module.exports = {
     devtool: 'source-map',
@@ -17,7 +20,21 @@ module.exports = {
         publicPath: '/static/'
     },
     plugins: [
-        ignore
+        ignore,
+        new webpack.BannerPlugin({
+            banner: `
+/**
+ * ${pkg.name} - ${pkg.description}
+ * @version v${pkg.version}
+ * @author ${pkg.author.name}
+ * @link ${pkg.homepage}
+ * @license ${pkg.license}
+ */
+      `.trim(),
+            raw: true,
+            entryOnly: true
+        })
+
     ],
     node: {
         fs: 'empty'
