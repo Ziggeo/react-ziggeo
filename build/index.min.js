@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v2.3.1
+ * @version v2.4.0
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
