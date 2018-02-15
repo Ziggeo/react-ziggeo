@@ -1,7 +1,7 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
  * @version v2.3.1
- * @author undefined
+ * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
  */
@@ -3147,7 +3147,7 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.screenRecorderOptions = exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+exports.screenRecorderOptions = exports.ziggeoApplicationOptions = exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
 
 var _propTypes = __webpack_require__(93);
 
@@ -3436,12 +3436,20 @@ var reactCustomOptions = exports.reactCustomOptions = {
     preventReRenderOnUpdate: _propTypes.bool
 };
 
-var screenRecorderOptions = exports.screenRecorderOptions = {
+var ziggeoApplicationOptions = exports.ziggeoApplicationOptions = {
+    // application options
+    webrtc_streaming: _propTypes.bool,
+    debug: _propTypes.bool,
+    testing_application: _propTypes.bool,
+
+    // screenoptions
     chrome_extension_id: _propTypes.string,
     chrome_extension_install_link: _propTypes.string,
     opera_extension_id: _propTypes.string,
     opera_extension_install_link: _propTypes.string
 };
+
+var screenRecorderOptions = exports.screenRecorderOptions = {};
 
 /***/ }),
 /* 97 */
@@ -4820,16 +4828,15 @@ var ZiggeoRecorder = function (_React$Component) {
     _createClass(ZiggeoRecorder, [{
         key: 'componentWillMount',
         value: function componentWillMount() {
-            var _props = this.props,
-                apiKey = _props.apiKey,
-                allowscreen = _props.allowscreen;
+            var apiKey = this.props.apiKey;
 
-
-            if (allowscreen) {
-                this.options = this._applicationOptions;
+            try {
+                this.initApplication(apiKey, function (application, context) {
+                    context.application = application;
+                }, this);
+            } catch (e) {
+                console.warn(e);
             }
-
-            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
         }
     }, {
         key: 'componentDidMount',
@@ -4853,16 +4860,16 @@ var ZiggeoRecorder = function (_React$Component) {
         value: function componentWillUpdate(nextState) {
             this.props.onRef(undefined);
             this.recorder.destroy();
-            var _props2 = this.props,
-                apiKey = _props2.apiKey,
-                allowscreen = _props2.allowscreen;
+            var apiKey = this.props.apiKey;
 
 
-            if (allowscreen) {
-                this.options = this._applicationOptions;
+            try {
+                this.initApplication(apiKey, function (application, context) {
+                    context.application = application;
+                }, this);
+            } catch (e) {
+                console.warn(e);
             }
-
-            this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey, this.options);
         }
     }, {
         key: 'componentDidUpdate',
@@ -4886,6 +4893,12 @@ var ZiggeoRecorder = function (_React$Component) {
             return _react2.default.createElement('div', _extends({ ref: function ref(e) {
                     _this2.element = e;
                 } }, this._elementProps));
+        }
+    }, {
+        key: 'initApplication',
+        value: function initApplication(apiKey, callback, context) {
+            var application = ZiggeoApi.V2.Application.instanceByToken(apiKey, context._applicationOptions);
+            if (application) callback(application, context);else throw new Error("Can't initialize application");
         }
     }, {
         key: 'ziggeoAttributes',
@@ -4920,7 +4933,7 @@ var ZiggeoRecorder = function (_React$Component) {
             var _this5 = this;
 
             return Object.keys(this.props).filter(function (k) {
-                return _constants.screenRecorderOptions[k];
+                return _constants.ziggeoApplicationOptions[k];
             }).reduce(function (props, k) {
                 props[k] = _this5.props[k];
                 return props;
@@ -4987,7 +5000,7 @@ ZiggeoRecorder.application = null;
 ZiggeoRecorder.applicationOptions = {};
 ZiggeoRecorder.propTypes = _extends({
     apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.screenRecorderOptions, _constants.reactCustomOptions);
+}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.ziggeoApplicationOptions, _constants.reactCustomOptions);
 ZiggeoRecorder.defaultProps = _extends({
     // Presentational parameters
     'width': 640,
@@ -5018,6 +5031,11 @@ ZiggeoRecorder.defaultProps = _extends({
     // only react related options
     'preventReRenderOnUpdate': true,
 
+    // application settings
+    webrtc_streaming: false,
+    debug: false,
+    testing_application: false,
+
     // screen configuration for Ziggeo extension
     "allowscreen": false,
     chrome_extension_id: "meoefjkcilgjlkibnjjlfdgphacbeglk",
@@ -5036,9 +5054,9 @@ var _initialiseProps = function _initialiseProps() {
     this._ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
         var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
         memo[eventName] = function () {
-            var _props3;
+            var _props;
 
-            (_props3 = _this6.props)[propName].apply(_props3, arguments);
+            (_props = _this6.props)[propName].apply(_props, arguments);
         };
         return memo;
     }, {});

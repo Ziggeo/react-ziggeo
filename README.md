@@ -198,3 +198,6 @@ There are some issues with when being called right after initialization.
 React SDK supports all of the following events and parameters:
 - [Ziggeo Available Parameters](https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters)
 - [Ziggeo Available Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/events)
+
+#### Changelog:
+- v2.4.0 added application option manageability `webrtc_streaming`, by default `false`
