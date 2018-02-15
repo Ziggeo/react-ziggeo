@@ -287,9 +287,18 @@ export const reactCustomOptions = {
     preventReRenderOnUpdate: bool
 };
 
-export const screenRecorderOptions = {
+export const ziggeoApplicationOptions = {
+    // application options
+    webrtc_streaming: bool,
+    debug: bool,
+    testing_application: bool,
+
+    // screenoptions
     chrome_extension_id: string,
     chrome_extension_install_link: string,
     opera_extension_id: string,
     opera_extension_install_link: string
+};
+
+export const screenRecorderOptions = {
 };
