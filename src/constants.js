@@ -287,9 +287,10 @@ export const reactCustomOptions = {
     preventReRenderOnUpdate: bool
 };
 
-export const ziggeoApplicationOptions = {
+export const ziggeoRecorderApplicationOptions = {
     // application options
     webrtc_streaming: bool,
+    auth: bool,
     debug: bool,
     testing_application: bool,
 
@@ -298,6 +299,13 @@ export const ziggeoApplicationOptions = {
     chrome_extension_install_link: string,
     opera_extension_id: string,
     opera_extension_install_link: string
+};
+
+export const ziggeoPlayerApplicationOptions = {
+    // application options
+    debug: bool,
+    testing_application: bool,
+    auth: bool
 };
 
 export const screenRecorderOptions = {

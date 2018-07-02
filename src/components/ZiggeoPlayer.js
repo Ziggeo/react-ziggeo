@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes,
-    ziggeoApiEventsPropTypes, reactCustomOptions
+    ziggeoPlayerApplicationOptions, reactCustomOptions
 } from '../constants';
 import { string, bool, arrayOf, func } from 'prop-types';
 
@@ -15,6 +15,7 @@ export default class ZiggeoPlayer extends Component {
         apiKey:	string.isRequired,
         ...ziggeoPlayerAttributesPropTypes,
         ...ziggeoPlayerEmbeddingEventsPropTypes,
+        ...ziggeoPlayerApplicationOptions,
         ...reactCustomOptions
     };
 
@@ -37,8 +38,13 @@ export default class ZiggeoPlayer extends Component {
     };
 
     componentWillMount() {
-        const { apiKey } = this.props;
-        this.application = ZiggeoApi.V2.Application.instanceByToken(apiKey);
+        try {
+            this.initApplication(function(application, context) {
+                context.application = application;
+            }, this);
+        } catch (e) {
+            console.warn(e);
+        }
     }
 
     // Trigger when state is changes
@@ -84,6 +90,14 @@ export default class ZiggeoPlayer extends Component {
         return <div ref={e => { this.element = e ; }} {...this._elementProps}></div>;
     };
 
+    get _applicationOptions () {
+        return Object.keys(this.props)
+            .filter(k => ziggeoPlayerApplicationOptions[k]).reduce((props, k) => {
+                props[k] = this.props[k];
+                return props;
+            }, {});
+    }
+
     _buildPlayer = () => {
         if (this.player) this.player.destroy();
 
@@ -108,6 +122,24 @@ export default class ZiggeoPlayer extends Component {
         };
         return memo;
     }, {});
+
+    initApplication (callback, context) {
+        const { apiKey, locale, flashUrl } = this.props;
+
+        // Set locale
+        if (typeof locale !== "undefined")
+            ZiggeoApi.V2.Locale.setLocale(locale);
+
+        // Set external flash player
+        if (typeof flashUrl !== "undefined")
+            ZiggeoApi.V2.Config.set("flash", flashUrl);
+
+        let application = ZiggeoApi.V2.Application.instanceByToken(apiKey, context._applicationOptions);
+        if (application)
+            callback(application, context);
+        else
+            throw new Error("Can't initialize application");
+    }
 
     get _ziggeoAttributes () {
         return Object.keys(this.props).filter(k => ziggeoPlayerAttributesPropTypes[k]).reduce((props, k) => {
