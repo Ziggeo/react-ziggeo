@@ -200,4 +200,10 @@ React SDK supports all of the following events and parameters:
 - [Ziggeo Available Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/events)
 
 #### Changelog:
-- v2.4.0 added application option manageability `webrtc_streaming`, by default `false`
+- v2.4.0 added application option manageability `webrtc_streaming`, by default `false` <br/>
+
+- v3.0.0 Upgraded to Ziggeo R31 stable version
+    -- Added locale support. Example: `locale={'de'}`
+    -- Added auth support `auth={true}`
+    -- Added possibility to set out `flashUrl={'flash-url'}`
+
