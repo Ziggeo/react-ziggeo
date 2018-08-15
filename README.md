@@ -14,8 +14,8 @@ import {ZiggeoRecorder} from 'react-ziggeo'
         console.log('Recorder onRecording');
     };
 
-    recorderUploaded = () => {
-        console.log('Recorder onUploaded');
+    recorderUploading = () => {
+        console.log('Recorder uploading');
     };
  
 ...
