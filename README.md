@@ -207,3 +207,4 @@ React SDK supports all of the following events and parameters:
     -- Added auth support `auth={true}`
     -- Added possibility to set out `flashUrl={'flash-url'}`
 
+- v3.1.0 Added `ready_to_play` embedding event to Player and made minor structure changes

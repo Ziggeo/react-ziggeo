@@ -2,7 +2,7 @@
 import React from 'react';
 import {
     reactCustomOptions, ziggeoRecorderAttributesPropTypes,
-    ziggeoRecorderEmbeddingEventsPropTypes, ziggeoRecorderApplicationOptions
+    ziggeoRecorderEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes, ziggeoRecorderApplicationOptions
 } from '../constants';
 import { string, bool, arrayOf, func, object  } from 'prop-types';
 
@@ -16,6 +16,7 @@ export default class ZiggeoRecorder extends React.Component {
         apiKey:	string.isRequired,
         ...ziggeoRecorderAttributesPropTypes,
         ...ziggeoRecorderEmbeddingEventsPropTypes,
+        ...ziggeoCommonEmbeddingEventsPropTypes,
         ...ziggeoRecorderApplicationOptions,
         ...reactCustomOptions
     };
@@ -64,7 +65,7 @@ export default class ZiggeoRecorder extends React.Component {
         opera_extension_install_link: "https://addons.opera.com/en/extensions/details/3d46d4c36fefe97e76622c54b2eb6ea1d5406767",
 
         // Default events to no-op
-        ...Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((defaults, event) => {
+        ...Object.keys(Object.assign(ziggeoRecorderEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes)).reduce((defaults, event) => {
             defaults[event] = () => {};
             return defaults;
         }, {})
@@ -121,7 +122,7 @@ export default class ZiggeoRecorder extends React.Component {
         return <div ref={e => { this.element = e ; }} {...this._elementProps} />;
     }
 
-    _ziggeoEvents = Object.keys(ziggeoRecorderEmbeddingEventsPropTypes).reduce((memo, propName) => {
+    _ziggeoEvents = Object.keys(Object.assign(ziggeoRecorderEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes)).reduce((memo, propName) => {
         const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
             .replace(/(recorder_|player_)/g, '');
         memo[eventName] = (...args) => {

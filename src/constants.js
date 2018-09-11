@@ -188,18 +188,14 @@ export const ziggeoPlayerAttributesPropTypes = {
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=v1-r29
 // application.embed_event.on..
 export const ziggeoRecorderEmbeddingEventsPropTypes = {
-    onAttached: func,
-    onLoaded: func,
     onPlaying: func,
     onPaused: func,
     onEnded: func,
     onSeek: func,
-    onError: func,
     onManuallySubmitted: func,
     onRecordingProgress: func,
     onUploaded: func,
     onUploadSelected: func,
-    onRecording: func,
     onUploading: func,
     onRerecord: func,
     onCountdown: func,
@@ -217,14 +213,19 @@ export const ziggeoRecorderEmbeddingEventsPropTypes = {
 };
 
 export const ziggeoPlayerEmbeddingEventsPropTypes = {
-    onAttached: func,
-    onLoaded: func,
     onPlaying: func,
     onPaused: func,
     onEnded: func,
-    onError: func,
     onSeek: func,
+    onReadyToPlay: func,
     onRef: func
+};
+
+export const ziggeoCommonEmbeddingEventsPropTypes = {
+    onAttached: func,
+    onRecording: func,
+    onLoaded: func,
+    onError: func
 };
 
 // #######################  ZIGGEO METHODS  ##############################
