@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-    ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes,
+    ziggeoPlayerAttributesPropTypes, ziggeoPlayerEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes,
     ziggeoPlayerApplicationOptions, reactCustomOptions
 } from '../constants';
 import { string, bool, arrayOf, func } from 'prop-types';
@@ -15,6 +15,7 @@ export default class ZiggeoPlayer extends Component {
         apiKey:	string.isRequired,
         ...ziggeoPlayerAttributesPropTypes,
         ...ziggeoPlayerEmbeddingEventsPropTypes,
+        ...ziggeoCommonEmbeddingEventsPropTypes,
         ...ziggeoPlayerApplicationOptions,
         ...reactCustomOptions
     };
@@ -31,7 +32,7 @@ export default class ZiggeoPlayer extends Component {
         'preventReRenderOnUpdate': true,
 
         // Default events to no-op
-        ...Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((defaults, event) => {
+        ...Object.keys(Object.assign(ziggeoPlayerEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes)).reduce((defaults, event) => {
             defaults[event] = () => {};
             return defaults;
         }, {})
@@ -114,7 +115,7 @@ export default class ZiggeoPlayer extends Component {
         this.props.onRef(this);
     };
 
-    _ziggeoEvents = Object.keys(ziggeoPlayerEmbeddingEventsPropTypes).reduce((memo, propName) => {
+    _ziggeoEvents = Object.keys(Object.assign(ziggeoPlayerEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes)).reduce((memo, propName) => {
         const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
             .replace(/(recorder_|player_)/g, '');
         memo[eventName] = (...args) => {

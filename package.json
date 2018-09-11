@@ -1,6 +1,6 @@
 {
   "name": "react-ziggeo",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
@@ -42,6 +42,9 @@
   },
   "dependencies": {
     "prop-types": "^15.6.0",
+    "react-bootstrap": "^0.32.4",
+    "react-redux": "^5.0.7",
+    "react-router": "^4.3.1",
     "ziggeo-client-sdk": "2.31.2"
   },
   "devDependencies": {

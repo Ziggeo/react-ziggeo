@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v3.0.0
+ * @version v3.0.1
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -3036,7 +3036,7 @@ module.exports = g;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.screenRecorderOptions = exports.ziggeoPlayerApplicationOptions = exports.ziggeoRecorderApplicationOptions = exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
+exports.screenRecorderOptions = exports.ziggeoPlayerApplicationOptions = exports.ziggeoRecorderApplicationOptions = exports.reactCustomOptions = exports.ziggeoApiEventsPropTypes = exports.ziggeoMethods = exports.ziggeoCommonEmbeddingEventsPropTypes = exports.ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoPlayerAttributesPropTypes = exports.ziggeoRecorderAttributesPropTypes = exports.ziggeoApplicationEvents = undefined;
 
 var _propTypes = __webpack_require__(90);
 
@@ -3227,18 +3227,14 @@ var ziggeoPlayerAttributesPropTypes = exports.ziggeoPlayerAttributesPropTypes = 
 // https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=v1-r29
 // application.embed_event.on..
 var ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEventsPropTypes = {
-    onAttached: _propTypes.func,
-    onLoaded: _propTypes.func,
     onPlaying: _propTypes.func,
     onPaused: _propTypes.func,
     onEnded: _propTypes.func,
     onSeek: _propTypes.func,
-    onError: _propTypes.func,
     onManuallySubmitted: _propTypes.func,
     onRecordingProgress: _propTypes.func,
     onUploaded: _propTypes.func,
     onUploadSelected: _propTypes.func,
-    onRecording: _propTypes.func,
     onUploading: _propTypes.func,
     onRerecord: _propTypes.func,
     onCountdown: _propTypes.func,
@@ -3256,14 +3252,19 @@ var ziggeoRecorderEmbeddingEventsPropTypes = exports.ziggeoRecorderEmbeddingEven
 };
 
 var ziggeoPlayerEmbeddingEventsPropTypes = exports.ziggeoPlayerEmbeddingEventsPropTypes = {
-    onAttached: _propTypes.func,
-    onLoaded: _propTypes.func,
     onPlaying: _propTypes.func,
     onPaused: _propTypes.func,
     onEnded: _propTypes.func,
-    onError: _propTypes.func,
     onSeek: _propTypes.func,
+    onReadyToPlay: _propTypes.func,
     onRef: _propTypes.func
+};
+
+var ziggeoCommonEmbeddingEventsPropTypes = exports.ziggeoCommonEmbeddingEventsPropTypes = {
+    onAttached: _propTypes.func,
+    onRecording: _propTypes.func,
+    onLoaded: _propTypes.func,
+    onError: _propTypes.func
 };
 
 // #######################  ZIGGEO METHODS  ##############################
@@ -4555,7 +4556,7 @@ var ZiggeoPlayer = function (_Component) {
 
 ZiggeoPlayer.propTypes = _extends({
     apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoPlayerAttributesPropTypes, _constants.ziggeoPlayerEmbeddingEventsPropTypes, _constants.ziggeoPlayerApplicationOptions, _constants.reactCustomOptions);
+}, _constants.ziggeoPlayerAttributesPropTypes, _constants.ziggeoPlayerEmbeddingEventsPropTypes, _constants.ziggeoCommonEmbeddingEventsPropTypes, _constants.ziggeoPlayerApplicationOptions, _constants.reactCustomOptions);
 ZiggeoPlayer.defaultProps = _extends({
     // Presentational parameters
     'width': 640,
@@ -4567,7 +4568,7 @@ ZiggeoPlayer.defaultProps = _extends({
     // only react related options
     'preventReRenderOnUpdate': true
 
-}, Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (defaults, event) {
+}, Object.keys(Object.assign(_constants.ziggeoPlayerEmbeddingEventsPropTypes, _constants.ziggeoCommonEmbeddingEventsPropTypes)).reduce(function (defaults, event) {
     defaults[event] = function () {};
     return defaults;
 }, {}));
@@ -4595,7 +4596,7 @@ var _initialiseProps = function _initialiseProps() {
         _this6.props.onRef(_this6);
     };
 
-    this._ziggeoEvents = Object.keys(_constants.ziggeoPlayerEmbeddingEventsPropTypes).reduce(function (memo, propName) {
+    this._ziggeoEvents = Object.keys(Object.assign(_constants.ziggeoPlayerEmbeddingEventsPropTypes, _constants.ziggeoCommonEmbeddingEventsPropTypes)).reduce(function (memo, propName) {
         var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
         memo[eventName] = function () {
             var _props2;
@@ -4870,7 +4871,7 @@ ZiggeoRecorder.application = null;
 ZiggeoRecorder.applicationOptions = {};
 ZiggeoRecorder.propTypes = _extends({
     apiKey: _propTypes.string.isRequired
-}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.ziggeoRecorderApplicationOptions, _constants.reactCustomOptions);
+}, _constants.ziggeoRecorderAttributesPropTypes, _constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.ziggeoCommonEmbeddingEventsPropTypes, _constants.ziggeoRecorderApplicationOptions, _constants.reactCustomOptions);
 ZiggeoRecorder.defaultProps = _extends({
     // Presentational parameters
     'width': 640,
@@ -4914,7 +4915,7 @@ ZiggeoRecorder.defaultProps = _extends({
     opera_extension_id: "dnnolmnenehhgplebjhbcmfdbaabkepm",
     opera_extension_install_link: "https://addons.opera.com/en/extensions/details/3d46d4c36fefe97e76622c54b2eb6ea1d5406767"
 
-}, Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (defaults, event) {
+}, Object.keys(Object.assign(_constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.ziggeoCommonEmbeddingEventsPropTypes)).reduce(function (defaults, event) {
     defaults[event] = function () {};
     return defaults;
 }, {}));
@@ -4922,7 +4923,7 @@ ZiggeoRecorder.defaultProps = _extends({
 var _initialiseProps = function _initialiseProps() {
     var _this6 = this;
 
-    this._ziggeoEvents = Object.keys(_constants.ziggeoRecorderEmbeddingEventsPropTypes).reduce(function (memo, propName) {
+    this._ziggeoEvents = Object.keys(Object.assign(_constants.ziggeoRecorderEmbeddingEventsPropTypes, _constants.ziggeoCommonEmbeddingEventsPropTypes)).reduce(function (memo, propName) {
         var eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3).replace(/(recorder_|player_)/g, '');
         memo[eventName] = function () {
             var _props2;
