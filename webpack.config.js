@@ -9,7 +9,6 @@ const pkg = JSON.parse(fs.readFileSync('./package.json').toString());
 module.exports = {
     devtool: 'source-map',
     entry: [
-        "babel-polyfill",
         './src/index.js'
     ],
     output: {
