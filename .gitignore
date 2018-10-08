@@ -10,6 +10,7 @@
 demo/node_modules
 /dev-demo
 package-lock.json
+yarn.lock
 
 # testing
 /coverage
