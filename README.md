@@ -208,3 +208,6 @@ React SDK supports all of the following events and parameters:
     -- Added possibility to set out `flashUrl={'flash-url'}`
 
 - v3.1.0 Added `ready_to_play` embedding event to Player and made minor structure changes
+- v3.1.1
+Fixed webpack/babel polyfill issue, 'Also fixed Identifier 'e' has already been declared' related bug
+- v3.2.0 Upgraded ziggeo-client SDK to `2.32.7` pre-release version, to fix `FF >62` `TypeError: Argument 1 is not valid for any of the 1-argument overloads of URL.createObjectURL`
