@@ -9,12 +9,12 @@ We have a demo project [here](https://github.com/Ziggeo/react-ziggeo/tree/master
 import React from 'react'
 import {ZiggeoRecorder} from 'react-ziggeo'
 ...
- 
-    recorderRecording = () => {
+    // after react-ziggeo 3.3.0 version embedding argument also accessible
+    recorderRecording = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
         console.log('Recorder onRecording');
     };
 
-    recorderUploading = () => {
+    recorderUploading = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
         console.log('Recorder uploading');
     };
  
@@ -92,13 +92,14 @@ import {ZiggeoPlayer} from 'react-ziggeo'
  
 ...
  
-playing = () => {
-    console.log('it\'s playing, your action here');
-};
+    // after react-ziggeo 3.3.0 version embedding argument also accessible
+    playing = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
+        console.log('it\'s playing, your action here');
+    };
  
-paused = () => {
-    console.log('it\'s paused, your action when pause');
-};
+    paused = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
+        console.log('it\'s paused, your action when pause');
+    };
  
 ...
     <ZiggeoPlayer
@@ -125,6 +126,7 @@ paused = () => {
    - onEnded
    - onError
    - onSeek 
+   - onRef
 ```
 
 #### Extensions
@@ -201,6 +203,7 @@ There are some issues with when being called right after initialization.
 React SDK supports all of the following events and parameters:
 - [Ziggeo Available Parameters](https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters)
 - [Ziggeo Available Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/events)
+- [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
 - v2.4.0 added application option manageability `webrtc_streaming`, by default `false` <br/>
@@ -214,3 +217,4 @@ React SDK supports all of the following events and parameters:
 - v3.1.1
 Fixed webpack/babel polyfill issue, 'Also fixed Identifier 'e' has already been declared' related bug
 - v3.2.0 Upgraded ziggeo-client SDK to `2.32.7` pre-release version, to fix `FF >62` `TypeError: Argument 1 is not valid for any of the 1-argument overloads of URL.createObjectURL`
+- v3.3.0 Added `embedding` argument for each event [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
