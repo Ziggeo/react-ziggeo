@@ -182,7 +182,7 @@ export default class ZiggeoRecorder extends React.Component {
         this.recorder.activate();
 
         Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
-            this.recorder.on(event, func);
+            this.recorder.on(event, func.bind(this, this.recorder.get()));
         });
 
         this.props.onRef(this);

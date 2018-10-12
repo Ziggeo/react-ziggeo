@@ -37,28 +37,31 @@ import {ZiggeoRecorder} from 'react-ziggeo'
 
 ```react2html
    
-   - onPlaying
-   - onPaused
-   - onAttached
-   - onLoaded
-   - onEnded
-   - onSeek 
-   - onError
-   - onManuallySubmitted
-   - onUploaded
-   - onUploadSelected
-   - onRecording
-   - onUploading
-   - onRerecord,
-   - onCountdown,
-   - onRecordingProgress,
-   - onUploadProgress,
-   - onAccessForbidden,
-   - onAccessGranted,
-   - onCameraUnresponsive,
-   - onVerified,
-   - onNoCamera,
-   - onNoMicrophone
+  - onPlaying
+  - onPaused
+  - onAttached
+  - onLoaded
+  - onEnded
+  - onSeek 
+  - onError
+  - onManuallySubmitted
+  - onUploaded
+  - onUploadSelected
+  - onRecording
+  - onUploading
+  - onRerecord
+  - onCountdown
+  - onProcessing
+  - onProcessed
+  - onRecordingProgress
+  - onUploadProgress
+  - onAccessForbidden
+  - onAccessGranted
+  - onCameraUnresponsive
+  - onVerified
+  - onNoCamera
+  - onNoMicrophone
+  - onRef
 ```
 ### Recorder option Screen Recorder
 Screen Capture is currently supported by Firefox, Chrome and Opera.
