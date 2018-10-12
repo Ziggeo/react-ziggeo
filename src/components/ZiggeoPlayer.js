@@ -109,7 +109,7 @@ export default class ZiggeoPlayer extends Component {
         this.player.activate();
 
         Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
-            this.player.on(event, func);
+            this.player.on(event, func.bind(this, this.player.get()));
         });
 
         this.props.onRef(this);
