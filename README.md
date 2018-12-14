@@ -83,6 +83,7 @@ Note: By default Ziggeo Chrome/Opera extension will be set.
         opera_extension_install_link={YOUR_OPERA_EXTENSION_INSTALLATION_LINK}
         ...
     />
+```
 
 ## Video Player
 
@@ -218,3 +219,4 @@ React SDK supports all of the following events and parameters:
 Fixed webpack/babel polyfill issue, 'Also fixed Identifier 'e' has already been declared' related bug
 - v3.2.0 Upgraded ziggeo-client SDK to `2.32.7` pre-release version, to fix `FF >62` `TypeError: Argument 1 is not valid for any of the 1-argument overloads of URL.createObjectURL`
 - v3.3.0 Added `embedding` argument for each event [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
+- v3.4.0 Upgraded ziggeo-client SDK to `~2.33.0` version, to fix only-audio bug

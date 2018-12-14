@@ -28,7 +28,7 @@ module.exports = {
  * @author ${pkg.author.name}
  * @link ${pkg.homepage}
  * @license ${pkg.license}
- * @version of Ziggeo ${pkg.dependencies['ziggeo-client-sdk']}
+ * @version of Ziggeo ${pkg.devDependencies['ziggeo-client-sdk']}
  */
       `.trim(),
             raw: true,
