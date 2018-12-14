@@ -1,6 +1,6 @@
 {
   "name": "react-ziggeo",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
@@ -41,8 +41,7 @@
     "react-dom": ">=15.3.2"
   },
   "dependencies": {
-    "prop-types": "^15.6.0",
-    "ziggeo-client-sdk": "2.32.7"
+    "prop-types": "^15.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.13.2",
@@ -56,6 +55,7 @@
     "postcss-cli": "^4.1.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
-    "webpack": "^2.0.0"
+    "webpack": "^2.0.0",
+    "ziggeo-client-sdk": "~2.33.0"
   }
 }
