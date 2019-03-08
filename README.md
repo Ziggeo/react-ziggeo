@@ -175,7 +175,7 @@ Now you can call built-in methods:
     this.child.pause();
     this.child.stop();
     this.child.seek(seconds);
-    this.child.set_volume(volume_level_1_to_100);
+    this.child.set_volume(volume_level_0.00_to_1.00);
 ```
 Also you can also obtain an instance:
 ```
