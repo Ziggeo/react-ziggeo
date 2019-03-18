@@ -207,6 +207,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
+- v2.5.1 babel was upgraded to version 7.*
 - v2.4.1 added application option manageability `webrtc_on_mobile` & `webrtc_streaming_if_necessary`, by default both are `false` <br/>
 - v2.4.0 added application option manageability `webrtc_streaming`, by default `false` <br/>
 
