@@ -53,6 +53,8 @@ export default class ZiggeoRecorder extends React.Component {
 
         // application settings
         webrtc_streaming: false,
+        webrtc_streaming_if_necessary: false,
+        webrtc_on_mobile: false,
         auth: false,
         debug: false,
         testing_application: false,

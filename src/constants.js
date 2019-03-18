@@ -291,6 +291,8 @@ export const reactCustomOptions = {
 export const ziggeoRecorderApplicationOptions = {
     // application options
     webrtc_streaming: bool,
+    webrtc_streaming_if_necessary: bool,
+    webrtc_on_mobile: bool,
     auth: bool,
     debug: bool,
     testing_application: bool,

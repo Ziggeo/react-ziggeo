@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v3.4.0
+ * @version v3.4.1
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -3441,6 +3441,8 @@ var reactCustomOptions = exports.reactCustomOptions = {
 var ziggeoRecorderApplicationOptions = exports.ziggeoRecorderApplicationOptions = {
     // application options
     webrtc_streaming: _propTypes.bool,
+    webrtc_streaming_if_necessary: _propTypes.bool,
+    webrtc_on_mobile: _propTypes.bool,
     auth: _propTypes.bool,
     debug: _propTypes.bool,
     testing_application: _propTypes.bool,
@@ -5052,6 +5054,8 @@ ZiggeoRecorder.defaultProps = _extends({
 
     // application settings
     webrtc_streaming: false,
+    webrtc_streaming_if_necessary: false,
+    webrtc_on_mobile: false,
     auth: false,
     debug: false,
     testing_application: false,
