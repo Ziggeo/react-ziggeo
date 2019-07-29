@@ -61,6 +61,13 @@ export const ziggeoRecorderAttributesPropTypes = {
     'audiobitrate': oneOfType([number, string]),
     'microphone-volume': number,
     'custom-covershots': bool,
+    'pausable': bool,
+    'snapshotfromuploader': bool,
+    'allowmultistreams': bool,
+    'addstreampositionx': number,
+    'addstreampositiony': number,
+    'addstreampositionwidth': number,
+    'addstreampositionheight': number,
 
     // Data parameters
     'tags': arrayOf(string),
