@@ -1,11 +1,12 @@
 {
   "name": "react-ziggeo",
-  "version": "3.5.1",
+  "version": "3.5.2",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
     "start": "concurrently \"npm run dev\"",
     "dev": "webpack-dev-server --hot --inline",
+    "reinstall": "rm -rf node_modules/ package-lock.json && yarn install",
     "build": "npm run build:development && npm run build:production",
     "build:development": "webpack",
     "postbuild:development": "cp node_modules/ziggeo-client-sdk/build/*.swf build && cp node_modules/ziggeo-client-sdk/build/*.png build",
@@ -71,6 +72,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
     "webpack": "^2.0.0",
-    "ziggeo-client-sdk": "^2.34.5"
+    "ziggeo-client-sdk": "^2.34.8",
+    "grunt": "^1.0.4"
   }
 }

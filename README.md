@@ -223,3 +223,4 @@ Fixed webpack/babel polyfill issue, 'Also fixed Identifier 'e' has already been 
 - v3.3.0 Added `embedding` argument for each event [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 - v3.4.0 Upgraded ziggeo-client SDK to `~2.33.0` version, to fix only-audio bug
 - v3.5.1 Upgraded ziggeo-client SDK to `~2.34.5` with new features. Stream Merge ( Like: Screen + Camera), Pausable WebRTC Recorder, Thumbnail generation.
+- v3.5.2 Upgraded ziggeo-client SDK to `~2.34.8` fixed bugs.
