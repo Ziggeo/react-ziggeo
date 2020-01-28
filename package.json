@@ -38,8 +38,8 @@
   },
   "homepage": "https://ziggeo.com",
   "peerDependencies": {
-    "react": ">=15.3.2",
-    "react-dom": ">=15.3.2"
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0"
   },
   "dependencies": {
     "prop-types": "^15.6.0"
