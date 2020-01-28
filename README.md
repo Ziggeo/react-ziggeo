@@ -207,20 +207,18 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
-- v2.5.1 babel was upgraded to version 7.*
-- v2.4.1 added application option manageability `webrtc_on_mobile` & `webrtc_streaming_if_necessary`, by default both are `false` <br/>
-- v2.4.0 added application option manageability `webrtc_streaming`, by default `false` <br/>
-
+- v3.6.0 Upgraded ziggeo-client SDK to `~2.35.0` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
+- v3.5.2 Upgraded ziggeo-client SDK to `~2.34.8` fixed bugs.
+- v3.5.1 Upgraded ziggeo-client SDK to `~2.34.5` with new features. Stream Merge ( Like: Screen + Camera), Pausable WebRTC Recorder, Thumbnail generation.
+- v3.4.0 Upgraded ziggeo-client SDK to `~2.33.0` version, to fix only-audio bug
+- v3.3.0 Added `embedding` argument for each event [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
+- v3.2.0 Upgraded ziggeo-client SDK to `2.32.7` pre-release version, to fix `FF >62` `TypeError: Argument 1 is not valid for any of the 1-argument overloads of URL.createObjectURL`
+- v3.1.0 Added `ready_to_play` embedding event to Player and made minor structure changes
+- v3.1.1 Fixed webpack/babel polyfill issue, 'Also fixed Identifier 'e' has already been declared' related bug
 - v3.0.0 Upgraded to Ziggeo R31 stable version
     -- Added locale support. Example: `locale={'de'}`
     -- Added auth support `auth={true}`
     -- Added possibility to set out `flashUrl={'flash-url'}`
-
-- v3.1.0 Added `ready_to_play` embedding event to Player and made minor structure changes
-- v3.1.1
-Fixed webpack/babel polyfill issue, 'Also fixed Identifier 'e' has already been declared' related bug
-- v3.2.0 Upgraded ziggeo-client SDK to `2.32.7` pre-release version, to fix `FF >62` `TypeError: Argument 1 is not valid for any of the 1-argument overloads of URL.createObjectURL`
-- v3.3.0 Added `embedding` argument for each event [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
-- v3.4.0 Upgraded ziggeo-client SDK to `~2.33.0` version, to fix only-audio bug
-- v3.5.1 Upgraded ziggeo-client SDK to `~2.34.5` with new features. Stream Merge ( Like: Screen + Camera), Pausable WebRTC Recorder, Thumbnail generation.
-- v3.5.2 Upgraded ziggeo-client SDK to `~2.34.8` fixed bugs.
+- v2.5.1 babel was upgraded to version 7.*
+- v2.4.1 added application option manageability `webrtc_on_mobile` & `webrtc_streaming_if_necessary`, by default both are `false` <br/>
+- v2.4.0 added application option manageability `webrtc_streaming`, by default `false` <br/>

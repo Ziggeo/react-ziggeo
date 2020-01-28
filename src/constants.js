@@ -28,11 +28,14 @@ export const ziggeoRecorderAttributesPropTypes = {
     'gallerysnapshots': number,
     'localplayback': bool,
     'stretch': bool,
+    'stretchwidth': bool,
+    'stretchheight': bool,
     'theme': string,
     'themecolor': string,
     'autorecord': bool,
     'primaryrecord': bool,
     'flip-camera': bool,
+    "flipscreen": bool, // Will affect as true, if flip-camera also set as true
     'early-rerecord': bool,
     'sharevideo':	arrayOf(string),
 
@@ -44,10 +47,16 @@ export const ziggeoRecorderAttributesPropTypes = {
     // Video management parameters
     'recordingwidth': number,
     'recordingheight': number,
+    'minuploadingwidth': number,
+    'maxuploadingwidth': number,
+    'minuploadingheight': number,
+    'maxuploadingheight': number,
     'video': string,
     'auto-crop': bool,
     'auto-pad': bool,
     'key': string,
+    "rtmpstreamtype": string,
+    "rtmpmicrophonecodec": string,
     'timelimit': number,
     'timeminlimit': number,
     'video-profile': oneOfType([string, arrayOf(string)]),
@@ -57,6 +66,8 @@ export const ziggeoRecorderAttributesPropTypes = {
     'noaudio': bool,
     'source':	string,
     'framerate': number,
+    'framerate-warning': string,
+    'snapshottype': string,
     'videobitrate': oneOfType([number, string]),
     'audiobitrate': oneOfType([number, string]),
     'microphone-volume': number,
@@ -64,10 +75,17 @@ export const ziggeoRecorderAttributesPropTypes = {
     'pausable': bool,
     'snapshotfromuploader': bool,
     'allowmultistreams': bool,
+    'multistreamreversable': bool,
+    'multistreamdraggable': bool,
+    'multistreamresizeable': bool,
+    'addstreamproportional': bool,
     'addstreampositionx': number,
     'addstreampositiony': number,
     'addstreampositionwidth': number,
     'addstreampositionheight': number,
+    'addstreamminwidth': number,
+    'addstreamminheight': number,
+
 
     // Data parameters
     'tags': arrayOf(string),
@@ -81,6 +99,7 @@ export const ziggeoRecorderAttributesPropTypes = {
     'allowupload': bool,
     'allowscreen': bool,
     'allowrecord':	bool,
+    'display-timer': bool,
     'force-overwrite':	bool,
     'autoplay': bool,
     'recordings':	number,
@@ -90,6 +109,13 @@ export const ziggeoRecorderAttributesPropTypes = {
     'flashincognitosupport': bool,
     'simulate': bool,
     'allowcustomupload': bool,
+    'manual-upload': bool,
+    'camerafacefront': bool,
+    'createthumbnails': bool,
+    'skipseconds': number,
+    'tracktagsstyled': bool,
+    'showsettingsmenu': bool, // As a property show/hide from users
+    'hidevolumebar': bool,
     'recordermode': bool,
     'forceflash': bool,
     'noflash': bool,
@@ -108,6 +134,9 @@ export const ziggeoRecorderAttributesPropTypes = {
     'delete-old-streams': bool,
     'lazy-application': bool,
     'allowcancel': bool,
+    'orientation': bool,
+    'popup': bool,
+    'popup-stretch': bool,
 
     // Form and HTML parameters
     'input-bind': string,
@@ -133,6 +162,13 @@ export const ziggeoPlayerAttributesPropTypes = {
     // Security parameters
     'server-auth': string,
     'client-auth': string,
+    'stretch': bool,
+    'popup-stretch': bool,
+    'hideoninactivity': bool,
+    'hidebarafter': number, // in milliseconds
+    'preventinteraction': bool,
+    'stretchwidth': bool,
+    'stretchheight': bool,
 
     // Video management parameters
     'video': string.isRequired,
@@ -140,6 +176,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     'effect-profile': oneOfType([string, arrayOf(string)]),
     'video-profile': oneOfType([string, arrayOf(string)]),
     'noaudio': bool,
+    'poster': string,
     'source':	string,
     'framerate': number,
     'videobitrate': oneOfType([number, string]),
@@ -152,6 +189,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     'description': string,
 
     // Operational parameters
+    'allowpip': false, // Disable Picture-In-Picture by default
     'autoplay': bool,
     'application':	string,
     'flashincognitosupport': bool,

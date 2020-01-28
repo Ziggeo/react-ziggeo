@@ -4584,6 +4584,7 @@ yargs@~3.10.0:
     decamelize "^1.0.0"
     window-size "0.1.0"
 
-ziggeo-client-sdk@^2.34.8:
-  version "2.34.8"
-  resolved "https://registry.yarnpkg.com/ziggeo-client-sdk/-/ziggeo-client-sdk-2.34.8.tgz#0d9eae911d56f7df458cc6f065e58ab8bed897e7"
+ziggeo-client-sdk@^2.35.0:
+  version "2.35.0"
+  resolved "https://registry.yarnpkg.com/ziggeo-client-sdk/-/ziggeo-client-sdk-2.35.0.tgz#328385f4fbe28642d1a22b2cae37a395f78f3149"
+  integrity sha512-+XnGjPiwBGwvW+w1RziXUQYjBrLsVJ5fM3mAXFEtMv5EAjh8WmXkyiy9xzMXT3S3Y4zNyFaW9oy8WuIdjgQrow==

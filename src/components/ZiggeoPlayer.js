@@ -27,6 +27,9 @@ export default class ZiggeoPlayer extends Component {
         'picksnapshots': true,
         'theme': 'default',
         'themecolor': 'default',
+        'hidebarafter': 5000, // in milliseconds
+        'skipseconds': 5, // in seconds
+        'tracktagsstyled': true,
 
         // only react related options
         'preventReRenderOnUpdate': true,
