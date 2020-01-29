@@ -207,7 +207,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
-- v3.6.0 Upgraded ziggeo-client SDK to `~2.35.0` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
+- v3.6.1 Upgraded ziggeo-client SDK to `~2.35.2` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
 - v3.5.2 Upgraded ziggeo-client SDK to `~2.34.8` fixed bugs.
 - v3.5.1 Upgraded ziggeo-client SDK to `~2.34.5` with new features. Stream Merge ( Like: Screen + Camera), Pausable WebRTC Recorder, Thumbnail generation.
 - v3.4.0 Upgraded ziggeo-client SDK to `~2.33.0` version, to fix only-audio bug

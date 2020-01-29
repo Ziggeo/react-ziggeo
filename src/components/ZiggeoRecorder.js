@@ -87,7 +87,8 @@ export default class ZiggeoRecorder extends React.Component {
         }, {})
     };
 
-    componentWillMount () {
+    constructor(props) {
+        super(props);
         try {
             this.initApplication(function(application, context) {
                 context.application = application;
@@ -108,7 +109,7 @@ export default class ZiggeoRecorder extends React.Component {
         return !preventReRenderOnUpdate;
     }
 
-    componentWillUpdate (nextState) {
+    UNSAFE_componentWillUpdate (nextState) {
         this.props.onRef(undefined);
         this.recorder.destroy();
 
@@ -119,7 +120,6 @@ export default class ZiggeoRecorder extends React.Component {
         } catch (e) {
             console.warn(e);
         }
-
     }
 
     componentDidUpdate (prevState) {

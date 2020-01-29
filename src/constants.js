@@ -86,7 +86,6 @@ export const ziggeoRecorderAttributesPropTypes = {
     'addstreamminwidth': number,
     'addstreamminheight': number,
 
-
     // Data parameters
     'tags': arrayOf(string),
     'custom-data':	object,
@@ -113,7 +112,6 @@ export const ziggeoRecorderAttributesPropTypes = {
     'camerafacefront': bool,
     'createthumbnails': bool,
     'skipseconds': number,
-    'tracktagsstyled': bool,
     'showsettingsmenu': bool, // As a property show/hide from users
     'hidevolumebar': bool,
     'recordermode': bool,
@@ -189,7 +187,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     'description': string,
 
     // Operational parameters
-    'allowpip': false, // Disable Picture-In-Picture by default
+    'allowpip': oneOfType([bool, func]), // Disable Picture-In-Picture by default, Has to be boolean. Need present func also because of Ziggeo internally used as function
     'autoplay': bool,
     'application':	string,
     'flashincognitosupport': bool,

@@ -1,17 +1,17 @@
 {
   "name": "react-ziggeo",
-  "version": "3.6.0",
+  "version": "3.6.1",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
     "start": "concurrently \"npm run dev\"",
     "dev": "webpack-dev-server --hot --inline",
-    "reinstall": "rm -rf node_modules/ package-lock.json && yarn install",
+    "reinstall": "rm -rf node_modules/ yarn.lock && yarn install",
     "build": "npm run build:development && npm run build:production",
     "build:development": "webpack",
     "postbuild:development": "cp node_modules/ziggeo-client-sdk/build/*.swf build && cp node_modules/ziggeo-client-sdk/build/*.png build",
     "build:production": "NODE_ENV=production webpack -p",
-    "build:pack": "npm pack",
+    "build:pack": "npm run build && npm pack",
     "rebuild-pack": "rm -rf build/ && npm run build",
     "rebuild-dev-pack": "rm -rf build/ && rm -rf dev-demo/node_modules/react-ziggeo/",
     "rebuild-npm-dev-pack": "rm -rf build/ && rm react-ziggeo-3.5.0.tgz && npm run build && npm pack && rm -rf dev-demo/node_modules/react-ziggeo/",
@@ -38,8 +38,8 @@
   },
   "homepage": "https://ziggeo.com",
   "peerDependencies": {
-    "react": ">=15.3.2",
-    "react-dom": ">=15.3.2"
+    "react": ">=16.3.0",
+    "react-dom": ">=16.3.0"
   },
   "dependencies": {
     "prop-types": "^15.6.0"
@@ -73,6 +73,6 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
     "webpack": "^2.0.0",
-    "ziggeo-client-sdk": "^2.35.0"
+    "ziggeo-client-sdk": "^2.35.2"
   }
 }
