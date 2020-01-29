@@ -51,6 +51,20 @@ export default class ZiggeoRecorder extends React.Component {
         // only react related options
         'preventReRenderOnUpdate': true,
 
+        'display-timer': true,
+        'rtmpstreamtype': 'mp4',
+        'rtmpmicrophonecodec': 'speex',
+
+        'multistreamreversable': true,
+        'multistreamdraggable': true,
+        'addstreamproportional': true,
+        'addstreampositionx': 5,
+        'addstreampositiony': 5,
+        'addstreampositionwidth': 120,
+        'addstreampositionheight': 95,
+        'addstreamminwidth': 120,
+        'addstreamminheight': 95,
+
         // application settings
         webrtc_streaming: false,
         webrtc_streaming_if_necessary: false,
@@ -73,7 +87,8 @@ export default class ZiggeoRecorder extends React.Component {
         }, {})
     };
 
-    componentWillMount () {
+    constructor(props) {
+        super(props);
         try {
             this.initApplication(function(application, context) {
                 context.application = application;
@@ -94,7 +109,7 @@ export default class ZiggeoRecorder extends React.Component {
         return !preventReRenderOnUpdate;
     }
 
-    componentWillUpdate (nextState) {
+    UNSAFE_componentWillUpdate (nextState) {
         this.props.onRef(undefined);
         this.recorder.destroy();
 
@@ -105,7 +120,6 @@ export default class ZiggeoRecorder extends React.Component {
         } catch (e) {
             console.warn(e);
         }
-
     }
 
     componentDidUpdate (prevState) {

@@ -27,6 +27,8 @@ export default class ZiggeoPlayer extends Component {
         'picksnapshots': true,
         'theme': 'default',
         'themecolor': 'default',
+        'hidebarafter': 5000, // in milliseconds
+        'skipseconds': 5, // in seconds
 
         // only react related options
         'preventReRenderOnUpdate': true,
@@ -38,7 +40,8 @@ export default class ZiggeoPlayer extends Component {
         }, {})
     };
 
-    componentWillMount() {
+    constructor(props) {
+        super(props);
         try {
             this.initApplication(function(application, context) {
                 context.application = application;
@@ -60,7 +63,7 @@ export default class ZiggeoPlayer extends Component {
         this._buildPlayer();
     };
 
-    componentWillUpdate (nextProps, nextState) {
+    UNSAFE_componentWillUpdate (nextProps, nextState) {
         // set undefined paren onRef call
         this.props.onRef(undefined);
 
