@@ -1,116 +1,98 @@
 /* globals ZiggeoApi */
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-    reactCustomOptions, ziggeoRecorderAttributesPropTypes,
-    ziggeoRecorderEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes, ziggeoRecorderApplicationOptions
+  reactCustomOptions,
+  ziggeoRecorderAttributesPropTypes,
+  ziggeoRecorderEmbeddingEventsPropTypes,
+  ziggeoCommonEmbeddingEventsPropTypes,
+  ziggeoRecorderApplicationOptions,
+  ziggeoPlayerApplicationOptions
 } from '../constants';
-import { string  } from 'prop-types';
 
-const ZiggeoRecorder = ({ apiKey, locale, flashUrl, ...props }) =>  {
+import withZiggeoApplication from "./withZiggeoApplication";
 
-  let recorder = null;
+const ZiggeoRecorder = ({ app, ...props }) =>  {
 
-    useEffect(() => {
-        try {
-            initApplication(function(app) {
-                const application = app;
-            });
-        } catch (e) {
-            console.warn(e);
-        }
+  const [recorder, setRecorder] = useState(null);
+  const [attributes, setAttributes] = useState(null);
+  const [elementProps, setElementProps] = useState(null);
+  let recorderElement = useRef(null);
 
-        if (recorder)
-            recorder.destroy();
+  useEffect(() => {
+    if (!attributes) {
+      setAttributes(ziggeoAttributes());
+      setElementProps(ziggeoElementProps());
+    }
+    if (recorderElement && attributes) {
+      setRecorder(new ZiggeoApi.V2.Recorder({
+        element: recorderElement.current,
+        attrs: attributes
+      }));
+    }
+  }, [attributes]);
 
-        // Don't include Application initialization, will get this context issue
-        _buildRecorder();
 
-        return () => {
-            // Never call this.application.destroy() !!!
-            // Will receive error 'Cannot read property 'urls' of undefined'
-            useRef(undefined);
+  useEffect(() => {
+    if (recorder) {
+      recorder.activate();
 
-            recorder.destroy();
-        }
+      Object.entries(ziggeoEvents).forEach(([event, func]) => {
+        recorder.on(event, func.bind(ZiggeoRecorder, recorder.get()));
+      });
 
-    }, []);
+      props.onRef(recorder);
+    }
 
-    // Trigger when state is changes
-    // shouldComponentUpdate (nextProps, nextState) {
-    //     const { preventReRenderOnUpdate } = nextProps || true;
-    //     return !preventReRenderOnUpdate;
-    // }
+    return () => { if (recorder) recorder.destroy(); }
 
-     const _ziggeoEvents = Object.keys(Object.assign(ziggeoRecorderEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes)).reduce((memo, propName) => {
-        const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
-            .replace(/(recorder_|player_)/g, '');
-        memo[eventName] = (...args) => {
-            this.props[propName](...args)
-        };
-        return memo;
+  }, [recorder]);
+
+  /**
+   * Set all props defined by user
+   * @returns {{}}
+   */
+  const ziggeoAttributes = () => {
+    return Object.keys(props).filter(k => Object.assign(ziggeoRecorderAttributesPropTypes, ziggeoPlayerApplicationOptions)[k]).reduce((attr, k) => {
+      attr[k] = props[k];
+      return attr;
+    }, {});
+  };
+
+  /**
+   * Include props which are not related to Ziggeo
+   * @returns {{}}
+   */
+  const ziggeoElementProps = () => {
+    return Object.keys(props).filter(k => !ZiggeoRecorder.propTypes[k]).reduce((attr, k) => {
+      attr[k] = props[k];
+      return attr;
+    }, {});
+  };
+
+  /**
+   * Add Related Events
+   * @type {{}}
+   */
+  const ziggeoEvents = Object.keys(Object.assign(ziggeoRecorderEmbeddingEventsPropTypes, ziggeoCommonEmbeddingEventsPropTypes))
+    .reduce((memo, propName) => {
+      const eventName = propName.replace(/([A-Z])/g, '_$1').toLowerCase().slice(3)
+        .replace(/(recorder_|player_)/g, '');
+      memo[eventName] = (...args) => {
+        props[propName](...args)
+      };
+      return memo;
     }, {});
 
+  /**
+   *
+   * @returns Player Instance
+   */
+  const recorderInstance = () => recorder;
 
-    const initApplication = (callback, context) => {
-        // Set locale
-        if (typeof locale !== "undefined")
-            ZiggeoApi.V2.Locale.setLocale(locale);
-
-        // Set external flash player
-        if (typeof flashUrl !== "undefined")
-            ZiggeoApi.V2.Config.set("flash", flashUrl);
-
-        let application = ZiggeoApi.V2.Application.instanceByToken(apiKey, _applicationOptions);
-        if (application)
-            callback(application, context);
-        else
-            throw new Error("Can't initialize application");
-    };
-
-    const ziggeoAttributes = () => {
-        return Object.keys(props).filter(k => ziggeoRecorderAttributesPropTypes[k]).reduce((props, k) => {
-            props[k] = props[k];
-            return props;
-        }, {});
-    };
-
-    // Props which are not related to Ziggeo
-    const _elementProps = () => {
-        return Object.keys(props).filter(k => !this.constructor.propTypes[k]).reduce((props, k) => {
-            props[k] = props[k];
-            return props;
-        }, {});
-    };
-
-    const _applicationOptions = () => {
-        return Object.keys(props)
-            .filter(k => ziggeoRecorderApplicationOptions[k]).reduce((props, k) => {
-                props[k] = props[k];
-                return props;
-            }, {});
-    };
-
-    const _buildRecorder = () => {
-        recorder = new ZiggeoApi.V2.Recorder({
-            element: this.element,
-            attrs: this.ziggeoAttributes
-        });
-        recorder.activate();
-
-        Object.entries(this._ziggeoEvents).forEach(([event, func]) => {
-            recorder.on(event, func.bind(this, this.recorder.get()));
-        });
-
-        props.onRef(this);
-    };
-
-    const recorderInstance = () => recorder;
-
-    return (<div ref={e => { this.element = e ; }} {...this._elementProps} />);
+  return (<div ref={recorderElement} app={app} {...elementProps} />);
 };
 
 ZiggeoRecorder.propTypes = {
-  apiKey:	string.isRequired,
   ...ziggeoRecorderAttributesPropTypes,
   ...ziggeoRecorderEmbeddingEventsPropTypes,
   ...ziggeoCommonEmbeddingEventsPropTypes,
@@ -184,5 +166,13 @@ ZiggeoRecorder.defaultProps = {
   }, {})
 };
 
-export default ZiggeoRecorder;
+export default withZiggeoApplication(ZiggeoRecorder);
 
+// const doesUpdateRequire = (prevProps, nextProps) => {
+//   // const oldApiKey = prevProps['apiKey'];
+//   // const { apiKey } = nextProps;
+//   const { preventReRenderOnUpdate } = nextProps || true;
+//   return !preventReRenderOnUpdate;
+// };
+
+// export default withZiggeoApplication(React.memo(ZiggeoRecorder, doesUpdateRequire));
