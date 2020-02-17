@@ -1,6 +1,8 @@
 ## Ziggeo's React component v2
 (For documentation on v1, see [here](https://github.com/Ziggeo/react-ziggeo/tree/master/docs/v1))
 
+For older versions which are not supporting hooks (react version < 16.8.0) please use versions `react-ziggeo` older versions 4.0.0.
+
 We have a demo project [here](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) for you to clone.
 
 ## Video Recorder
@@ -9,24 +11,36 @@ We have a demo project [here](https://github.com/Ziggeo/react-ziggeo/tree/master
 import React from 'react'
 import {ZiggeoRecorder} from 'react-ziggeo'
 ...
-    // after react-ziggeo 3.3.0 version embedding argument also accessible
-    recorderRecording = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
+    // after react-ziggeo 4.0.0 version hooks are applied, but class Component also supportis
+    // Correct way to access to recorder/player instance is:
+    const [recorder, setRecorder] = useState(null);
+
+    useEffect(() => {
+        if (recorder) {
+            // DO stuff here
+            recorder.on("any_event", function (rec) { ... }, recorder);
+            recorder.get("attribute_name");
+        }
+    }, [recorder]);
+   
+    // Embedding (player/recorder instance) will be the first argument
+    const handleRecorderRecording = (embedding) => {
         console.log('Recorder onRecording');
     };
 
-    recorderUploading = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
+    const handleRecorderUploading = (embedding) => {
         console.log('Recorder uploading');
     };
- 
-...
+
+    ...
  
     <ZiggeoRecorder
         apiKey={API_KEY}
         video={VIDEO_TOKEN}
         height={180}
         width={320}
-        onRecording={this.recorderRecording}
-        onUploading={this.recorderUploading}
+        onRecording={handleRecorderRecording}
+        onUploading={handleRecorderUploading}
     />
  
 ...
@@ -77,6 +91,8 @@ Note: By default Ziggeo Chrome/Opera extension will be set.
         allowscreen={true}
         allowrecord={false} // Optional you can even set it to true
         allowupload={false} // Optional you can even set it to true
+        
+        // starting from version 3.6.1 extensions no more required
         chrome_extension_id={YOUR_CHROME_EXTENSION_ID}
         chrome_extension_install_link={YOUR_CHROME_EXTENSION_INSTALLATION_LINK}
         opera_extension_id={YOUR_OPERA_EXTENSION_ID}
@@ -92,13 +108,21 @@ import React from 'react'
 import {ZiggeoPlayer} from 'react-ziggeo'
  
 ...
- 
-    // after react-ziggeo 3.3.0 version embedding argument also accessible
-    playing = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
+
+    const [player, setPlayer] = useState(null);
+
+    useEffect(() => {
+        if (player) {
+            // DO stuff here
+            player.on("attached", function (embedding) {}, player);
+        }
+    }, [player]);
+...  
+    const phandlePlaying = (embedding) => {
         console.log('it\'s playing, your action here');
     };
  
-    paused = (embedding /* only starting from react-ziggeo 3.3.0 */) => {
+    const phandlePaused = (embedding) => {
         console.log('it\'s paused, your action when pause');
     };
  
@@ -109,8 +133,8 @@ import {ZiggeoPlayer} from 'react-ziggeo'
       theme={'modern'}
       themecolor={'red'}
       skipinitial={false}
-      onPlaying={this.playing}
-      onPaused={this.paused}
+      onPlaying={handlePlaying}
+      onPaused={handlePaused}
       ...
     />
 ...
@@ -139,24 +163,8 @@ Add attribute `onRef={ref => (this.child = ref)}` to obtain access to recorder i
     <ZiggeoRecorder
         apiKey={apiToken}
         onRef={ref => (this.child = ref)}
+        // With Hooks: onRef={ref => (setChild(ref))}
     />
-```
-Now you can call built-in methods:
-```javascript
-    this.child.get(args);
-    this.child.play();
-    this.child.record();
-    this.child.upload();
-    this.child.rerecord();
-    this.child.stop();
-    this.child.hidePopup();
-    this.child.reset();
-```
-Also you can also obtain an instance:
-```
-    let recorderInstance = this.child.recorderInstance();
-    // e.g. call: playerInstance.play();
-    let properties = this.playerInstance.get('propertyName');
 ```
 
 ##### Get Player Instance and invoke `methods`
@@ -167,21 +175,8 @@ Add attribute `onRef={ref => (this.child = ref)}` to obtain access to player ins
         apiKey={apiToken}
         video={videoToken}
         onRef={ref => (this.child = ref)}
+        // With Hooks: onRef={ref => (setChild(ref))}
     />
-```
-Now you can call built-in methods:
-```javascript
-    this.child.play();
-    this.child.pause();
-    this.child.stop();
-    this.child.seek(seconds);
-    this.child.set_volume(volume_level_0.00_to_1.00);
-```
-Also you can also obtain an instance:
-```
-    let playerInstance = this.child.playerInstance();
-    // e.g. call: playerInstance.play();
-    let properties = this.playerInstance.get('propertyName');
 ```
 
 ## Component Options
@@ -196,7 +191,6 @@ By default, components prevent re-rendering the UI with the option `preventReRen
         preventReRenderOnUpdate={false}
     />
 ```
-There are some issues with when being called right after initialization.
 
 
 #### Additional Parameters
@@ -207,7 +201,8 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
-- v3.6.1 Upgraded ziggeo-client SDK to `~2.35.2` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
+- v4.0.0 Upgraded ziggeo-client SDK to `~2.35.4` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
+- v3.6.0 Upgraded ziggeo-client SDK to `~2.35.0` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
 - v3.5.2 Upgraded ziggeo-client SDK to `~2.34.8` fixed bugs.
 - v3.5.1 Upgraded ziggeo-client SDK to `~2.34.5` with new features. Stream Merge ( Like: Screen + Camera), Pausable WebRTC Recorder, Thumbnail generation.
 - v3.4.0 Upgraded ziggeo-client SDK to `~2.33.0` version, to fix only-audio bug
