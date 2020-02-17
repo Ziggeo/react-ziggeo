@@ -1,13 +1,5 @@
 import { string, number, bool, arrayOf, func, array, object, oneOfType } from 'prop-types';
 
-// ####################### Application Events #############################
-// application.embed_event.on..
-export const ziggeoApplicationEvents = {
-    onError: func,
-    onReady: func
-};
-
-
 // ####################### Player/Recorder Attributes #############################
 // When using HTML embed methods, all parameters should be prefixed with ziggeo-
 // https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-r29&javascript-version=v2
@@ -103,7 +95,7 @@ export const ziggeoRecorderAttributesPropTypes = {
     'autoplay': bool,
     'recordings':	number,
     'allowedextensions': arrayOf(string),
-    'application':	string,
+    'application': string, //	oneOfType([object, string]),
     'filesizelimit': number,
     'flashincognitosupport': bool,
     'simulate': bool,
@@ -189,7 +181,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     // Operational parameters
     'allowpip': oneOfType([bool, func]), // Disable Picture-In-Picture by default, Has to be boolean. Need present func also because of Ziggeo internally used as function
     'autoplay': bool,
-    'application':	string,
+    'application': string, // oneOfType([object, string]),
     'flashincognitosupport': bool,
     'forceflash': bool,
     'noflash': bool,
@@ -329,6 +321,13 @@ export const ziggeoApiEventsPropTypes = {
 // #######################  React Common Options  ##############################
 export const reactCustomOptions = {
     preventReRenderOnUpdate: bool
+};
+
+// ####################### Application Events #############################
+// application.embed_event.on..
+export const ziggeoApplicationEvents = {
+    onError: func,
+    onReady: func
 };
 
 export const ziggeoRecorderApplicationOptions = {
