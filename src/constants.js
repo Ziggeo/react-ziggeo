@@ -124,7 +124,7 @@ export const ziggeoRecorderAttributesPropTypes = {
     'delete-old-streams': bool,
     'lazy-application': bool,
     'allowcancel': bool,
-    'orientation': bool,
+    'orientation': string,
     'popup': bool,
     'popup-stretch': bool,
 

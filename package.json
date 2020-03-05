@@ -1,6 +1,6 @@
 {
   "name": "react-ziggeo",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {

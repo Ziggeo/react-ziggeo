@@ -2160,7 +2160,7 @@ var ziggeoRecorderAttributesPropTypes = {
   'delete-old-streams': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'lazy-application': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'allowcancel': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
-  'orientation': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'orientation': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'popup': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'popup-stretch': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   // Form and HTML parameters
