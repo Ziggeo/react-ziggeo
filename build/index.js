@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.0.1
+ * @version v4.0.2
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -3339,15 +3339,15 @@ var withZiggeoApplication = function withZiggeoApplication(WrappedComponent) {
       if (typeof locale !== "undefined") ZiggeoApi.V2.Locale.setLocale(locale); // Set external flash player
 
       if (typeof flashUrl !== "undefined") ZiggeoApi.V2.Config.set("flash", flashUrl);
-      setApp(ZiggeoApi.V2.Application.instanceByToken(apiKey, applicationOptions));
+      setApp(ZiggeoApi.V2.Application.instanceByToken(apiKey, applicationOptions()));
     };
 
     var applicationOptions = function applicationOptions() {
       return Object.keys(restProps).filter(function (k) {
         return __WEBPACK_IMPORTED_MODULE_1__constants__["e" /* ziggeoRecorderApplicationOptions */][k];
-      }).reduce(function (props, k) {
-        props[k] = props[k];
-        return props;
+      }).reduce(function (attr, k) {
+        attr[k] = restProps[k];
+        return attr;
       }, {});
     };
 

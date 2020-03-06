@@ -30,14 +30,14 @@ const withZiggeoApplication = WrappedComponent => {
       if (typeof flashUrl !== "undefined")
         ZiggeoApi.V2.Config.set("flash", flashUrl);
 
-      setApp(ZiggeoApi.V2.Application.instanceByToken(apiKey, applicationOptions));
+      setApp(ZiggeoApi.V2.Application.instanceByToken(apiKey, applicationOptions()));
     };
 
     const applicationOptions = () => {
       return Object.keys(restProps)
-        .filter(k => ziggeoRecorderApplicationOptions[k]).reduce((props, k) => {
-          props[k] = props[k];
-          return props;
+        .filter(k => ziggeoRecorderApplicationOptions[k]).reduce((attr, k) => {
+          attr[k] = restProps[k];
+          return attr;
         }, {});
     };
 
