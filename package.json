@@ -73,6 +73,6 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
     "webpack": "^2.0.0",
-    "ziggeo-client-sdk": "^2.35.4"
+    "ziggeo-client-sdk": "^2.35.5"
   }
 }
