@@ -1,5 +1,9 @@
 import { string, number, bool, arrayOf, func, array, object, oneOfType } from 'prop-types';
 
+// , , , ,
+// , , , , ,
+// , ,
+
 // ####################### Player/Recorder Attributes #############################
 // When using HTML embed methods, all parameters should be prefixed with ziggeo-
 // https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-r29&javascript-version=v2
@@ -30,6 +34,16 @@ export const ziggeoRecorderAttributesPropTypes = {
     "flipscreen": bool, // Will affect as true, if flip-camera also set as true
     'early-rerecord': bool,
     'sharevideo':	arrayOf(string),
+    'transcript-language': string,
+    'allowtexttrackupload': bool,
+    'uploadlocales': array,
+    'audio-test-mandatory':bool,
+    'playermodeifexists': bool,
+    'rerecordableifexists': bool,
+    'preview-effect-profile': string,
+    'popup-width': oneOfType([number, string]),
+    'popup-height': oneOfType([number, string]),
+    'snapshotfrommobilecapture': bool,
 
     // Security parameters
     'server-auth': string,
@@ -148,6 +162,16 @@ export const ziggeoPlayerAttributesPropTypes = {
     'theme': string,
     'themecolor': string,
     'sharevideo':	arrayOf(string),
+    'loop': bool,
+    'loopall': bool,
+    'volume': number,
+    'showduration': bool,
+    'uploadlocales': array,
+    'allowtexttrackupload': bool,
+    'audio-transcription-as-subtitles': bool,
+    'playlist': oneOfType([array, string]),
+    'popup-width': oneOfType([number, string]),
+    'popup-height': oneOfType([number, string]),
 
     // Security parameters
     'server-auth': string,

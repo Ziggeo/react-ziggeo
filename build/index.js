@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.0.3
+ * @version v4.0.5
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -2036,7 +2036,10 @@ module.exports = navigator && navigator.userAgent || '';
 /* unused harmony export screenRecorderOptions */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_prop_types__);
- // ####################### Player/Recorder Attributes #############################
+ // , , , ,
+// , , , , ,
+// , ,
+// ####################### Player/Recorder Attributes #############################
 // When using HTML embed methods, all parameters should be prefixed with ziggeo-
 // https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-r29&javascript-version=v2
 
@@ -2068,6 +2071,16 @@ var ziggeoRecorderAttributesPropTypes = {
   // Will affect as true, if flip-camera also set as true
   'early-rerecord': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'sharevideo': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["arrayOf"])(__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]),
+  'transcript-language': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  'allowtexttrackupload': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'uploadlocales': __WEBPACK_IMPORTED_MODULE_0_prop_types__["array"],
+  'audio-test-mandatory': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'playermodeifexists': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'rerecordableifexists': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'preview-effect-profile': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  'popup-width': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
+  'popup-height': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
+  'snapshotfrommobilecapture': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   // Security parameters
   'server-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'client-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
@@ -2182,6 +2195,16 @@ var ziggeoPlayerAttributesPropTypes = {
   'theme': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'themecolor': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'sharevideo': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["arrayOf"])(__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]),
+  'loop': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'loopall': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'volume': __WEBPACK_IMPORTED_MODULE_0_prop_types__["number"],
+  'showduration': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'uploadlocales': __WEBPACK_IMPORTED_MODULE_0_prop_types__["array"],
+  'allowtexttrackupload': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'audio-transcription-as-subtitles': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'playlist': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["array"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
+  'popup-width': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
+  'popup-height': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
   // Security parameters
   'server-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'client-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
@@ -4932,6 +4955,7 @@ ZiggeoRecorder.defaultProps = _objectSpread({
   'display-timer': true,
   'rtmpstreamtype': 'mp4',
   'rtmpmicrophonecodec': 'speex',
+  'transcript-language': 'en-US',
   'multistreamreversable': true,
   'multistreamdraggable': true,
   'addstreamproportional': true,
