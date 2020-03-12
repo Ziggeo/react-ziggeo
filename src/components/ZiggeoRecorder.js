@@ -133,6 +133,7 @@ ZiggeoRecorder.defaultProps = {
   'display-timer': true,
   'rtmpstreamtype': 'mp4',
   'rtmpmicrophonecodec': 'speex',
+  'transcript-language': 'en-US',
 
   'multistreamreversable': true,
   'multistreamdraggable': true,
