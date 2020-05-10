@@ -41,6 +41,7 @@ import {ZiggeoRecorder} from 'react-ziggeo'
         width={320}
         onRecording={handleRecorderRecording}
         onUploading={handleRecorderUploading}
+        onRef={ref => (setRecorder(ref))}
     />
  
 ...
@@ -135,6 +136,7 @@ import {ZiggeoPlayer} from 'react-ziggeo'
       skipinitial={false}
       onPlaying={handlePlaying}
       onPaused={handlePaused}
+      onRef={ref => (setPlayer(ref))}
       ...
     />
 ...
@@ -163,7 +165,7 @@ Add attribute `onRef={ref => (this.child = ref)}` to obtain access to recorder i
     <ZiggeoRecorder
         apiKey={apiToken}
         onRef={ref => (this.child = ref)}
-        // With Hooks: onRef={ref => (setChild(ref))}
+        // With Hooks: onRef={ref => (setRecorder(ref))}
     />
 ```
 
@@ -175,7 +177,7 @@ Add attribute `onRef={ref => (this.child = ref)}` to obtain access to player ins
         apiKey={apiToken}
         video={videoToken}
         onRef={ref => (this.child = ref)}
-        // With Hooks: onRef={ref => (setChild(ref))}
+        // With Hooks: onRef={ref => (setPlayer(ref))}
     />
 ```
 
