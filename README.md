@@ -194,6 +194,9 @@ By default, components prevent re-rendering the UI with the option `preventReRen
     />
 ```
 
+## Fix Safari Flash Player
+In case is you have error with launching recorder in Safari please add settings below:
+`webrtc_streaming_if_necessary={true}`
 
 #### Additional Parameters
 
