@@ -181,6 +181,10 @@ Add attribute `onRef={ref => (this.child = ref)}` to obtain access to player ins
     />
 ```
 
+## Adding Localization
+`locale={'locale_short_code'}` 
+[More info about localization](https://ziggeo.com/docs/sdks/javascript/browser-integration/localization)
+
 ## Component Options
 ```javascript
     preventReRenderOnUpdate={boolean} // default is true
