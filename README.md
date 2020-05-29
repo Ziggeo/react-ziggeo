@@ -182,7 +182,17 @@ Add attribute `onRef={ref => (this.child = ref)}` to obtain access to player ins
 ```
 
 ## Adding Localization
-`locale={'locale_short_code'}` 
+`locale={'locale_short_code'}`  <br/>
+Or you can change any text with your locale:
+```jsx
+    mediaLocales={[
+        {
+            register: {"ba-videorecorder-chooser.record-video": "Rec"}, // Any object you want to touch
+            priority: 10 // Optional, default is 10.
+        },
+    ]}
+```
+
 [More info about localization](https://ziggeo.com/docs/sdks/javascript/browser-integration/localization)
 
 ## Component Options
@@ -210,6 +220,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
+- v4.1.0 Upgraded ziggeo-client SDK to `~2.35.18` fixed bugs, added `mediaLocales` prop type to set any locale. New `fittodimensions` & `fullscreenmandatory` features included.
 - v4.0.0 Upgraded ziggeo-client SDK to `~2.35.4` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
 - v3.6.0 Upgraded ziggeo-client SDK to `~2.35.0` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
 - v3.5.2 Upgraded ziggeo-client SDK to `~2.34.8` fixed bugs.

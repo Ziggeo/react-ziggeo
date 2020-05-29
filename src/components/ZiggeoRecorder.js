@@ -29,8 +29,7 @@ const ZiggeoRecorder = ({ app, ...props }) =>  {
         attrs: attributes
       }));
     }
-  }, [attributes]);
-
+  }, [attributes, recorderElement]);
 
   useEffect(() => {
     if (recorder) {
