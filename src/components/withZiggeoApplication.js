@@ -3,7 +3,7 @@ import {ziggeoApplicationEvents, ziggeoRecorderApplicationOptions} from "../cons
 import { string } from "prop-types";
 
 const withZiggeoApplication = WrappedComponent => {
-  return ({apiKey, flashUrl, locale, ...restProps}) => {
+  return ({apiKey, flashUrl, locale, mediaLocales, ...restProps}) => {
 
     const [app, setApp] = useState(null);
 
@@ -25,6 +25,18 @@ const withZiggeoApplication = WrappedComponent => {
       // Set locale
       if (typeof locale !== "undefined")
         ZiggeoApi.V2.Locale.setLocale(locale);
+
+      if (mediaLocales) {
+        if (Array.isArray(mediaLocales))
+          mediaLocales.map(config => {
+            const {register} = config;
+            if (register) {
+              const priority = config['priority'] || 10;
+              ZiggeoApi.V2.Locale.mediaLocale.register(register, priority);
+            }
+          });
+        else console.warn('mediaLocales has to be an Array, please read documentation for more details.');
+      }
 
       // Set external flash player
       if (typeof flashUrl !== "undefined")

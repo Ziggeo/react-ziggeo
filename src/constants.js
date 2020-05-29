@@ -1,9 +1,5 @@
 import { string, number, bool, arrayOf, func, array, object, oneOfType } from 'prop-types';
 
-// , , , ,
-// , , , , ,
-// , ,
-
 // ####################### Player/Recorder Attributes #############################
 // When using HTML embed methods, all parameters should be prefixed with ziggeo-
 // https://ziggeo.com/docs/sdks/javascript/browser-integration/parameters#javascript-revision=v1-r29&javascript-version=v2
@@ -91,6 +87,8 @@ export const ziggeoRecorderAttributesPropTypes = {
     'addstreampositionheight': number,
     'addstreamminwidth': number,
     'addstreamminheight': number,
+    'fullscreenmandatory': bool,
+    'fittodimensions': bool,
 
     // Data parameters
     'tags': arrayOf(string),
