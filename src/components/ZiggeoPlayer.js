@@ -17,7 +17,7 @@ const ZiggeoPlayer = ({ app, ...props }) => {
     let playerElement = useRef(null);
 
     useEffect(() => {
-        if (attributes && player) {
+        if (attributes && player && updateInstance) {
             setAttributes(null);
         }
     }, [updateInstance]);
