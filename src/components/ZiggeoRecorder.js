@@ -13,10 +13,17 @@ import withZiggeoApplication from "./withZiggeoApplication";
 
 const ZiggeoRecorder = ({ app, ...props }) =>  {
 
+  let { updateInstance } = props;
   const [recorder, setRecorder] = useState(null);
   const [attributes, setAttributes] = useState(null);
   const [elementProps, setElementProps] = useState(null);
   let recorderElement = useRef(null);
+
+  useEffect(() => {
+    if (attributes && recorder && updateInstance) {
+      setAttributes(null);
+    }
+  }, [updateInstance]);
 
   useEffect(() => {
     if (!attributes) {
@@ -42,7 +49,12 @@ const ZiggeoRecorder = ({ app, ...props }) =>  {
       props.onRef(recorder);
     }
 
-    return () => { if (recorder) recorder.destroy(); }
+    return () => {
+      if (recorder) {
+        props.onRef(null);
+        recorder.destroy();
+      }
+    }
 
   }, [recorder]);
 

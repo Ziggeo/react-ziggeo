@@ -10,10 +10,17 @@ import {
 
 const ZiggeoPlayer = ({ app, ...props }) => {
 
+    let { updateInstance } = props;
     const [player, setPlayer] = useState(null);
     const [attributes, setAttributes] = useState(null);
     const [elementProps, setElementProps] = useState(null);
     let playerElement = useRef(null);
+
+    useEffect(() => {
+        if (attributes && player) {
+            setAttributes(null);
+        }
+    }, [updateInstance]);
 
     useEffect(() => {
         if (!attributes) {
@@ -40,7 +47,12 @@ const ZiggeoPlayer = ({ app, ...props }) => {
             props.onRef(player);
         }
 
-        return () => { if (player) player.destroy(); }
+        return () => {
+            if (player) {
+                props.onRef(null);
+                player.destroy();
+            }
+        }
 
     }, [player]);
 
