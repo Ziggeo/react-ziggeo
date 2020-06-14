@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.2.0
+ * @version v4.2.1
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -4698,7 +4698,7 @@ var ZiggeoPlayer = function ZiggeoPlayer(_ref) {
 
   var playerElement = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_react__["useRef"])(null);
   __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_react__["useEffect"])(function () {
-    if (attributes && player) {
+    if (attributes && player && updateInstance) {
       setAttributes(null);
     }
   }, [updateInstance]);
@@ -4730,6 +4730,7 @@ var ZiggeoPlayer = function ZiggeoPlayer(_ref) {
 
     return function () {
       if (player) {
+        props.onRef(null);
         player.destroy();
       }
     };
