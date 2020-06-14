@@ -194,7 +194,7 @@ Or you can change any text with your locale:
 ```
 
 ## Trigger Instance Update
-### for the both Player and Recorder
+#### below example use the recorder, but the same is true also for the player
 ```jsx
 
 const [recorder, setRecorder] = useState(null);
