@@ -1,4 +1,4 @@
-import { string, number, bool, arrayOf, func, array, object, oneOfType } from 'prop-types';
+import { string, number, bool, arrayOf, func, array, object, oneOfType, any } from 'prop-types';
 
 // ####################### Player/Recorder Attributes #############################
 // When using HTML embed methods, all parameters should be prefixed with ziggeo-
@@ -74,6 +74,8 @@ export const ziggeoRecorderAttributesPropTypes = {
     'audiobitrate': oneOfType([number, string]),
     'microphone-volume': number,
     'custom-covershots': bool,
+    'selectfirstcovershotonskip': bool,
+    'picksnapshotmandatory': bool,
     'pausable': bool,
     'snapshotfromuploader': bool,
     'allowmultistreams': bool,
@@ -342,7 +344,8 @@ export const ziggeoApiEventsPropTypes = {
 
 // #######################  React Common Options  ##############################
 export const reactCustomOptions = {
-    preventReRenderOnUpdate: bool
+    preventReRenderOnUpdate: bool,
+    updateInstance: any,
 };
 
 // ####################### Application Events #############################
