@@ -254,7 +254,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
-- v4.2.0 Upgraded ziggeo-client SDK to `~2.35.20` fixed bugs, added `updateInstance` prop. [Use Example](https://github.com/Ziggeo/react-ziggeo#trigger-instance-update)
+- v4.2.0 Upgraded ziggeo-client SDK to `~2.35.20` fixed bugs, added new Ziggeo features `selectfirstcovershotonskip`, `picksnapshotmandatory` and `updateInstance` prop. [Use Example](https://github.com/Ziggeo/react-ziggeo#trigger-instance-update)
 - v4.1.0 Upgraded ziggeo-client SDK to `~2.35.18` fixed bugs, added `mediaLocales` prop type to set any locale. New `fittodimensions` & `fullscreenmandatory` features included.
 - v4.0.0 Upgraded ziggeo-client SDK to `~2.35.4` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
 - v3.6.0 Upgraded ziggeo-client SDK to `~2.35.0` fixed bugs, added more new features `multistream` with options drag-and-drop and resize. In player now settings are manageable via methods.
