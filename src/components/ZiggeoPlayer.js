@@ -49,6 +49,7 @@ const ZiggeoPlayer = ({ app, ...props }) => {
 
         return () => {
             if (player) {
+                props.onRef(null);
                 player.destroy();
             }
         }
