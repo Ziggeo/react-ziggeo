@@ -207,7 +207,7 @@ useEffect(() => {
         // Should be a new instance
         setUpdateInstance(false);
     }
-});
+}, [recorder]);
 
 // You can handle getting with new instance
 const handleSomeAction = () => {
