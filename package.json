@@ -1,6 +1,6 @@
 {
   "name": "react-ziggeo",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "Ziggeo's react component for easy react application deployment",
   "main": "build/index",
   "scripts": {
@@ -73,6 +73,6 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.9",
     "webpack": "^2.0.0",
-    "ziggeo-client-sdk": "^2.35.20"
+    "ziggeo-client-sdk": "^2.35.21"
   }
 }
