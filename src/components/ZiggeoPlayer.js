@@ -62,7 +62,7 @@ const ZiggeoPlayer = ({ app, ...props }) => {
      */
     const ziggeoAttributes = () => {
         return Object.keys(props).filter(k => ziggeoPlayerAttributesPropTypes[k]).reduce((attr, k) => {
-            attr[k] = props[k];
+            attr[k.replace(/^_/g, '')] = props[k];
             return attr;
         }, {});
     };

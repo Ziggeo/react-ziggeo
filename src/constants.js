@@ -56,7 +56,7 @@ export const ziggeoRecorderAttributesPropTypes = {
     'video': string,
     'auto-crop': bool,
     'auto-pad': bool,
-    'key': string,
+    '_key': string,
     "rtmpstreamtype": string,
     "rtmpmicrophonecodec": string,
     'timelimit': number,
@@ -187,6 +187,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     // Video management parameters
     'video': string.isRequired,
     'stream': string,
+    '_key': string,
     'effect-profile': oneOfType([string, arrayOf(string)]),
     'video-profile': oneOfType([string, arrayOf(string)]),
     'noaudio': bool,

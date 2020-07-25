@@ -2092,7 +2092,7 @@ var ziggeoRecorderAttributesPropTypes = {
   'video': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'auto-crop': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'auto-pad': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
-  'key': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  '_key': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   "rtmpstreamtype": __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   "rtmpmicrophonecodec": __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'timelimit': __WEBPACK_IMPORTED_MODULE_0_prop_types__["number"],
@@ -2220,6 +2220,7 @@ var ziggeoPlayerAttributesPropTypes = {
   // Video management parameters
   'video': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"].isRequired,
   'stream': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  '_key': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'effect-profile': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["arrayOf"])(__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"])]),
   'video-profile': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"], __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["arrayOf"])(__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"])]),
   'noaudio': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
@@ -4744,7 +4745,7 @@ var ZiggeoPlayer = function ZiggeoPlayer(_ref) {
     return Object.keys(props).filter(function (k) {
       return __WEBPACK_IMPORTED_MODULE_2__constants__["g" /* ziggeoPlayerAttributesPropTypes */][k];
     }).reduce(function (attr, k) {
-      attr[k] = props[k];
+      attr[k.replace(/^_/g, '')] = props[k];
       return attr;
     }, {});
   };
@@ -4912,7 +4913,7 @@ var ZiggeoRecorder = function ZiggeoRecorder(_ref) {
     return Object.keys(props).filter(function (k) {
       return Object.assign(__WEBPACK_IMPORTED_MODULE_1__constants__["a" /* ziggeoRecorderAttributesPropTypes */], __WEBPACK_IMPORTED_MODULE_1__constants__["b" /* ziggeoPlayerApplicationOptions */])[k];
     }).reduce(function (attr, k) {
-      attr[k] = props[k];
+      attr[k.replace(/^_/g, '')] = props[k];
       return attr;
     }, {});
   };
