@@ -29,7 +29,7 @@ export const ziggeoRecorderAttributesPropTypes = {
     'flip-camera': bool,
     "flipscreen": bool, // Will affect as true, if flip-camera also set as true
     'early-rerecord': bool,
-    'sharevideo':	arrayOf(string),
+    'sharevideo': arrayOf(string),
     'transcript-language': string,
     'allowtexttrackupload': bool,
     'uploadlocales': array,
@@ -170,6 +170,8 @@ export const ziggeoPlayerAttributesPropTypes = {
     'allowtexttrackupload': bool,
     'audio-transcription-as-subtitles': bool,
     'playlist': oneOfType([array, string]),
+    'popup': bool,
+    'popup-stretch': bool,
     'popup-width': oneOfType([number, string]),
     'popup-height': oneOfType([number, string]),
 
@@ -177,7 +179,6 @@ export const ziggeoPlayerAttributesPropTypes = {
     'server-auth': string,
     'client-auth': string,
     'stretch': bool,
-    'popup-stretch': bool,
     'hideoninactivity': bool,
     'hidebarafter': number, // in milliseconds
     'preventinteraction': bool,
@@ -222,6 +223,8 @@ export const ziggeoPlayerAttributesPropTypes = {
     'chromecast': bool,
     'preload': bool,
     'lazy-application': bool,
+    'preroll': bool,
+    'vast': arrayOf(object),
 
     // Form and HTML parameters
     'input-bind': string,
