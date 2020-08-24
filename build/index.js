@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.3.1
+ * @version v4.3.2
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -2204,13 +2204,14 @@ var ziggeoPlayerAttributesPropTypes = {
   'allowtexttrackupload': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'audio-transcription-as-subtitles': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'playlist': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["array"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
+  'popup': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'popup-stretch': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'popup-width': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
   'popup-height': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
   // Security parameters
   'server-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'client-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'stretch': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
-  'popup-stretch': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'hideoninactivity': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'hidebarafter': __WEBPACK_IMPORTED_MODULE_0_prop_types__["number"],
   // in milliseconds
@@ -2255,6 +2256,8 @@ var ziggeoPlayerAttributesPropTypes = {
   'chromecast': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'preload': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'lazy-application': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'preroll': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'vast': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["arrayOf"])(__WEBPACK_IMPORTED_MODULE_0_prop_types__["object"]),
   // Form and HTML parameters
   'input-bind': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'form-accept': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"] // // handle special cases
