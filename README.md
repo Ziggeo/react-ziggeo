@@ -254,6 +254,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
+- v4.3.3 Downgraded to Ziggeo stable revision`~2.35.22`, nothing very serious changes are made on the latest version.
 - v4.3.1 added `_key` support; Upgraded ziggeo-client SDK to `~2.36.5` fixed bugs.
 - v4.3.0 Upgraded ziggeo-client SDK to `~2.36.3` fixed bugs.
 - v4.2.0 Upgraded ziggeo-client SDK to `~2.35.20` fixed bugs, added new Ziggeo features `selectfirstcovershotonskip`, `picksnapshotmandatory` and `updateInstance` prop. [Use Example](https://github.com/Ziggeo/react-ziggeo#trigger-instance-update)
