@@ -6,8 +6,7 @@ For older versions which are not supporting hooks (react version < 16.8.0) pleas
 We have a demo project [here](https://github.com/Ziggeo/react-ziggeo/tree/master/demo) for you to clone.
 
 ## Upgrade Ziggeo SDK
-This package build based only on stable version of Ziggeo-JS-SDK, but you can easily upgrade to the latest Ziggeo SDK version. <br/>
-Steps require to do:
+This package build based only on stable version of Ziggeo-JS-SDK, but you can easily upgrade to the latest Ziggeo SDK version. Steps require to do:
 - 1. Edit root `package.json` file and upgrading `ziggeo-client-sdk` to the latest version ([Ziggeo JS SDK Github Url](https://github.com/Ziggeo/ziggeo-client-sdk));
 - 2. Run `npm install` or `npm update` (`yarn install` if you're using Yarn) to install/update package
 - 3. Run `npm run build` command to build package.
