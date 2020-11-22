@@ -7,10 +7,10 @@ We have a demo project [here](https://github.com/Ziggeo/react-ziggeo/tree/master
 
 ## Upgrade Ziggeo SDK
 This package build based only on stable version of Ziggeo-JS-SDK, but you can easily upgrade to the latest Ziggeo SDK version. Steps require to do:
-- 1) Edit root `package.json` file by upgrading to the latest version of `ziggeo-client-sdk` ([Ziggeo JS SDK Github Url](https://github.com/Ziggeo/ziggeo-client-sdk));
-- 2) Run `npm install` or `npm update` (`yarn install` if you're using Yarn) to install/update package;
-- 3) Run `npm run build` command to re-build package;
-- 4) Optional step. To install package in your own local project, after you complete steps above you can 
+- Edit root `package.json` file by upgrading to the latest version of `ziggeo-client-sdk` ([Ziggeo JS SDK Github Url](https://github.com/Ziggeo/ziggeo-client-sdk));
+- Run `npm install` or `npm update` (`yarn install` if you're using Yarn) to install/update packages;
+- Run `npm run build` command to re-build package;
+- Optional step. To install package in your own local project, after you complete steps above you can 
 run `npm pack` which will generate a new package in the root folder with the `.tgz` extension.
 Then in your own project you can replace `react-ziggeo` package number with path to the generated pack. 
 For example instead of `react-ziggeo: "4.x.x"` you can use `react-ziggeo: "path_to_the/package/react-ziggeo-version_number.tgz"`
