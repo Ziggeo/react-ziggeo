@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.4.2
+ * @version v4.4.3
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -3374,11 +3374,23 @@ var withZiggeoApplication = function withZiggeoApplication(WrappedComponent) {
 
       if (mediaLocales) {
         if (Array.isArray(mediaLocales)) mediaLocales.map(function (config) {
-          var register = config.register;
+          var register = config.register,
+              languages = config.languages,
+              priority = config.priority;
 
           if (register) {
-            var priority = config['priority'] || 10;
-            ZiggeoApi.V2.Locale.mediaLocale.register(register, priority);
+            if (Array.isArray(languages)) {
+              var language_args = [];
+              languages.map(function (l, i) {
+                language_args.push("language:".concat(l));
+
+                if (i === languages.length - 1) {
+                  return ZiggeoApi.V2.Locale.mediaLocale.register(register, language_args, priority || 10);
+                }
+              });
+            } else {
+              return ZiggeoApi.V2.Locale.mediaLocale.register(register, priority || 10);
+            }
           }
         });else console.warn('mediaLocales has to be an Array, please read documentation for more details.');
       } // Set external flash player

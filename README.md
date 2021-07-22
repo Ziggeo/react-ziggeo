@@ -198,6 +198,7 @@ Or you can change any text with your locale:
     mediaLocales={[
         {
             register: {"ba-videorecorder-chooser.record-video": "Rec"}, // Any object you want to touch
+            languages: ['de', 'it'], // Optional, any languages chages are required to be affected
             priority: 10 // Optional, default is 10.
         },
     ]}

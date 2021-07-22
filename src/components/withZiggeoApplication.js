@@ -28,11 +28,20 @@ const withZiggeoApplication = WrappedComponent => {
 
       if (mediaLocales) {
         if (Array.isArray(mediaLocales))
-          mediaLocales.map(config => {
-            const {register} = config;
+          mediaLocales.map((config) => {
+            const {register, languages, priority} = config;
             if (register) {
-              const priority = config['priority'] || 10;
-              ZiggeoApi.V2.Locale.mediaLocale.register(register, priority);
+              if (Array.isArray(languages)) {
+                const language_args = [];
+                languages.map((l, i) => {
+                  language_args.push(`language:${l}`);
+                  if (i === (languages.length - 1)) {
+                    return ZiggeoApi.V2.Locale.mediaLocale.register(register, language_args, priority || 10);
+                  }
+                });
+              } else {
+                return ZiggeoApi.V2.Locale.mediaLocale.register(register, priority || 10);
+              }
             }
           });
         else console.warn('mediaLocales has to be an Array, please read documentation for more details.');
