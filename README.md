@@ -15,6 +15,9 @@ run `npm pack` which will generate a new package in the root folder with the `.t
 Then in your own project you can replace `react-ziggeo` package number with path to the generated pack. 
 For example instead of `react-ziggeo: "4.x.x"` you can use `react-ziggeo: "path_to_the/package/react-ziggeo-version_number.tgz"`
 
+<br/>
+NOTE: ZiggeoAudioRecorder/ZiggeoAudioPlayer could be work only after [upgrading](https://github.com/Ziggeo/react-ziggeo#upgrade-ziggeo-sdk) to the higer or equal `ziggeo-client-sdk@2.39`
+
 ## Video Recorder
 
 ```$xslt
@@ -265,6 +268,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
+- v4.5.0 Added new ZiggeoAudioRecorder and ZiggeoAudioPlayer components, could be used only with the lates ziggeo-js-sdk. [Upgrade Instruction](https://github.com/Ziggeo/react-ziggeo#upgrade-ziggeo-sdk)
 - v4.3.3 Downgraded to Ziggeo stable revision`~2.35.22`, nothing very serious changes are made on the latest version.
 - v4.3.1 added `_key` support; Upgraded ziggeo-client SDK to `~2.36.5` fixed bugs.
 - v4.3.0 Upgraded ziggeo-client SDK to `~2.36.3` fixed bugs.
