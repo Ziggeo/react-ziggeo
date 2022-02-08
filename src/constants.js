@@ -64,6 +64,7 @@ export const ziggeoRecorderAttributesPropTypes = {
     'video-profile': oneOfType([string, arrayOf(string)]),
     'effect-profile': oneOfType([string, arrayOf(string)]),
     'meta-profile': oneOfType([string, arrayOf(string)]),
+    'cpu-friendly': bool,
     'enforce-duration': bool,
     'noaudio': bool,
     'source':	string,
