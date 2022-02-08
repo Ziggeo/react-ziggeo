@@ -133,10 +133,11 @@ ZiggeoRecorder.defaultProps = {
 
   // Operational parameters
   'allowupload': true,
-  'allowrecord':	true,
-  'force-overwrite':	true,
+  'allowrecord': true,
+  'force-overwrite': true,
   'allowcustomupload': true,
   'recordermode': true,
+  'cpu-friendly': false,
 
   // only react related options
   'preventReRenderOnUpdate': true,

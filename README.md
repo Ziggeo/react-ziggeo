@@ -268,6 +268,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
+- v4.6.0 Was upgraded to the stable `r-39` with new features and improvements, where ZiggeoAudioRecorder and ZiggeoAudioPlayer components will support by default.
 - v4.5.0 Added new ZiggeoAudioRecorder and ZiggeoAudioPlayer components, could be used only with the lates ziggeo-js-sdk. [Upgrade Instruction](https://github.com/Ziggeo/react-ziggeo#upgrade-ziggeo-sdk)
 - v4.3.3 Downgraded to Ziggeo stable revision`~2.35.22`, nothing very serious changes are made on the latest version.
 - v4.3.1 added `_key` support; Upgraded ziggeo-client SDK to `~2.36.5` fixed bugs.
