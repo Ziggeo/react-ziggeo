@@ -89,6 +89,15 @@ import {ZiggeoRecorder} from 'react-ziggeo'
   - onVerified
   - onNoCamera
   - onNoMicrophone
+  - onMicrophonehealth
+  - onCamerahealth
+  - onCameraSignal
+  - onBound
+  - onHasCamera
+  - onHasMicrophone
+  - onRecordingStopped
+  - onStopped
+  - onReadyToRecord
   - onRef
 ```
 ### Recorder option Screen Recorder
