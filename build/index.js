@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.6.0
+ * @version v4.6.1
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -1786,6 +1786,15 @@ var ziggeoRecorderEmbeddingEventsPropTypes = {
   onVerified: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
   onNoCamera: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
   onNoMicrophone: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onMicrophonehealth: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onCamerahealth: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onCameraSignal: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onBound: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onHasCamera: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onHasMicrophone: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onRecordingStopped: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onStopped: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
+  onReadyToRecord: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"],
   onRef: __WEBPACK_IMPORTED_MODULE_0_prop_types__["func"]
 };
 var ziggeoPlayerEmbeddingEventsPropTypes = {
