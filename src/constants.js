@@ -428,6 +428,15 @@ export const ziggeoRecorderEmbeddingEventsPropTypes = {
     onVerified: func,
     onNoCamera: func,
     onNoMicrophone: func,
+    onMicrophonehealth: func,
+    onCamerahealth: func,
+    onCameraSignal: func,
+    onBound: func,
+    onHasCamera: func,
+    onHasMicrophone: func,
+    onRecordingStopped: func,
+    onStopped: func,
+    onReadyToRecord: func,
     onRef: func
 };
 
