@@ -277,6 +277,7 @@ React SDK supports all of the following events and parameters:
 - [Application-wide Embedding Events](https://ziggeo.com/docs/sdks/javascript/browser-interaction/application-embedding-events#javascript-revision=stable)
 
 #### Changelog:
+- v4.6.2 Added support for following parameters: `outsource-selectors`, `screenrecordmandatory`, `media-orientation`, `pickcovershotframe`, `allowtrim`, `trimoverlay`, `aspectratio`, `pauseonclick`, `videofitstrategy` and `posterfitstrategy`.
 - v4.6.1 Added several missing video recorder embedding events (`onMicrophonehealth, onCamerahealth etc.`).
 - v4.6.0 Was upgraded to the stable `r-39` with new features and improvements, where ZiggeoAudioRecorder and ZiggeoAudioPlayer components will support by default.
 - v4.5.0 Added new ZiggeoAudioRecorder and ZiggeoAudioPlayer components, could be used only with the lates ziggeo-js-sdk. [Upgrade Instruction](https://github.com/Ziggeo/react-ziggeo#upgrade-ziggeo-sdk)
