@@ -138,6 +138,8 @@ ZiggeoRecorder.defaultProps = {
   'allowcustomupload': true,
   'recordermode': true,
   'cpu-friendly': false,
+  'trimoverlay': true,
+  'pauseonclick': true,
 
   // only react related options
   'preventReRenderOnUpdate': true,

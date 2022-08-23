@@ -92,6 +92,14 @@ export const ziggeoRecorderAttributesPropTypes = {
     'addstreamminheight': number,
     'fullscreenmandatory': bool,
     'fittodimensions': bool,
+    'outsource-selectors': string,
+    'screenrecordmandatory': bool,
+    'media-orientation': string,
+    'pickcovershotframe': bool,
+    'allowtrim': bool,
+    'trimoverlay': bool,
+    'aspectratio': number,
+    'pauseonclick': bool,
 
     // Data parameters
     'tags': arrayOf(string),
@@ -175,6 +183,8 @@ export const ziggeoPlayerAttributesPropTypes = {
     'popup-stretch': bool,
     'popup-width': oneOfType([number, string]),
     'popup-height': oneOfType([number, string]),
+    'videofitstrategy': string,
+    'posterfitstrategy': string,
 
     // Security parameters
     'server-auth': string,

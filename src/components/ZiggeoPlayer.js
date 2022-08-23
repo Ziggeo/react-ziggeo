@@ -115,6 +115,8 @@ ZiggeoPlayer.defaultProps = {
     'themecolor': 'default',
     'hidebarafter': 5000, // in milliseconds
     'skipseconds': 5, // in seconds
+    'videofitstrategy': 'pad',
+    'posterfitstrategy': 'crop',
 
     // only react related options
     'preventReRenderOnUpdate': true,
