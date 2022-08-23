@@ -1,6 +1,6 @@
 /**
  * react-ziggeo - Ziggeo's react component for easy react application deployment
- * @version v4.6.1
+ * @version v4.6.2
  * @author Ziggeo Inc
  * @link https://ziggeo.com
  * @license Apache-2.0
@@ -1466,6 +1466,14 @@ var ziggeoRecorderAttributesPropTypes = {
   'addstreamminheight': __WEBPACK_IMPORTED_MODULE_0_prop_types__["number"],
   'fullscreenmandatory': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'fittodimensions': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'outsource-selectors': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  'screenrecordmandatory': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'media-orientation': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  'pickcovershotframe': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'allowtrim': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'trimoverlay': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
+  'aspectratio': __WEBPACK_IMPORTED_MODULE_0_prop_types__["number"],
+  'pauseonclick': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   // Data parameters
   'tags': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["arrayOf"])(__WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]),
   'custom-data': __WEBPACK_IMPORTED_MODULE_0_prop_types__["object"],
@@ -1547,6 +1555,8 @@ var ziggeoPlayerAttributesPropTypes = {
   'popup-stretch': __WEBPACK_IMPORTED_MODULE_0_prop_types__["bool"],
   'popup-width': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
   'popup-height': __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_prop_types__["oneOfType"])([__WEBPACK_IMPORTED_MODULE_0_prop_types__["number"], __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"]]),
+  'videofitstrategy': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
+  'posterfitstrategy': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   // Security parameters
   'server-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
   'client-auth': __WEBPACK_IMPORTED_MODULE_0_prop_types__["string"],
@@ -5353,6 +5363,8 @@ ZiggeoPlayer.defaultProps = _objectSpread({
   // in milliseconds
   'skipseconds': 5,
   // in seconds
+  'videofitstrategy': 'pad',
+  'posterfitstrategy': 'crop',
   // only react related options
   'preventReRenderOnUpdate': true
 }, Object.keys(Object.assign(__WEBPACK_IMPORTED_MODULE_2__constants__["i" /* ziggeoPlayerEmbeddingEventsPropTypes */], __WEBPACK_IMPORTED_MODULE_2__constants__["d" /* ziggeoCommonEmbeddingEventsPropTypes */])).reduce(function (defaults, event) {
@@ -5543,6 +5555,8 @@ ZiggeoRecorder.defaultProps = _objectSpread({
   'allowcustomupload': true,
   'recordermode': true,
   'cpu-friendly': false,
+  'trimoverlay': true,
+  'pauseonclick': true,
   // only react related options
   'preventReRenderOnUpdate': true,
   'display-timer': true,
