@@ -53,6 +53,13 @@ export const ziggeoRecorderAttributesPropTypes = {
     'maxuploadingwidth': number,
     'minuploadingheight': number,
     'maxuploadingheight': number,
+    'maxheight': number,
+    'maxwidth': number,
+    'minheight': number,
+    'minwidth': number,
+
+
+
     'video': string,
     'auto-crop': bool,
     'auto-pad': bool,
@@ -115,7 +122,10 @@ export const ziggeoRecorderAttributesPropTypes = {
     'allowrecord':	bool,
     'display-timer': bool,
     'force-overwrite':	bool,
+    'outsource-selectors': string,
+    'cpu-friendly' : bool,
     'autoplay': bool,
+    'media-orientation': string,
     'recordings':	number,
     'allowedextensions': arrayOf(string),
     'application': string, //	oneOfType([object, string]),
@@ -168,10 +178,15 @@ export const ziggeoPlayerAttributesPropTypes = {
     'stream-height': number,
     'nofullscreen': bool,
     'localplayback': bool,
+    'maxheight': number,
+    'maxwidth': number,
+    'minheight': number,
+    'minwidth': number,
     'theme': string,
     'themecolor': string,
     'sharevideo':	arrayOf(string),
     'loop': bool,
+    'sticky': bool,
     'loopall': bool,
     'volume': number,
     'showduration': bool,
@@ -487,7 +502,10 @@ export const ziggeoMethods = {
     isFlash: func,
     videoWidth: func,
     videoHeight: func,
-    destroy: func
+    destroy: func,
+    trim: func,
+    audioError: func,
+    imageError:func,
 };
 
 
