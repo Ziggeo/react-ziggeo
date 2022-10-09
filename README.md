@@ -18,7 +18,7 @@ For example instead of `react-ziggeo: "4.x.x"` you can use `react-ziggeo: "path_
 <br/>
 NOTE: ZiggeoAudioRecorder/ZiggeoAudioPlayer could be work only after [upgrading](https://github.com/Ziggeo/react-ziggeo#upgrade-ziggeo-sdk) to the higer or equal `ziggeo-client-sdk@2.39`
 
-NOTE: We have done some of the steps above for you, including addition of the new parameters, events and methods in another branch of this repository. If you are interested you can check it at https://github.com/Ziggeo/react-ziggeo/blob/latest-branch/ 
+NOTE: We have done some of the steps above for you, including addition of the new parameters, events and methods in another branch of this repository. If you are interested you can check it at https://github.com/Ziggeo/react-ziggeo/tree/latest-branch
 
 ## Video Recorder
 
