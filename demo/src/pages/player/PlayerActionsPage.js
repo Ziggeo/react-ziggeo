@@ -22,11 +22,6 @@ export default class PlayerActionsPage extends Component {
         }
     }
 
-    componentDidMount () {
-        this.playerInstance = this.child.playerInstance();
-        this.playerProperties = this.playerInstance.get();
-    }
-
     handleChangeApiKey = () => {
         this.setState({
             apiToken: API_KEY,
@@ -53,12 +48,37 @@ export default class PlayerActionsPage extends Component {
         this.setState({ player });
     };
 
+    handlePlayerRef = ref => {
+        if (!ref) {
+            return;
+        }
+
+        this.child = ref;
+
+        if (typeof ref.playerInstance === 'function') {
+            this.playerInstance = ref.playerInstance();
+            this.playerProperties = this.playerInstance && this.playerInstance.get
+                ? this.playerInstance.get()
+                : null;
+        }
+    };
+
     triggerPlay = () => {
-        this.child.play();
+        if (this.child && typeof this.child.play === 'function') {
+            this.child.play();
+        }
     };
 
     triggerPause = () => {
-        this.child.pause();
+        if (this.child && typeof this.child.pause === 'function') {
+            this.child.pause();
+        }
+    };
+
+    triggerSeek = () => {
+        if (this.child && typeof this.child.seek === 'function') {
+            this.child.seek(5);
+        }
     };
 
     render () {
@@ -71,7 +91,7 @@ export default class PlayerActionsPage extends Component {
                     video={this.state.video}
                     height={this.state.player.videoHeight}
                     width={this.state.player.videoWidth}
-                    onRef={ref => (this.child = ref)}
+                    onRef={this.handlePlayerRef}
                 />
 
                 <hr />
@@ -88,7 +108,7 @@ export default class PlayerActionsPage extends Component {
                     <span> -- </span>
                     <button onClick={this.triggerPause} className="btn btn-info">Pause</button>
                     <span> -- </span>
-                    <button onClick={() => { this.child.seek(5) }} className="btn btn-danger">Seek 5 sec</button>
+                    <button onClick={this.triggerSeek} className="btn btn-danger">Seek 5 sec</button>
                 </div>
                 <br/><br/>
             </section>

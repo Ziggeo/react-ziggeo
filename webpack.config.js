@@ -1,12 +1,12 @@
 var path = require('path');
-var isProduction = process.env.NODE_ENV === 'production';
 var webpack = require('webpack');
-var ignore = new webpack.IgnorePlugin(new RegExp("/(ziggeo-client-sdk)/"));
 var fs = require('fs');
 
 const pkg = JSON.parse(fs.readFileSync('./package.json').toString());
 
-module.exports = {
+module.exports = function(env, argv) {
+    var isProduction = argv && argv.mode === 'production';
+    return {
     devtool: 'source-map',
     entry: [
         './src/index.js'
@@ -19,7 +19,6 @@ module.exports = {
         publicPath: '/static/'
     },
     plugins: [
-        ignore,
         new webpack.BannerPlugin({
             banner: `
 /**
@@ -36,25 +35,29 @@ module.exports = {
         })
 
     ],
-    node: {
-        fs: 'empty'
+    resolve: {
+        fallback: {
+            fs: false
+        }
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js/,
-                loaders: ['babel-loader'],
+                use: ['babel-loader'],
                 include: path.join(__dirname, 'src')
             },
             {
                 test: /\.css/,
-                loaders: [ 'style-loader', 'css-loader' ]
+                use: [ 'style-loader', 'css-loader' ]
             },
             {
                 test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
-                loader: 'url-loader',
-                options: {
-                    limit: 10000
+                type: 'asset',
+                parser: {
+                    dataUrlCondition: {
+                        maxSize: 10000
+                    }
                 }
             }
         ]
@@ -67,4 +70,5 @@ module.exports = {
             amd: 'react',
         }
     }
+    };
 };

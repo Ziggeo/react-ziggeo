@@ -18,12 +18,6 @@ export default class RecorderActionsPage extends Component {
         }
     }
 
-    componentDidMount () {
-        this.recorderInstance = this.child.recorderInstance();
-        this.recorderProperties = this.recorderInstance.get();
-        console.log('ins :: ', this.recorderInstance, this.recorderProperties);
-    }
-
     setNewDimensions = () => {
         let recorder = Object.assign({}, this.state.recorder);
         recorder.width = 440;
@@ -32,6 +26,22 @@ export default class RecorderActionsPage extends Component {
     }
 
     getInstance = () => {
+    }
+
+    handleRecorderRef = ref => {
+        if (!ref) {
+            return;
+        }
+
+        this.child = ref;
+
+        if (typeof ref.recorderInstance === 'function') {
+            this.recorderInstance = ref.recorderInstance();
+            this.recorderProperties = this.recorderInstance && this.recorderInstance.get
+                ? this.recorderInstance.get()
+                : null;
+            console.log('ins :: ', this.recorderInstance, this.recorderProperties);
+        }
     }
 
     render() {
@@ -44,7 +54,7 @@ export default class RecorderActionsPage extends Component {
                 </p>
                 <ZiggeoRecorder
                     apiKey={this.state.apiKey}
-                    onRef={ref => (this.child = ref)}
+                    onRef={this.handleRecorderRef}
                     height={this.state.recorder.height}
                     width={this.state.recorder.width}
                 />

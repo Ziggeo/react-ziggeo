@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import PlayerPage from '../pages/player/PlayerPage';
 import RecorderPage from '../pages/recorder/RecorderPage';
@@ -11,14 +11,14 @@ class MainContent extends Component {
     render() {
         return (
             <main className="App-intro container">
-                <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route exact path="/player" component={PlayerPage} />
-                    <Route exact path="/recorder" component={RecorderPage} />
-                    <Route exact path="/player-actions" component={PlayerActionsPage} />
-                    <Route exact path="/recorder-actions" component={RecorderActionsPage} />
-                    <Route exact path="/player-list" component={PlayerListPage} />
-                </Switch>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/player" element={<PlayerPage />} />
+                    <Route path="/recorder" element={<RecorderPage />} />
+                    <Route path="/player-actions" element={<PlayerActionsPage />} />
+                    <Route path="/recorder-actions" element={<RecorderActionsPage />} />
+                    <Route path="/player-list" element={<PlayerListPage />} />
+                </Routes>
             </main>
         );
     }

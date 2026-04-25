@@ -187,9 +187,14 @@ export const ziggeoPlayerAttributesPropTypes = {
     'sharevideo':	arrayOf(string),
     'loop': bool,
     'sticky': bool,
+    'sticky-position': string,
+    'sticky-starts-paused': bool,
+    'sticky-threshold': number,
+    'floatingoptions': object,
     'loopall': bool,
     'volume': number,
     'showduration': bool,
+    'showsettingsmenu': bool,
     'uploadlocales': array,
     'allowtexttrackupload': bool,
     'audio-transcription-as-subtitles': bool,
@@ -200,6 +205,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     'popup-height': oneOfType([number, string]),
     'videofitstrategy': string,
     'posterfitstrategy': string,
+    'slim': bool,
 
     // Security parameters
     'server-auth': string,
@@ -207,6 +213,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     'stretch': bool,
     'hideoninactivity': bool,
     'hidebarafter': number, // in milliseconds
+    'hidecontrolbar': bool,
     'preventinteraction': bool,
     'stretchwidth': bool,
     'stretchheight': bool,
@@ -233,6 +240,7 @@ export const ziggeoPlayerAttributesPropTypes = {
     // Operational parameters
     'allowpip': oneOfType([bool, func]), // Disable Picture-In-Picture by default, Has to be boolean. Need present func also because of Ziggeo internally used as function
     'autoplay': bool,
+    'autoplaywhenvisible': bool,
     'application': string, // oneOfType([object, string]),
     'flashincognitosupport': bool,
     'forceflash': bool,

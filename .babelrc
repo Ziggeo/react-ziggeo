@@ -9,7 +9,9 @@
                         "safari >= 7",
                         "ie 9"
                     ]
-                }
+                },
+                "useBuiltIns": "entry",
+                "corejs": 3
             }
         ]
     ],
